@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Hub - Tu Destino Automotriz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🚗 Drive Hub</div>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#galeria">Galería</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Drive Hub</h1>
+            <p>Descubre tu próximo carro ideal</p>
+            <button class="cta-button" onclick="scrollToGallery()">Explorar Carros</button>
+        </div>
+    </section>
+
+    <section class="gallery" id="galeria">
+        <h2>Nuestra Galería de Carros</h2>
+        <div class="cars-grid" id="carsGrid">
+            <!-- Los carros se generarán dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- Modal para especificaciones -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <div id="modalSpecs" class="spec-grid">
+                    <!-- Las especificaciones se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
