@@ -1,0 +1,54 @@
+
+---
+import "./carrusel.css";
+---
+
+<section class="carousel">
+  <div class="carousel-slide active" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-15-at-14.18.19-2-2-1110x624.jpeg');">
+    <div class="carousel-content">
+      <h2>
+        UNEV celebra simposio sobre economía circular en el marco de su 39 aniversario y la Semana Científica del MESCyT
+      </h2>
+      <p class="carousel-label">NOTICIA</p>
+    </div>
+  </div>
+
+  <div class="carousel-slide" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/DSC03771-1110x624.jpg');">
+    <div class="carousel-content">
+      <h2>
+        UNEV reconoce a 27 docentes destacados por su entrega, vocación y trayectoria
+      </h2>
+      <p class="carousel-label">NOTICIA</p>
+    </div>
+  </div>
+ <div class="carousel-slide active" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/IMG-20250703-WA0058-1110x624.jpg');">
+    <div class="carousel-content">
+      <h2>
+       Dr. José Antonio Chery asume presidencia de la FEU 
+      </h2>
+      <p class="carousel-label">NOTICIA</p>
+    </div>
+  </div>
+  <!-- Flechas -->
+  <button class="carousel-prev" aria-label="Anterior">&#10094;</button>
+  <button class="carousel-next" aria-label="Siguiente">&#10095;</button>
+</section>
+
+<script>
+  // Script mínimo para el carrusel (puedes moverlo a un archivo separado si lo deseas)
+  let current = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const total = slides.length;
+  const next = () => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % total;
+    slides[current].classList.add('active');
+  };
+  const prev = () => {
+    slides[current].classList.remove('active');
+    current = (current - 1 + total) % total;
+    slides[current].classList.add('active');
+  };
+  document.querySelector('.carousel-next').onclick = next;
+  document.querySelector('.carousel-prev').onclick = prev;
+</script>
