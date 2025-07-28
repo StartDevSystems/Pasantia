@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Carrusel from '../components/Carrusel/Carrusel.astro';
+import TopBar from '../components/TopBar/TopBar.astro';
 // Ejemplo con datos dinámicos (desde API, CMS, etc.)
 
 // Simular datos desde una API o CMS
@@ -43,5 +44,6 @@ const slides = noticias.map(noticia => ({
         height="70vh" 
         autoplay={true} 
         autoplayDelay={5000} 
-      />
+  />
+  <TopBar/>
 </Layout>
