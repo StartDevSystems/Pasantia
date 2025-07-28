@@ -1,54 +1,172 @@
-
 ---
-import "./carrusel.css";
+import "./carrusel.css"
+// Carousel.astro
+export interface Slide {
+  id: string | number;
+  image: string;
+  title: string;
+  label?: string;
+  alt?: string;
+}
+
+export interface Props {
+  slides: Slide[];
+  height?: string;
+  autoplay?: boolean;
+  autoplayDelay?: number;
+}
+
+const { 
+  slides, 
+  height = "80vh", 
+  autoplay = false, 
+  autoplayDelay = 5000 
+} = Astro.props;
 ---
 
-<section class="carousel">
-  <div class="carousel-slide active" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-15-at-14.18.19-2-2-1110x624.jpeg');">
-    <div class="carousel-content">
-      <h2>
-        UNEV celebra simposio sobre economía circular en el marco de su 39 aniversario y la Semana Científica del MESCyT
-      </h2>
-      <p class="carousel-label">NOTICIA</p>
+<section class="carousel" style={`height: ${height}`}>
+  {slides.map((slide, index) => (
+    <div 
+      class={`carousel-slide ${index === 0 ? 'active' : ''}`}
+      style={`background-image: url('${slide.image}');`}
+      data-slide-index={index}
+    >
+      <div class="carousel-content">
+        <h2>{slide.title}</h2>
+        {slide.label && (
+          <p class="carousel-label">{slide.label}</p>
+        )}
+      </div>
     </div>
-  </div>
-
-  <div class="carousel-slide" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/DSC03771-1110x624.jpg');">
-    <div class="carousel-content">
-      <h2>
-        UNEV reconoce a 27 docentes destacados por su entrega, vocación y trayectoria
-      </h2>
-      <p class="carousel-label">NOTICIA</p>
-    </div>
-  </div>
- <div class="carousel-slide active" style="background-image: url('https://unev.edu.do/wp-content/uploads/2025/07/IMG-20250703-WA0058-1110x624.jpg');">
-    <div class="carousel-content">
-      <h2>
-       Dr. José Antonio Chery asume presidencia de la FEU 
-      </h2>
-      <p class="carousel-label">NOTICIA</p>
-    </div>
-  </div>
-  <!-- Flechas -->
+  ))}
+  
+  <!-- Flechas de navegación -->
   <button class="carousel-prev" aria-label="Anterior">&#10094;</button>
   <button class="carousel-next" aria-label="Siguiente">&#10095;</button>
+  
+  <!-- Indicadores de puntos (opcional) -->
+  <div class="carousel-indicators">
+    {slides.map((_, index) => (
+      <button 
+        class={`carousel-dot ${index === 0 ? 'active' : ''}`}
+        data-slide={index}
+        aria-label={`Ir al slide ${index + 1}`}
+      ></button>
+    ))}
+  </div>
 </section>
 
+</style>
+
 <script>
-  // Script mínimo para el carrusel (puedes moverlo a un archivo separado si lo deseas)
-  let current = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const total = slides.length;
-  const next = () => {
-    slides[current].classList.remove('active');
-    current = (current + 1) % total;
-    slides[current].classList.add('active');
-  };
-  const prev = () => {
-    slides[current].classList.remove('active');
-    current = (current - 1 + total) % total;
-    slides[current].classList.add('active');
-  };
-  document.querySelector('.carousel-next').onclick = next;
-  document.querySelector('.carousel-prev').onclick = prev;
+  class CarouselManager {
+    constructor() {
+      this.current = 0;
+      this.slides = document.querySelectorAll('.carousel-slide');
+      this.dots = document.querySelectorAll('.carousel-dot');
+      this.total = this.slides.length;
+      this.autoplayInterval = null;
+      
+      this.init();
+    }
+    
+    init() {
+      // Botones de navegación
+      const nextBtn = document.querySelector('.carousel-next');
+      const prevBtn = document.querySelector('.carousel-prev');
+      
+      if (nextBtn) nextBtn.addEventListener('click', () => this.next());
+      if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
+      
+      // Indicadores de puntos
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+      
+      // Autoplay si está habilitado
+      const carousel = document.querySelector('.carousel');
+      const autoplay = carousel?.dataset.autoplay === 'true';
+      const delay = parseInt(carousel?.dataset.delay || '5000');
+      
+      if (autoplay) {
+        this.startAutoplay(delay);
+        
+        // Pausar autoplay al hacer hover
+        carousel?.addEventListener('mouseenter', () => this.stopAutoplay());
+        carousel?.addEventListener('mouseleave', () => this.startAutoplay(delay));
+      }
+      
+      // Navegación con teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') this.prev();
+        if (e.key === 'ArrowRight') this.next();
+      });
+      
+      // Soporte para gestos táctiles
+      this.setupTouchNavigation();
+    }
+    
+    next() {
+      this.goToSlide((this.current + 1) % this.total);
+    }
+    
+    prev() {
+      this.goToSlide((this.current - 1 + this.total) % this.total);
+    }
+    
+    goToSlide(index) {
+      // Remover clases activas
+      this.slides[this.current]?.classList.remove('active');
+      this.dots[this.current]?.classList.remove('active');
+      
+      // Actualizar índice actual
+      this.current = index;
+      
+      // Agregar clases activas
+      this.slides[this.current]?.classList.add('active');
+      this.dots[this.current]?.classList.add('active');
+    }
+    
+    startAutoplay(delay) {
+      this.stopAutoplay();
+      this.autoplayInterval = setInterval(() => this.next(), delay);
+    }
+    
+    stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      }
+    }
+    
+    setupTouchNavigation() {
+      let startX = 0;
+      let endX = 0;
+      
+      const carousel = document.querySelector('.carousel');
+      
+      carousel?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      });
+      
+      carousel?.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+          if (diff > 0) {
+            this.next(); // Swipe left - next slide
+          } else {
+            this.prev(); // Swipe right - previous slide
+          }
+        }
+      });
+    }
+  }
+  
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new CarouselManager();
+  });
 </script>
+
