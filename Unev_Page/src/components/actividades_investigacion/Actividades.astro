@@ -1,8 +1,58 @@
 ---
 import TopBar from "../TopBar/TopBar.astro"
 import "./Actividades.css"
+// ResearchStats.astro
+
+interface StatItem {
+  number: string;
+  label: string;
+}
+
+const stats: StatItem[] = [
+  {
+    number: "1908",
+    label: "Publicaciones"
+  },
+  {
+    number: "36",
+    label: "Perfiles"
+  },
+  {
+    number: "75",
+    label: "Proyectos"
+  },
+  {
+    number: "23",
+    label: "Grupos de investigación"
+  },
+  {
+    number: "12",
+    label: "Patentes"
+  }
+];
 ---
+
 <div class="activities-container">
-  
   <TopBar/>
+<section class="research-stats">
+  <div class="container">
+    <div class="stats-header">
+      <h2>Actividades de <span class="highlight">investigación</span></h2>
+      <button class="info-button" aria-label="Más información">
+        MÁS INFORMACIÓN
+      </button>
+    </div>
+    
+    <div class="stats-grid">
+      {stats.map((stat) => (
+        <div class="stat-item">
+          <div class="stat-circle">
+            <span class="stat-number">{stat.number}</span>
+          </div>
+          <p class="stat-label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 </div>
