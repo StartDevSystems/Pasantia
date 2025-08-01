@@ -1,0 +1,77 @@
+---
+// ProjectGallery.astro
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  alt: string;
+}
+
+const projects: Project[] = [
+  {
+    id: "quisqueyasat",
+    title: "QUISQUEYASAT",
+    category: "PROYECTO",
+    image: "/images/quisqueyasat.jpg",
+    alt: "Vista satelital de la Tierra desde el espacio"
+  },
+  {
+    id: "microredes",
+    title: "MICROREDES",
+    category: "PROYECTO",
+    image: "/images/microredes.jpg",
+    alt: "Infraestructura de microredes eléctricas"
+  },
+  {
+    id: "caribe-circular",
+    title: "Caribe Circular",
+    category: "LABS",
+    image: "/images/caribe-circular.jpg",
+    alt: "Concepto de economía circular con iconos tecnológicos"
+  }
+];
+---
+
+<section class="project-gallery">
+  <div class="gallery-container">
+    {projects.map((project) => (
+      <div class="project-card" data-project={project.id}>
+        <div class="card-image">
+          <img 
+            src={project.image} 
+            alt={project.alt}
+            loading="lazy"
+          />
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <span class="project-category">{project.category}</span>
+          <h3 class="project-title">{project.title}</h3>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
+<script>
+  // Agregar interactividad opcional
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const projectId = card.getAttribute('data-project');
+      console.log(`Clicked on project: ${projectId}`);
+      // Aquí puedes agregar navegación o modal
+    });
+  });
+</script>
+<div>
+<div class="img-div">
+    <img src="" alt="image">
+</div>
+  <div class="card-content">
+    <h5></h5>
+    <p></p>
+  </div>
+</div>
