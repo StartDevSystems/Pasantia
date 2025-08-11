@@ -2,7 +2,6 @@
 import Proyectos from '../components/Proyectos/Proyectos.astro';
 import Layout from '../layouts/Layout.astro';
 import Carrusel from '../components/Carrusel/Carrusel.astro';
-import TopBar from '../components/TopBar/TopBar.astro';
 import Actividades from '../components/actividades_investigacion/Actividades.astro';
 // Ejemplo con datos dinámicos (desde API, CMS, etc.)
 
@@ -47,6 +46,8 @@ const slides = noticias.map(noticia => ({
         autoplay={true} 
         autoplayDelay={5000} 
   />
+ <Proyectos/>
+
   <Actividades/>
-  <Proyectos/> 
+  <Proyectos/>
 </Layout>

@@ -1,10 +1,10 @@
 ---
-// ProjectGallery.astro
+import "./Proyectos.css"
 interface Project {
   id: string;
   title: string;
   category: string;
-  image: string;
+image: string;
   alt: string;
 }
 
@@ -13,31 +13,31 @@ const projects: Project[] = [
     id: "quisqueyasat",
     title: "QUISQUEYASAT",
     category: "PROYECTO",
-    image: "/images/quisqueyasat.jpg",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZNa9DC4v7jDf2qMjqW_safhY6pr7rKO901Q&s",
     alt: "Vista satelital de la Tierra desde el espacio"
   },
   {
     id: "microredes",
     title: "MICROREDES",
     category: "PROYECTO",
-    image: "/images/microredes.jpg",
+    image: "https://retos-operaciones-logistica.eae.es/wp-content/uploads/2020/01/proyectos-tecnologicos.jpg",
     alt: "Infraestructura de microredes eléctricas"
   },
   {
     id: "caribe-circular",
     title: "Caribe Circular",
     category: "LABS",
-    image: "/images/caribe-circular.jpg",
+    image: "https://media.licdn.com/dms/image/v2/D4D12AQG0jupZBAZYfA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1707937924951?e=2147483647&v=beta&t=g0lcQrmxUXR1IOFlDgW0I3FOfCuQrFy__hjrh6LTYF0",
     alt: "Concepto de economía circular con iconos tecnológicos"
   }
 ];
 ---
 
-<section class="project-gallery">
+<div class="project-gallery">
   <div class="gallery-container">
     {projects.map((project) => (
       <div class="project-card" data-project={project.id}>
-        <div class="card-image">
+      <div class="card-image">
           <img 
             src={project.image} 
             alt={project.alt}
@@ -46,153 +46,24 @@ const projects: Project[] = [
           <div class="image-overlay"></div>
         </div>
         <div class="card-content">
-          <span class="project-category">{project.category}</span>
+          <span class="project-category">Hola {project.category}</span>
           <h3 class="project-title">{project.title}</h3>
         </div>
       </div>
     ))}
   </div>
-</section>
-
-<style>
-  .project-gallery {
-    padding: 2rem 1rem;
-    background-color: #f8f9fa;
-  }
-
-  .gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .project-card {
-    position: relative;
-    background: white;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  }
-
-  .card-image {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    filter: grayscale(20%);
-  }
-
-  .project-card:hover .card-image img {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      transparent 60%,
-      rgba(0, 0, 0, 0.3) 100%
-    );
-  }
-
-  .card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
-    color: white;
-  }
-
-  .project-category {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #ffffff;
-    opacity: 0.9;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .gallery-container {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    
-    .card-image {
-      height: 250px;
-    }
-    
-    .project-title {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .project-gallery {
-      padding: 1rem 0.5rem;
-    }
-    
-    .card-content {
-      padding: 1rem;
-    }
-  }
-</style>
+</div>
 
 <script>
-  // Agregar interactividad opcional
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const projectId = card.getAttribute('data-project');
-      console.log(`Clicked on project: ${projectId}`);
-      // Aquí puedes agregar navegación o modal
+ if (typeof window !== "undefined") {
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const projectId = card.getAttribute('data-project');
+          console.log(`Clicked on project: ${projectId}`);
+        });
+      });
     });
-  });
+  };
 </script>
-<div>
-<div class="img-div">
-    <img src="" alt="image">
-</div>
-  <div class="card-content">
-    <h5></h5>
-    <p></p>
-  </div>
-</div>
+
