@@ -1,0 +1,188 @@
+---
+
+// CongressParticipationSection.astro
+interface ParticipationOption {
+  id: string;
+  title: string;
+  image: string;
+  alt: string;
+  link?: string;
+}
+
+const participationOptions: ParticipationOption[] = [
+  {
+    id: "research-projects",
+    title: "Proyectos de Investigación",
+    image: "https://unev.edu.do/wp-content/uploads/2022/03/UNEV-Conmemora-el-di%CC%81a-Internacional-de-la-Mujer-con-Varias-Actividades-1.jpg",
+    alt: "Vista aérea de investigación ambiental"
+  },
+  {
+    id: "research-groups",
+    title: "Grupos de Investigación",
+    image: "https://unev.edu.do/wp-content/uploads/2025/06/DSC6697-3-1110x624.jpg",
+    alt: "Equipo de investigadores profesionales"
+  },
+  {
+    id: "laboratories",
+    title: "Nuestros Laboratorios",
+    image: "https://unev.edu.do/wp-content/uploads/2025/06/DSC5308-1110x624.jpg",
+    alt: "Investigador trabajando en laboratorio"
+  },
+  {
+    id: "donations",
+    title: "DONINTEC (Donaciones INTEC)",
+    image: "https://unev.edu.do/wp-content/uploads/2025/05/DSC4505-1110x624.jpg",
+    alt: "Manos colaborando en equipo"
+  }
+];
+
+import TopBar from "../TopBar/TopBar.astro"
+import "./Actividades.css"
+
+// ResearchStats.astro
+interface StatItem {
+  number: string;
+  label: string;
+}
+
+const stats: StatItem[] = [
+  {
+    number: "1908",
+    label: "Publicaciones"
+  },
+  {
+    number: "36",
+    label: "Perfiles"
+  },
+  {
+    number: "75",
+    label: "Proyectos"
+  },
+  {
+    number: "23",
+    label: "Grupos de investigación"
+  },
+  {
+    number: "12",
+    label: "Patentes"
+  }
+];
+---
+
+<div class="activities-container">
+  <TopBar/>
+  <section class="research-stats">
+    <div class="container">
+      <div class="stats-header">
+        <h2>Actividades de <span class="highlight">investigación</span></h2>
+        <button class="info-button" aria-label="Más información">
+          MÁS INFORMACIÓN
+        </button>
+      </div>
+      
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-circle">
+              <div class="stat-content">
+                <span class="stat-number">{stat.number}</span>
+                <p class="stat-label">{stat.label}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="congress-participation">
+  <!-- Banner del Congreso -->
+  <div class="congress-banner">
+    <div class="banner-content">
+      <div class="congress-logo">
+        <div class="logo-x">X</div>
+      </div>
+      <div class="congress-info">
+        <h2 class="congress-title">
+          CONGRESO ESTUDIANTIL DE<br>
+          INVESTIGACIÓN CIENTÍFICA<br>
+          Y TECNOLÓGICA
+        </h2>
+        <div class="congress-date">
+          <span class="date-text">11 y 12 de septiembre de 2025</span>
+          <span class="location">PUCMM, Campus de Santiago</span>
+        </div>
+      </div>
+      <div class="banner-illustration">
+        <div class="illustration-elements">
+          <div class="rocket">🚀</div>
+          <div class="bulb">💡</div>
+          <div class="atoms">⚛️</div>
+          <div class="graph">📊</div>
+        </div>
+        <div class="character-illustration">
+          <div class="scientist-character"></div>
+          <div class="students-working"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Participación -->
+  <div class="participation-section">
+    <div class="participation-container">
+      <div class="participation-text">
+        <h3 class="participation-title">
+          Puedes unirte o contribuir, <span class="highlight">tú decides</span>.
+        </h3>
+        <p class="participation-description">
+          Desde investigaciones innovadoras hasta laboratorios de vanguardia, 
+          cada aporte impulsa el avance. Apoya nuestros proyectos, únete a nuestros 
+          grupos de investigación o haz posible el futuro con tu donación.
+        </p>
+        <div class="action-buttons">
+          <button class="btn-primary">SER INVESTIGADOR</button>
+          <button class="btn-secondary">DONAR</button>
+        </div>
+      </div>
+
+      <div class="participation-grid">
+        {participationOptions.map((option) => (
+          <div class="participation-card" data-option={option.id}>
+            <div class="card-image">
+              <img 
+                src={option.image} 
+                alt={option.alt}
+                loading="lazy"
+              />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-title">
+              <h4>{option.title}</h4>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Interactividad para las tarjetas de participación
+  document.querySelectorAll('.participation-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const optionId = card.getAttribute('data-option');
+      console.log(`Clicked on: ${optionId}`);
+      // Aquí puedes agregar navegación específica
+    });
+  });
+
+  // Interactividad para los botones
+  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const buttonText = e.target.textContent;
+      console.log(`Button clicked: ${buttonText}`);
+      // Aquí puedes agregar la lógica correspondiente
+    });
+  });
+</script>

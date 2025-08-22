@@ -1,0 +1,92 @@
+/* Estilo 4: Botones con bordes */
+
+/* Opción 2: Grid con tamaños fijos */
+.badges-container-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
+  gap: 4rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.badge-medium {
+  background: transparent;
+  border: 2px solid #960201;
+  border-radius: 30px;
+  padding: 0.75rem 1.5rem;
+  width: 180px;
+  text-decoration: none;
+  color: #960201;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  justify-self: center;
+}
+
+.badge-medium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background:#960201;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.badge-medium:hover::before {
+  left: 0;
+}
+
+.badge-medium:hover {
+  color: #bc9201;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badges-container-1,
+  .badges-container-3 {
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .badges-container-2 {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .badges-container-4 {
+    grid-template-columns: 1fr;
+    max-width: 250px;
+  }
+
+  .badge-small,
+  .badge-medium,
+  .badge-round,
+  .badge-compact {
+    min-width: 200px;
+    width: 200px;
+  }
+
+  body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-small,
+  .badge-medium,
+  .badge-round,
+  .badge-compact {
+    min-width: 180px;
+    width: 180px;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+}

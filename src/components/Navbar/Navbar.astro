@@ -1,0 +1,259 @@
+---
+// src/components/NavBar.astro
+import "./Navbar.css";
+
+---
+
+
+<nav id="navbar">
+  <div class="navbar-container">
+    <div class="navbar-flex">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <span class="logo-icon">
+        <img src="https://unev.edu.do/wp-content/uploads/2017/04/Logo.png" width="225"/> 
+        </span> 
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="desktop-nav">
+        <!---<li class="nav-item dropdown-container">
+          <a href="/" class="nav-link active">Inicio</a>
+          
+</li> -->
+        
+        <li class="nav-item dropdown-container">
+          <a href="/Sobre Nosotros" class="nav-link">Sobre Nosotros</a>
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu">
+            <a href="/Sobre Nosotros/Investigación" class="dropdown-link">Investigación</a>
+            <a href="/Sobre Nosotros/Documentación" class="dropdown-link">Documentación</a>
+            <a href="/Sobre Nosotros/DireccióÑn" class="dropdown-link">Dirección</a>
+            <a href="/Sobre Nosotros/Consejo de Investigación" class="dropdown-link">
+              Consejo de Investigación
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown-container">
+          <a href="/Investiga UNEV" class="nav-link">Investiga UNEV</a>
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu">
+            <a href="/Investiga UNEV/Grupo de investiación" class="dropdown-link">
+              Grupo de investigación
+            </a>
+            <a href="/Investiga UNEV/Proyectos" class="dropdown-link">
+              Proyectos
+            </a>
+            <a href="/Investigacion UNEV/Centro de Estudios" class="dropdown-link">
+              Centro de Estudios
+            </a>
+            <a href="/Investigacion UNEV/Laboratorio" class="dropdown-link">
+              Laboratorio
+            </a> 
+            <a href="/Investigacion UNEV/Observatorio" class="dropdown-link">
+              Observatorio
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown-container">
+          <a href="/Cultura Cientifica" class="nav-link">Cultura Cientifica</a>
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu">
+            <a href="/Cultura Cientifica/Noticias" class="dropdown-link">
+              Noticias
+            </a>
+
+             <a href="/Cultura Cientifica/Semana de la Ciencia" class="dropdown-link">
+              Semana de la Ciencia
+            </a>
+
+             <a href="/Cultura Cientifica/Tecnologia" class="dropdown-link">
+              Tecnologia
+            </a>
+
+            <a href="/Cultura Cientifica/Convocatoria de Investigación" class="dropdown-link">
+              Convocatoria de Investigación
+            </a>
+
+            <a href="/Cultura Cientifica/Propiedad Intelectual" class="dropdown-link">
+              Propiedad Intelectual
+            </a>
+
+            <a href="/Cultura Cientifica/Semper" class="dropdown-link">
+              Semper
+            </a>
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown-container">
+          <a href="/Proyectos Destacados" class="nav-link">Proyectos Destacados</a>
+          <!-- Dropdown Menu -->
+           <div class="dropdown-menu">
+            <a href="/Proyectos Destacados/MicroRedes" class="dropdown-link">
+              MicroRedes
+            </a>
+
+             <a href="/Proyectos Destacados/Quisqueyasat-1" class="dropdown-link">
+              Quisqueyasat-1
+            </a>
+        </li>
+
+      </ul>
+
+      <!-- Search Box - Desktop -->
+      <!---  <div class="search-container">
+        <input type="text" placeholder="Buscar..." id="search-input" class="search-input" />
+        <button id="search-btn" class="search-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path> 
+           </svg>
+      </button>
+
+        </div> --->
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <svg id="menu-icon" class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg id="close-icon" class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-content">
+      <!-- Mobile Search -->
+      <div class="mobile-search">
+        <div class="mobile-search-container">
+          <input type="text" placeholder="Buscar..." id="mobile-search-input" class="mobile-search-input" />
+          <button id="mobile-search-btn" class="mobile-search-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <ul class="mobile-nav">
+        <li>
+          <a href="/" class="mobile-nav-link active">Inicio</a>
+        </li>
+        
+        <li>
+          <a href="/investigacion" class="mobile-nav-link">Investigación</a>
+          <ul class="mobile-submenu">
+            <li><a href="/investigacion/proyectos" class="mobile-submenu-link">Proyectos Activos</a></li>
+            <li><a href="/investigacion/publicaciones" class="mobile-submenu-link">Publicaciones</a></li>
+            <li><a href="/investigacion/laboratorios" class="mobile-submenu-link">Laboratorios</a></li>
+            <li><a href="/investigacion/colaboraciones" class="mobile-submenu-link">Colaboraciones</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/academico" class="mobile-nav-link">Académico</a>
+          <ul class="mobile-submenu">
+            <li><a href="/academico/programas" class="mobile-submenu-link">Programas</a></li>
+            <li><a href="/academico/maestrias" class="mobile-submenu-link">Maestrías</a></li>
+            <li><a href="/academico/doctorados" class="mobile-submenu-link">Doctorados</a></li>
+            <li><a href="/academico/certificaciones" class="mobile-submenu-link">Certificaciones</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/facultad" class="mobile-nav-link">Facultad</a></li>
+        <li><a href="/noticias" class="mobile-nav-link">Noticias</a></li>
+        <li><a href="/contacto" class="mobile-nav-link">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Scroll effect for navbar
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  let isMobileMenuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', () => {
+    isMobileMenuOpen = !isMobileMenuOpen;
+    
+    if (isMobileMenuOpen) {
+      mobileMenu.classList.add('active');
+      menuIcon.style.display = 'none';
+      closeIcon.style.display = 'block';
+    } else {
+      mobileMenu.classList.remove('active');
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    }
+  });
+
+  // Search functionality
+  const handleSearch = (searchInput) => {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm) {
+      // Aquí puedes integrar con tu sistema de búsqueda
+      console.log(`Búsqueda: ${searchTerm}`);
+      // window.location.href = `/buscar?q=${encodeURIComponent(searchTerm)}`;
+      alert(`Búsqueda: ${searchTerm}`);
+      searchInput.value = '';
+    }
+  };
+
+  // Desktop search
+  const searchBtn = document.getElementById('search-btn');
+  const searchInput = document.getElementById('search-input');
+  
+  searchBtn.addEventListener('click', () => handleSearch(searchInput));
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(searchInput);
+    }
+  });
+
+  // Mobile search
+  const mobileSearchBtn = document.getElementById('mobile-search-btn');
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+  
+  mobileSearchBtn.addEventListener('click', () => handleSearch(mobileSearchInput));
+  mobileSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(mobileSearchInput);
+    }
+  });
+
+  // Close mobile menu when clicking on links
+  const mobileLinks = document.querySelectorAll('.mobile-nav a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isMobileMenuOpen = false;
+      mobileMenu.classList.remove('active');
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    });
+  });
+</script>

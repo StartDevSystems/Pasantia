@@ -1,0 +1,54 @@
+---
+import Proyectos from '../components/Proyectos/Proyectos.astro';
+import Layout from '../layouts/Layout.astro';
+import Carrusel from '../components/Carrusel/Carrusel.astro';
+import Actividades from '../components/actividades_investigacion/Actividades.astro';
+import Noticias from '../components/Noticias/Noticias.astro';
+// Ejemplo con datos dinámicos (desde API, CMS, etc.)
+
+// Simular datos desde una API o CMS
+const fetchNews = async () => {
+  // En un caso real, esto podría ser una llamada a tu API o CMS
+  return [
+    {
+      id: 1,
+      titulo: 'UNEV celebra simposio sobre economía circular',
+      imagen: 'https://unev.edu.do/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-15-at-14.18.19-2-2-1110x624.jpeg',
+      categoria: 'NOTICIA',
+      fecha: '2025-07-15'
+    },
+    {
+      id: 2,
+      titulo: 'UNEV reconoce a 27 docentes destacados',
+      imagen: 'https://unev.edu.do/wp-content/uploads/2025/07/DSC03771-1110x624.jpg',
+      categoria: 'RECONOCIMIENTO',
+      fecha: '2025-07-10'
+    }
+  ];
+};
+
+// Obtener los datos
+const noticias = await fetchNews();
+
+// Transformar los datos al formato que espera el carousel
+const slides = noticias.map(noticia => ({
+  id: noticia.id,
+  image: noticia.imagen,
+  title: noticia.titulo,
+  label: noticia.categoria,
+  alt: `Imagen de ${noticia.titulo}`
+}));
+---
+
+<Layout>
+    <Carrusel 
+        slides={slides} 
+        height="70vh" 
+        autoplay={true} 
+        autoplayDelay={5000} 
+  />
+ 
+  <Actividades/>
+  <Proyectos/>
+  <Noticias/>
+</Layout>
