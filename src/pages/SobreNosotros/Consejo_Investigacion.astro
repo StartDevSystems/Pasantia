@@ -1,0 +1,1343 @@
+---
+// src/pages/nosotros/consejo-de-investigacion.astro
+export const prerender = true;
+
+const pageTitle = "Consejo de Investigación - UNEV";
+const pageDescription = "Conoce a los miembros del Consejo de Investigación de la Universidad de Estudios Virtuales (UNEV), encargado de promover y supervisar las actividades de investigación";
+
+interface CouncilMember {
+  name: string;
+  title?: string;
+  department?: string;
+  image: string;
+  isChair?: boolean;
+}
+
+const councilMembers: CouncilMember[] = [
+  {
+    name: "Dra. María Elena Rodríguez",
+    title: "Vicerrectora de Investigación y Vinculación",
+    department: "Presidenta del Consejo",
+    image: "/images/council/maria-rodriguez.jpg",
+    isChair: true
+  },
+  {
+    name: "Dr. Roberto Martínez",
+    title: "Director División de Investigación",
+    department: "Coordinación General",
+    image: "/images/council/roberto-martinez.jpg"
+  },
+  {
+    name: "Dr. Fernando González",
+    title: "Decano Facultad de Ingenierías",
+    department: "Representante Ingeniería",
+    image: "/images/council/fernando-gonzalez.jpg"
+  },
+  {
+    name: "Dra. Carmen Delgado",
+    title: "Decana Facultad de Ciencias Sociales",
+    department: "Representante Ciencias Sociales",
+    image: "/images/council/carmen-delgado.jpg"
+  },
+  {
+    name: "Dr. Luis Alberto Pérez",
+    title: "Decano Facultad de Ciencias Económicas",
+    department: "Representante Ciencias Económicas",
+    image: "/images/council/luis-perez.jpg"
+  },
+  {
+    name: "Dr. Rafael Moreno",
+    title: "Director de Posgrados",
+    department: "Representante Estudios Avanzados",
+    image: "/images/council/rafael-moreno.jpg"
+  },
+  {
+    name: "Dra. Ana Patricia Jiménez",
+    title: "Coordinadora de Proyectos",
+    department: "Secretaria del Consejo",
+    image: "/images/council/ana-jimenez.jpg"
+  },
+  {
+    name: "Dr. José Miguel Herrera",
+    title: "Investigador Senior",
+    department: "Representante Docente",
+    image: "/images/council/jose-herrera.jpg"
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription}>
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={pageDescription}>
+    <meta property="og:site_name" content="UNEV - Universidad de Estudios Virtuales">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={pageTitle}>
+    <meta name="twitter:description" content={pageDescription}>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <img src="/images/logo-unev.svg" alt="UNEV" width="120" height="40">
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Inicio</a>
+                    <a href="/nosotros" class="nav-link">Nosotros</a>
+                    <a href="/investigacion" class="nav-link active">Investigación</a>
+                    <a href="/programas" class="nav-link">Programas</a>
+                    <a href="/admisiones" class="nav-link">Admisiones</a>
+                    <a href="/contacto" class="nav-link">Contacto</a>
+                </div>
+                <button class="nav-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li aria-current="page">Consejo de Investigación</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Consejo de Investigación</h1>
+                    <p class="hero-description">
+                        El Consejo de Investigación es el órgano encargado de promover y supervisar las actividades 
+                        de investigación en nuestra institución. Su misión es fomentar un entorno de excelencia 
+                        académica y científica, apoyando proyectos innovadores y garantizando el cumplimiento de 
+                        estándares éticos y de calidad en todas las investigaciones realizadas.
+                    </p>
+                </div>
+                <div class="hero-decoration">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-dots"></div>
+                </div>
+            </section>
+
+            <!-- Council Members Grid -->
+            <section class="council-section">
+                <h2 class="section-title">Miembros del Consejo</h2>
+                <div class="council-grid">
+                    {councilMembers.map((member) => (
+                        <article class={`council-card ${member.isChair ? 'chair-card' : ''}`}>
+                            <div class="card-image">
+                                <img 
+                                    src={member.image} 
+                                    alt={member.name}
+                                    width="280"
+                                    height="280"
+                                    loading="lazy"
+                                >
+                                {member.isChair && (
+                                    <div class="chair-badge">
+                                        <span>Presidenta</span>
+                                    </div>
+                                )}
+                            </div>
+                            <div class="card-content">
+                                <h3 class="member-name">{member.name}</h3>
+                                {member.title && (
+                                    <p class="member-title">{member.title}</p>
+                                )}
+                                {member.department && (
+                                    <p class="member-department">{member.department}</p>
+                                )}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <!-- Vision and Commitment Section -->
+            <section class="vision-section">
+                <div class="vision-content">
+                    <div class="vision-header">
+                        <h2 class="vision-title">Compromiso y Visión</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="vision-text">
+                        <p>
+                            El Consejo de Investigación se compromete a fomentar una cultura de investigación 
+                            colaborativa y multidisciplinaria, apoyando a nuestros investigadores en el 
+                            desarrollo de proyectos que contribuyan al avance del conocimiento y al bienestar 
+                            de la sociedad.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Vision Cards -->
+                <div class="vision-cards">
+                    <div class="vision-card">
+                        <div class="vision-icon">🎯</div>
+                        <h3>Misión</h3>
+                        <p>Promover la excelencia en investigación mediante la supervisión y apoyo de proyectos innovadores que generen impacto científico y social.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">👁️</div>
+                        <h3>Visión</h3>
+                        <p>Ser reconocidos como un consejo líder en la promoción de investigación de alta calidad y relevancia para el desarrollo nacional.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">⚖️</div>
+                        <h3>Valores</h3>
+                        <p>Integridad, excelencia, colaboración, innovación y compromiso con el desarrollo sostenible de la sociedad dominicana.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Functions Section -->
+            <section class="functions-section">
+                <div class="functions-container">
+                    <h2 class="section-title">Funciones del Consejo</h2>
+                    <div class="functions-grid">
+                        <div class="function-item">
+                            <div class="function-number">01</div>
+                            <div class="function-content">
+                                <h3>Evaluación de Proyectos</h3>
+                                <p>Revisar y evaluar propuestas de investigación para garantizar su calidad científica y viabilidad.</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <div class="function-number">02</div>
+                            <div class="function-content">
+                                <h3>Supervisión Ética</h3>
+                                <p>Asegurar el cumplimiento de estándares éticos en todas las investigaciones realizadas en la universidad.</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <div class="function-number">03</div>
+                            <div class="function-content">
+                                <h3>Política de Investigación</h3>
+                                <p>Desarrollar y actualizar las políticas institucionales relacionadas con la investigación académica.</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <div class="function-number">04</div>
+                            <div class="function-content">
+                                <h3>Promoción y Difusión</h3>
+                                <p>Promover la cultura de investigación y facilitar la difusión de resultados científicos.</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <div class="function-number">05</div>
+                            <div class="function-content">
+                                <h3>Colaboración Interinstitucional</h3>
+                                <p>Fomentar alianzas estratégicas con otras instituciones para fortalecer la investigación.</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <div class="function-number">06</div>
+                            <div class="function-content">
+                                <h3>Formación de Investigadores</h3>
+                                <p>Apoyar el desarrollo de capacidades investigativas en docentes y estudiantes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UNEV</h3>
+                    <p>Universidad de Estudios Virtuales</p>
+                    <p>Excelencia académica en modalidad virtual</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="/nosotros">Nosotros</a></li>
+                        <li><a href="/programas">Programas</a></li>
+                        <li><a href="/admisiones">Admisiones</a></li>
+                        <li><a href="/investigacion">Investigación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📍 Santo Domingo, República Dominicana</p>
+                    <p>📞 +1 (809) 123-4567</p>
+                    <p>✉️ info@unev.edu.do</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNEV - Universidad de Estudios Virtuales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<style>
+    :root {
+        --primary-color: #1e40af;
+        --primary-dark: #1e3a8a;
+        --primary-light: #3b82f6;
+        --secondary-color: #f59e0b;
+        --accent-color: #10b981;
+        --accent-light: #34d399;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --text-light: #9ca3af;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --bg-tertiary: #f3f4f6;
+        --bg-dark: #1f2937;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        --border-radius: 0.75rem;
+        --border-radius-lg: 1rem;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* Header Styles */
+    .header {
+        background: var(--bg-primary);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav {
+        padding: 1rem 0;
+    }
+
+    .nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-brand .logo img {
+        height: 40px;
+        width: auto;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary-color);
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-color);
+    }
+
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 0.25rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        transition: var(--transition);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background: var(--bg-secondary);
+        padding: 1rem 0;
+    }
+
+    .breadcrumb-list {
+        display: flex;
+        list-style: none;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .breadcrumb-list li::after {
+        content: '>';
+        margin-left: 0.5rem;
+        color: var(--text-light);
+    }
+
+    .breadcrumb-list li:last-child::after {
+        display: none;
+    }
+
+    .breadcrumb-list a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .breadcrumb-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main Content */
+    .main {
+        padding: 0;
+        min-height: 70vh;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: var(--gradient-primary);
+        color: white;
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-description {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        opacity: 0.95;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .hero-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .decoration-circle {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 300px;
+        height: 300px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+    }
+
+    .decoration-dots {
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        width: 200px;
+        height: 200px;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+        background-size: 20px 20px;
+    }
+
+    /* Council Section */
+    .council-section {
+        padding: 4rem 0;
+        background: var(--bg-primary);
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+    }
+
+    .council-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .council-card {
+        background: var(--bg-primary);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .council-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .chair-card {
+        border: 2px solid var(--secondary-color);
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    }
+
+    .card-image {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .council-card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .chair-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--secondary-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        box-shadow: var(--shadow-md);
+    }
+
+    .card-content {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .member-name {
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+    }
+
+    .member-title {
+        font-size: 1rem;
+        color: var(--primary-color);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .member-department {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    /* Vision Section */
+    .vision-section {
+        padding: 4rem 0;
+        background: var(--bg-secondary);
+    }
+
+    .vision-content {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .vision-header {
+        margin-bottom: 2rem;
+    }
+
+    .vision-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .title-underline {
+        width: 100px;
+        height: 4px;
+        background: var(--gradient-accent);
+        margin: 0 auto;
+        border-radius: 2px;
+    }
+
+    .vision-text {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .vision-text p {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+    }
+
+    .vision-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .vision-card {
+        background: var(--bg-primary);
+        padding: 2.5rem;
+        border-radius: var(--border-radius-lg);
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        border-top: 4px solid transparent;
+    }
+
+    .vision-card:nth-child(1) {
+        border-top-color: var(--primary-color);
+    }
+
+    .vision-card:nth-child(2) {
+        border-top-color: var(--accent-color);
+    }
+
+    .vision-card:nth-child(3) {
+        border-top-color: var(--secondary-color);
+    }
+
+    .vision-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .vision-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .vision-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .vision-card p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    /* Functions Section */
+    .functions-section {
+        padding: 4rem 0;
+        background: var(--bg-primary);
+    }
+
+    .functions-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .functions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .function-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 2rem;
+        background: var(--bg-secondary);
+        border-radius: var(--border-radius-lg);
+        transition: var(--transition);
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .function-item:hover {
+        transform: translateX(4px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .function-number {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        background: var(--gradient-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+
+    .function-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+    }
+
+    .function-content p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--bg-dark);
+        color: white;
+        margin-top: 0;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 3rem 0 2rem;
+    }
+
+    .footer-section h3,
+    .footer-section h4 {
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .footer-section h3 {
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .footer-section p {
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+        color: var(--secondary-color);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+        transition: var(--transition);
+    }
+
+    .social-links a:hover {
+        transform: scale(1.2);
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #374151;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: #9ca3af;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+        .functions-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .function-item {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: flex;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .vision-title {
+            font-size: 2rem;
+        }
+
+        .council-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vision-cards {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .vision-card {
+            padding: 2rem;
+        }
+
+        .container {
+            padding: 0 0.75rem;
+        }
+
+        .hero-section {
+            padding: 3rem 0;
+        }
+
+        .council-section,
+        .vision-section,
+        .functions-section {
+            padding: 3rem 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+        }
+
+        .vision-title {
+            font-size: 1.75rem;
+        }
+
+        .council-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+        }
+
+        .vision-card {
+            padding: 1.5rem;
+        }
+
+        .function-item {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.25rem;
+        }
+
+        .function-number {
+            align-self: flex-start;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    /* Animation keyframes */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Scroll animations */
+    .council-card,
+    .vision-card,
+    .function-item {
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+    }
+
+    .council-card:nth-child(odd) {
+        animation-delay: 0.1s;
+    }
+
+    .council-card:nth-child(even) {
+        animation-delay: 0.2s;
+    }
+
+    .vision-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .vision-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .vision-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .function-item:nth-child(odd) {
+        animation-delay: 0.1s;
+    }
+
+    .function-item:nth-child(even) {
+        animation-delay: 0.2s;
+    }
+
+    /* Print Styles */
+    @media print {
+        .header,
+        .breadcrumb,
+        .footer,
+        .hero-decoration {
+            display: none;
+        }
+
+        .hero-section {
+            background: none !important;
+            color: var(--text-primary) !important;
+            padding: 1rem 0;
+        }
+
+        .main {
+            padding: 0;
+        }
+
+        .council-card,
+        .vision-card,
+        .function-item {
+            break-inside: avoid;
+            box-shadow: none;
+            border: 1px solid #ccc;
+            animation: none;
+            opacity: 1;
+        }
+
+        .section-title,
+        .vision-title {
+            color: var(--text-primary) !important;
+        }
+    }
+
+    /* Focus Styles for Accessibility */
+    .nav-link:focus,
+    .nav-toggle:focus,
+    .breadcrumb-list a:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+        .hero-section {
+            background: var(--text-primary);
+        }
+
+        .council-card,
+        .vision-card,
+        .function-item {
+            border: 2px solid var(--text-primary);
+        }
+
+        .chair-badge {
+            border: 2px solid var(--text-primary);
+        }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+
+        .council-card,
+        .vision-card,
+        .function-item {
+            opacity: 1;
+        }
+    }
+
+    /* Loading state for images */
+    .card-image img[loading="lazy"] {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-tertiary: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-light: #9ca3af;
+            --border-color: #374151;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .chair-card {
+            background: linear-gradient(135deg, #451a03 0%, #92400e 100%);
+            border-color: var(--secondary-color);
+        }
+    }
+</style>
+
+<script>
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, observerOptions);
+
+    // Observe animated elements
+    document.querySelectorAll('.council-card, .vision-card, .function-item').forEach(element => {
+        element.style.animationPlayState = 'paused';
+        observer.observe(element);
+    });
+
+    // Image lazy loading fallback for older browsers
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // Council card hover effects
+    document.querySelectorAll('.council-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-section');
+        const decorationCircle = document.querySelector('.decoration-circle');
+        const decorationDots = document.querySelector('.decoration-dots');
+
+        if (hero && decorationCircle && decorationDots) {
+            const heroHeight = hero.offsetHeight;
+            const scrollRatio = scrolled / heroHeight;
+
+            if (scrollRatio <= 1) {
+                decorationCircle.style.transform = `translate(${scrollRatio * 30}px, ${scrollRatio * 20}px) rotate(${scrollRatio * 45}deg)`;
+                decorationDots.style.transform = `translate(${scrollRatio * -20}px, ${scrollRatio * 15}px)`;
+            }
+        }
+    });
+
+    // Add loading class to images when they start loading
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.complete) {
+            img.classList.add('loading');
+            
+            img.addEventListener('load', function() {
+                this.classList.remove('loading');
+            });
+        }
+    });
+
+    // Accessibility: Skip to content
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main-content';
+    skipLink.textContent = 'Saltar al contenido principal';
+    skipLink.className = 'skip-link';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1001;
+        transition: top 0.3s;
+    `;
+
+    skipLink.addEventListener('focus', function() {
+        this.style.top = '6px';
+    });
+
+    skipLink.addEventListener('blur', function() {
+        this.style.top = '-40px';
+    });
+
+    document.body.insertBefore(skipLink, document.body.firstChild);
+
+    // Add id to main for skip link
+    const main = document.querySelector('.main');
+    if (main) {
+        main.id = 'main-content';
+        main.setAttribute('tabindex', '-1');
+    }
+
+    // Council member card keyboard navigation
+    document.querySelectorAll('.council-card').forEach((card, index) => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'article');
+        card.setAttribute('aria-label', `Miembro del consejo ${index + 1}`);
+
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+
+        card.addEventListener('focus', function() {
+            this.style.transform = 'translateY(-4px)';
+            this.style.outline = '2px solid var(--primary-color)';
+            this.style.outlineOffset = '4px';
+        });
+
+        card.addEventListener('blur', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.outline = 'none';
+        });
+    });
+
+    // Enhanced error handling for images
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            
+            // Create placeholder
+            const placeholder = document.createElement('div');
+            placeholder.style.cssText = `
+                width: 100%;
+                height: 280px;
+                background: linear-gradient(45deg, #f0f0f0 25%, #e0e0e0 25%, #e0e0e0 50%, #f0f0f0 50%, #f0f0f0 75%, #e0e0e0 75%);
+                background-size: 20px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-light);
+                font-size: 14px;
+            `;
+            placeholder.textContent = 'Imagen no disponible';
+            
+            this.parentNode.insertBefore(placeholder, this);
+        });
+    });
+</script>
+</html>

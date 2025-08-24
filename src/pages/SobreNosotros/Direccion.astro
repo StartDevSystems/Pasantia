@@ -1,0 +1,782 @@
+---
+// src/pages/nosotros/direccion.astro
+export const prerender = true;
+
+const pageTitle = "Dirección de Investigación - UNEV";
+const pageDescription = "Conoce al equipo de la Dirección de Investigación y Vinculación de la Universidad de Estudios Virtuales (UNEV)";
+
+interface TeamMember {
+  name: string;
+  position: string;
+  extension?: string;
+  email: string;
+  image: string;
+}
+
+const teamMembers: TeamMember[] = [
+  {
+    name: "Dr. María Elena Rodríguez",
+    position: "Vicerrectora de Investigación y Vinculación",
+    extension: "324",
+    email: "mrodriguez@unev.edu.do",
+    image: "/images/team/maria-rodriguez.jpg"
+  },
+  {
+    name: "Dr. Roberto Martínez",
+    position: "Director División de Investigación",
+    extension: "324",
+    email: "rmartinez@unev.edu.do",
+    image: "/images/team/roberto-martinez.jpg"
+  },
+  {
+    name: "Lic. Ana Patricia Jiménez",
+    position: "Coordinadora de Proyectos",
+    extension: "705",
+    email: "ajimenez@unev.edu.do",
+    image: "/images/team/ana-jimenez.jpg"
+  },
+  {
+    name: "Lic. Carmen Delgado",
+    position: "Asistente Administrativo",
+    email: "cdelgado@unev.edu.do",
+    image: "/images/team/carmen-delgado.jpg"
+  },
+  {
+    name: "Lic. José Luis Fernández",
+    position: "Analista de Proyecto",
+    email: "jfernandez@unev.edu.do",
+    image: "/images/team/jose-fernandez.jpg"
+  },
+  {
+    name: "Ing. Sofía Herrera",
+    position: "Asistente Técnico de Proyectos",
+    email: "sherrera@unev.edu.do",
+    image: "/images/team/sofia-herrera.jpg"
+  },
+  {
+    name: "Lic. Gabriel Morales",
+    position: "Community Manager",
+    email: "gmorales@unev.edu.do",
+    image: "/images/team/gabriel-morales.jpg"
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription}>
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={pageDescription}>
+    <meta property="og:site_name" content="UNEV - Universidad de Estudios Virtuales">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={pageTitle}>
+    <meta name="twitter:description" content={pageDescription}>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <img src="/images/logo-unev.svg" alt="UNEV" width="120" height="40">
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Inicio</a>
+                    <a href="/nosotros" class="nav-link">Nosotros</a>
+                    <a href="/investigacion" class="nav-link active">Investigación</a>
+                    <a href="/programas" class="nav-link">Programas</a>
+                    <a href="/admisiones" class="nav-link">Admisiones</a>
+                    <a href="/contacto" class="nav-link">Contacto</a>
+                </div>
+                <button class="nav-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li aria-current="page">Dirección de Investigación</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">Dirección de Investigación</h1>
+                <p class="page-subtitle">
+                    Conoce al equipo profesional que lidera la investigación y vinculación académica en UNEV
+                </p>
+            </header>
+
+            <section class="team-grid">
+                {teamMembers.map((member) => (
+                    <article class="team-card">
+                        <div class="team-card-image">
+                            <img 
+                                src={member.image} 
+                                alt={member.name}
+                                width="300"
+                                height="300"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="team-card-content">
+                            <h2 class="team-member-name">{member.name}</h2>
+                            <p class="team-member-position">{member.position}</p>
+                            <div class="team-member-contact">
+                                {member.extension && (
+                                    <p class="contact-item">
+                                        <span class="contact-label">Ext.:</span>
+                                        <span class="contact-value">{member.extension}</span>
+                                    </p>
+                                )}
+                                <p class="contact-item">
+                                    <span class="contact-label">Email:</span>
+                                    <a href={`mailto:${member.email}`} class="contact-email">
+                                        {member.email}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </section>
+
+            <!-- Additional Info Section -->
+            <section class="info-section">
+                <div class="info-card">
+                    <h2>Misión de la Dirección</h2>
+                    <p>
+                        Promover y gestionar la investigación científica, tecnológica y humanística en UNEV, 
+                        fomentando la vinculación con el sector productivo y la sociedad para contribuir al 
+                        desarrollo sostenible del país.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h2>Servicios</h2>
+                    <ul>
+                        <li>Gestión de proyectos de investigación</li>
+                        <li>Asesoría en metodología de investigación</li>
+                        <li>Vinculación universidad-empresa</li>
+                        <li>Publicaciones científicas</li>
+                        <li>Eventos académicos y científicos</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UNEV</h3>
+                    <p>Universidad de Estudios Virtuales</p>
+                    <p>Excelencia académica en modalidad virtual</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="/nosotros">Nosotros</a></li>
+                        <li><a href="/programas">Programas</a></li>
+                        <li><a href="/admisiones">Admisiones</a></li>
+                        <li><a href="/investigacion">Investigación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📍 Santo Domingo, República Dominicana</p>
+                    <p>📞 +1 (809) 123-4567</p>
+                    <p>✉️ info@unev.edu.do</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 UNEV - Universidad de Estudios Virtuales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<style>
+    :root {
+        --primary-color: #1e40af;
+        --primary-dark: #1e3a8a;
+        --secondary-color: #f59e0b;
+        --accent-color: #10b981;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --text-light: #9ca3af;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --bg-dark: #1f2937;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --border-radius: 0.5rem;
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* Header Styles */
+    .header {
+        background: var(--bg-primary);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav {
+        padding: 1rem 0;
+    }
+
+    .nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-brand .logo img {
+        height: 40px;
+        width: auto;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary-color);
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-color);
+    }
+
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 0.25rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        transition: var(--transition);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background: var(--bg-secondary);
+        padding: 1rem 0;
+    }
+
+    .breadcrumb-list {
+        display: flex;
+        list-style: none;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .breadcrumb-list li::after {
+        content: '>';
+        margin-left: 0.5rem;
+        color: var(--text-light);
+    }
+
+    .breadcrumb-list li:last-child::after {
+        display: none;
+    }
+
+    .breadcrumb-list a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .breadcrumb-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main Content */
+    .main {
+        padding: 3rem 0;
+        min-height: 60vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Team Grid */
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .team-card {
+        background: var(--bg-primary);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .team-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .team-card-image {
+        position: relative;
+        overflow: hidden;
+        height: 250px;
+    }
+
+    .team-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .team-card:hover .team-card-image img {
+        transform: scale(1.05);
+    }
+
+    .team-card-content {
+        padding: 2rem;
+    }
+
+    .team-member-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .team-member-position {
+        font-size: 1.125rem;
+        color: var(--primary-color);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+
+    .team-member-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .contact-label {
+        font-weight: 500;
+        color: var(--text-secondary);
+        min-width: 40px;
+    }
+
+    .contact-value {
+        color: var(--text-primary);
+    }
+
+    .contact-email {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .contact-email:hover {
+        text-decoration: underline;
+    }
+
+    /* Info Section */
+    .info-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .info-card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .info-card h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .info-card p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    .info-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-card li {
+        color: var(--text-secondary);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+    .info-card li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    .info-card li:last-child {
+        border-bottom: none;
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--bg-dark);
+        color: white;
+        margin-top: 4rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 3rem 0 2rem;
+    }
+
+    .footer-section h3,
+    .footer-section h4 {
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .footer-section h3 {
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .footer-section p {
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+        color: var(--secondary-color);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+        transition: var(--transition);
+    }
+
+    .social-links a:hover {
+        transform: scale(1.2);
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #374151;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: #9ca3af;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: flex;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+        }
+
+        .team-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .team-card-content {
+            padding: 1.5rem;
+        }
+
+        .container {
+            padding: 0 0.75rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-title {
+            font-size: 1.75rem;
+        }
+
+        .team-member-name {
+            font-size: 1.25rem;
+        }
+
+        .team-member-position {
+            font-size: 1rem;
+        }
+
+        .info-card {
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .header,
+        .breadcrumb,
+        .footer {
+            display: none;
+        }
+
+        .main {
+            padding: 0;
+        }
+
+        .team-card {
+            break-inside: avoid;
+            box-shadow: none;
+            border: 1px solid #ccc;
+        }
+    }
+
+    /* Focus Styles for Accessibility */
+    .nav-link:focus,
+    .contact-email:focus,
+    .nav-toggle:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+
+    /* Loading State for Images */
+    .team-card-image img[loading="lazy"] {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+</style>
+
+<script>
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Image lazy loading fallback for older browsers
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // Add animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe team cards for animation
+    document.querySelectorAll('.team-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+</script>
+</html>
