@@ -28,7 +28,11 @@
   content: "";
   position: absolute;
   inset: 0;
+<<<<<<< HEAD
   background: rgba(0, 0, 0, 0.4);
+=======
+  background: rgba(0, 0, 0, 0.3);
+>>>>>>> 34a88f42475594efaf4f2287b6ee483accfab620
 }
 
 .carousel-content {
@@ -106,8 +110,8 @@
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 15px;
+  height: 16px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.4);
