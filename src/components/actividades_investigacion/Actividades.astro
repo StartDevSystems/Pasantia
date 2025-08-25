@@ -1,5 +1,4 @@
 ---
-// CongressParticipationSection.astro
 interface ParticipationOption {
   id: string;
   title: string;
@@ -35,42 +34,22 @@ const participationOptions: ParticipationOption[] = [
   }
 ];
 
-import TopBar from "../TopBar/TopBar.astro"
-import "./Actividades.css"
+import TopBar from "../TopBar/TopBar.astro";
+import "./Actividades.css";
 
-// ResearchStats.astro
+/** Stats sin emoji; usaremos SVG inline por cada id */
 interface StatItem {
+  id: "publications" | "profiles" | "projects" | "groups" | "patents";
   number: string;
   label: string;
-  icon: string;
 }
 
 const stats: StatItem[] = [
-  {
-    number: "1902",
-    label: "PUBLICACIONES",
-    icon: "📄"
-  },
-  {
-    number: "36",
-    label: "PERFILES",
-    icon: "👤"
-  },
-  {
-    number: "75",
-    label: "PROYECTOS",
-    icon: "📋"
-  },
-  {
-    number: "23",
-    label: "GRUPOS DE INVESTIGACIÓN",
-    icon: "👥"
-  },
-  {
-    number: "13",
-    label: "PATENTES",
-    icon: "🛡️"
-  }
+  { id: "publications", number: "1902", label: "PUBLICACIONES" },
+  { id: "profiles",     number: "36",   label: "PERFILES" },
+  { id: "projects",     number: "75",   label: "PROYECTOS" },
+  { id: "groups",       number: "23",   label: "GRUPOS DE INVESTIGACIÓN" },
+  { id: "patents",      number: "13",   label: "PATENTES" }
 ];
 ---
 
@@ -88,7 +67,44 @@ const stats: StatItem[] = [
       <div class="stats-grid">
         {stats.map((stat) => (
           <div class="stat-item">
-            <div class="stat-icon">{stat.icon}</div>
+            <div class="stat-icon" aria-hidden="true">
+              {stat.id === "publications" && (
+                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
+                  <path d="M6 4h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                  <path d="M14 4v4h4" />
+                  <path d="M8 12h8" />
+                  <path d="M8 16h8" />
+                </svg>
+              )}
+              {stat.id === "profiles" && (
+                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="8" r="3" />
+                  <path d="M5 20c0-3.2 3.8-6 7-6s7 2.8 7 6" />
+                </svg>
+              )}
+              {stat.id === "projects" && (
+                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
+                  <rect x="7" y="6" width="10" height="14" rx="2" />
+                  <path d="M9 4h6a1 1 0 0 1 1 1v2H8V5a1 1 0 0 1 1-1z" />
+                  <path d="M9 12h6M9 16h6" />
+                </svg>
+              )}
+              {stat.id === "groups" && (
+                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
+                  <circle cx="8" cy="9" r="3" />
+                  <circle cx="16" cy="9" r="3" />
+                  <path d="M2.5 20c0-2.4 3-4.5 5.5-4.5" />
+                  <path d="M21.5 20c0-2.4-3-4.5-5.5-4.5" />
+                </svg>
+              )}
+              {stat.id === "patents" && (
+                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
+                  <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              )}
+            </div>
+
             <span class="stat-number" data-target={stat.number}>0</span>
             <p class="stat-label">{stat.label}</p>
           </div>
@@ -181,68 +197,51 @@ const stats: StatItem[] = [
     function updateNumber(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
-      // Función de easing para suavizar la animación
       const easeOutCubic = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.floor(startValue + (difference * easeOutCubic));
-      
       element.textContent = currentValue.toLocaleString();
-      
       if (progress < 1) {
         requestAnimationFrame(updateNumber);
       } else {
         element.textContent = endValue.toLocaleString();
       }
     }
-    
     requestAnimationFrame(updateNumber);
   }
 
-  // Observer para detectar cuando la sección entra en el viewport
+  // Observer para activar animación
   function createStatsObserver() {
     const statsSection = document.getElementById('research-stats-section');
     const statNumbers = document.querySelectorAll('.stat-number');
-    
     if (!statsSection || statNumbers.length === 0) return;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Agregar clase para activar animaciones CSS si es necesario
           entry.target.classList.add('animate-stats');
-          
-          // Animar cada número
           statNumbers.forEach((numberElement, index) => {
             const target = numberElement.getAttribute('data-target');
             if (target) {
-              // Pequeño delay entre cada número para efecto escalonado
               setTimeout(() => {
                 animateNumber(numberElement, 0, target, 2000);
               }, index * 200);
             }
           });
-          
-          // Desconectar el observer para que solo se ejecute una vez
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.3, // Se activa cuando el 30% de la sección es visible
-      rootMargin: '-50px' // Margen adicional
-    });
+    }, { threshold: 0.3, rootMargin: '-50px' });
 
     observer.observe(statsSection);
   }
 
-  // Inicializar cuando el DOM esté cargado
   document.addEventListener('DOMContentLoaded', createStatsObserver);
 
-  // Interactividad para las tarjetas de participación
+  // Interactividad para las tarjetas
   document.querySelectorAll('.participation-card').forEach(card => {
     card.addEventListener('click', () => {
       const optionId = card.getAttribute('data-option');
       console.log(`Clicked on: ${optionId}`);
-      // Aquí puedes agregar navegación específica
     });
   });
 
@@ -251,7 +250,6 @@ const stats: StatItem[] = [
     button.addEventListener('click', (e) => {
       const buttonText = e.target.textContent;
       console.log(`Button clicked: ${buttonText}`);
-      // Aquí puedes agregar la lógica correspondiente
     });
   });
 </script>
