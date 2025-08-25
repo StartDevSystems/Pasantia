@@ -1,0 +1,387 @@
+---
+// src/pages/convocatorias-investigacion.astro
+const pageTitle = "Convocatorias de investigación - INTEC";
+import Layout from '../../layouts/Layout.astro'
+---
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 2rem 0;
+            border-bottom: 3px solid #e53e3e;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        main {
+            padding: 2rem 0;
+            background-color: #ffffff;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #e53e3e;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            border-left: 4px solid #e53e3e;
+            padding-left: 1rem;
+        }
+
+        .section-content {
+            background: #ffffff;
+            padding: 2rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            color: #666;
+        }
+
+        .subsection {
+            margin: 2rem 0;
+        }
+
+        .subsection h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .highlight-text {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .deadline-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .deadline-box strong {
+            color: #0c5460;
+        }
+
+        .requirements-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .requirements-list li:before {
+            content: "• ";
+            color: #e53e3e;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .form-link {
+            background: #e53e3e;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 1rem 0;
+            transition: background-color 0.3s;
+        }
+
+        .form-link:hover {
+            background: #c53030;
+            color: white;
+            text-decoration: none;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .area-item {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #c3e6c3;
+        }
+
+        .divider {
+            height: 2px;
+            background: #e53e3e;
+            margin: 3rem 0;
+            width: 100px;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .exclusion-note {
+            font-style: italic;
+            color: #666;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .section-content {
+                padding: 1rem;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<Layout>
+<header>
+        <div class="container">
+            <h1>Convocatorias de investigación</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Primera convocatoria -->
+            <section class="content-section">
+                <h2 class="section-title">Presentacion de propuestas de investigacion para financiamiento con fondos propios del INTEC</h2>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Plazos y Presentación:</h3>
+                        <p>La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Ámbito de Investigación</h3>
+                        <p>Se aceptan proyectos de naturaleza básica, aplicada, o de desarrollo tecnológico en todas las áreas del conocimiento, priorizando investigaciones que se alineen con temas como inteligencia artificial, energía renovable, bioprospección, economía, salud, entre otros.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Evaluación y Selección:</h3>
+                        <div class="info-box">
+                            <p>Las propuestas serán evaluadas según criterios académicos y de relevancia institucional.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Financiamiento y Duración:</h3>
+                        <div class="info-box">
+                            <p>El financiamiento será proporcionado mediante fondos propios institucionales, con duración variable según la naturaleza del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Resultados Esperados:</h3>
+                        <div class="info-box">
+                            <p>Se espera la generación de conocimiento científico, publicaciones académicas y contribución al desarrollo institucional y social.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Forma de presentación</h3>
+                        
+                        <div class="deadline-box">
+                            <strong>El periodo para presentación de propuestas en la presente convocatoria cierra el viernes X de noviembre de 202X, a las 5:00p.m.</strong>
+                        </div>
+
+                        <div class="requirements-box">
+                            <ul class="requirements-list">
+                                <li>Las propuestas serán sometidas a través de la plataforma institucional disponible en el siguiente enlace: <a href="#" class="form-link">Formulario</a></li>
+                                <li>Las propuestas deben ser presentadas en formato digital en las plantillas compartidas, a 1.50 de espacio, letra Arial 12 y en un máximo de 10 páginas (a parte de los anexos).</li>
+                                <li>Favor nombrar documentos a presentar en el siguiente formato: NOMBREIP_NUMERO PROPUESTA.doc</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Carácter y Ámbito de las Investigaciones</h3>
+                        <p>Las investigaciones pueden ser de naturaleza básica o teórica, aplicada, o de desarrollo tecnológico o experimental; su ámbito se extiende a todas las áreas del saber científico y el quehacer tecnológico, lo que significa que se pueden presentar proyectos de investigación científica, de investigación y desarrollo (I+D) y de innovación tecnológica; pueden ser de orden exploratorio, descriptiva, explicativa, (inferencial o predictiva), y de innovación y desarrollo, entre otras. Se podrán incluir investigaciones de orden institucionali cuyo interés sea refrendado por instancias pertinentes legítimas.</p>
+                        
+                        <div class="exclusion-note">
+                            <strong>Se excluye la investigación de tipo comercial</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Segunda convocatoria -->
+            <section class="content-section">
+                <h2 class="section-title">Presentacion de propuestas para desarrollo de proyectos estudiantiles con fondos propios</h2>
+                <div class="section-content">
+                    <p>La convocatoria busca fomentar la excelencia en la investigación, contribuir a la solución de problemas sociales y ambientales, y promover el desarrollo tecnológico y científico en la región. Se invita a todos los interesados a participar activamente en esta oportunidad.</p>
+                    
+                    <p>La Vicerrectoría de Investigación y Vinculación del INTEC convoca a los estudiantes de grado a presentar propuestas de investigación, innovación y emprendimiento para ser financiadas con fondos propios de la institución. El objetivo general de esta convocatoria es fomentar la creatividad y el desarrollo de proyectos que generen un impacto significativo en diversas áreas del conocimiento y que estén alineados con la estrategia institucional.</p>
+
+                    <div class="subsection">
+                        <h3>Plazos y Presentación:</h3>
+                        <p>La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Ámbito de Investigación</h3>
+                        <p>Se aceptan propuestas en todas las áreas del saber, excluyendo investigaciones de tipo comercial. Se priorizarán los proyectos de estudiantes inscritos en Trabajo de Grado que tengan alto potencial de impacto y viabilidad para la incubación.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Evaluación y Selección:</h3>
+                        <div class="info-box">
+                            <p>Las propuestas serán evaluadas considerando el potencial de impacto, viabilidad técnica y alineación con los objetivos institucionales.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Financiamiento y Duración:</h3>
+                        <div class="info-box">
+                            <p>Financiamiento mediante fondos propios institucionales para proyectos estudiantiles de investigación e innovación.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Resultados Esperados:</h3>
+                        <div class="info-box">
+                            <p>Desarrollo de capacidades investigativas en estudiantes, generación de propuestas innovadoras y contribución al emprendimiento académico.</p>
+                        </div>
+                    </div>
+
+                    <p>Esta convocatoria busca no solo apoyar el desarrollo académico de los estudiantes, sino también contribuir a la innovación y el bienestar social a través de proyectos de alta calidad y relevancia. Se anima a todos los estudiantes a participar y presentar sus propuestas.</p>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Tercera convocatoria -->
+            <section class="content-section">
+                <h2 class="section-title">Convocatoria para proyectos de investigación con fondos externos</h2>
+                <div class="section-content">
+                    <p>La Vicerrectoría de Investigación y Vinculación del INTEC convoca a todo el personal docente y administrativo a presentar propuestas de investigación para ser financiadas mediante fondos externos. El objetivo general de esta convocatoria es fomentar la investigación innovadora y colaborativa que aborde problemáticas relevantes en diversas áreas del conocimiento, contribuyendo así al desarrollo científico y tecnológico del país.</p>
+
+                    <div class="subsection">
+                        <h3>Plazos y Presentación:</h3>
+                        <p>La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Ámbito de Investigación</h3>
+                        <p>Se aceptan investigaciones de carácter básico, aplicado y de desarrollo tecnológico, abarcando todas las disciplinas científicas. Las propuestas deberán alinearse con las prioridades institucionales y se priorizarán aquellas de carácter multidisciplinario y que no tengan proyectos activos asociados.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Evaluación y Selección:</h3>
+                        <div class="info-box">
+                            <p>Evaluación basada en criterios de excelencia científica, impacto potencial, viabilidad y alineación con las prioridades de los organismos financiadores externos.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Financiamiento y Duración:</h3>
+                        <div class="info-box">
+                            <p>Financiamiento a través de organismos externos nacionales e internacionales, con duración variable según las especificaciones de cada fuente de financiamiento.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Resultados Esperados:</h3>
+                        <div class="info-box">
+                            <p>Fortalecimiento de vínculos internacionales, desarrollo de investigación de alto impacto y contribución al posicionamiento institucional en el ámbito científico internacional.</p>
+                        </div>
+                    </div>
+
+                    <p>La convocatoria busca no solo apoyar la investigación en el INTEC, sino también establecer vínculos con fuentes externas que contribuyan a la realización de proyectos de alto impacto y relevancia social. Se invita a todos los interesados a participar y presentar sus propuestas.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
