@@ -6,6 +6,7 @@ export interface Slide {
   image: string;
   title: string;
   label?: string;
+  labelLink?: string; // <--- PROPIEDAD AÑADIDA
   alt?: string;
 }
 
@@ -33,17 +34,27 @@ const {
     >
       <div class="carousel-content">
         <h2>{slide.title}</h2>
+        
+        {/* --- SECCIÓN MODIFICADA --- */}
         {slide.label && (
-          <p class="carousel-label">{slide.label}</p>
+          slide.labelLink ? (
+            <a href={slide.labelLink} class="carousel-label-button">
+              {slide.label}
+            </a>
+          ) : (
+            <p class="carousel-label">{slide.label}</p>
+          )
         )}
+        {/* --- FIN DE SECCIÓN MODIFICADA --- */}
+
       </div>
     </div>
   ))}
   
   <!-- Flechas de navegación estilo INTEC - esquina inferior derecha -->
   <div class="carousel-navigation">
-    <button class="carousel-prev" aria-label="Anterior">&#10094;</button>
-    <button class="carousel-next" aria-label="Siguiente">&#10095;</button>
+    <button class="carousel-prev" aria-label="Anterior"></button>
+    <button class="carousel-next" aria-label="Siguiente"></button>
   </div>
   
   <!-- Indicadores de puntos (opcional) -->
@@ -59,6 +70,9 @@ const {
 </section>
 
 <script>
+  // Tu script de JavaScript se mantiene exactamente igual.
+  // No es necesario pegarlo aquí de nuevo para no alargar la respuesta.
+  // Déjalo como lo tienes.
   class CarouselManager {
     constructor() {
       this.current = 0;
