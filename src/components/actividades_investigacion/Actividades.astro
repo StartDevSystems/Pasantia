@@ -1,5 +1,4 @@
 ---
-
 // CongressParticipationSection.astro
 interface ParticipationOption {
   id: string;
@@ -43,35 +42,41 @@ import "./Actividades.css"
 interface StatItem {
   number: string;
   label: string;
+  icon: string;
 }
 
 const stats: StatItem[] = [
   {
-    number: "1908",
-    label: "Publicaciones"
+    number: "1902",
+    label: "PUBLICACIONES",
+    icon: "📄"
   },
   {
     number: "36",
-    label: "Perfiles"
+    label: "PERFILES",
+    icon: "👤"
   },
   {
     number: "75",
-    label: "Proyectos"
+    label: "PROYECTOS",
+    icon: "📋"
   },
   {
     number: "23",
-    label: "Grupos de investigación"
+    label: "GRUPOS DE INVESTIGACIÓN",
+    icon: "👥"
   },
   {
-    number: "12",
-    label: "Patentes"
+    number: "13",
+    label: "PATENTES",
+    icon: "🛡️"
   }
 ];
 ---
 
 <div class="activities-container">
   <TopBar/>
-  <section class="research-stats">
+  <section class="research-stats" id="research-stats-section">
     <div class="container">
       <div class="stats-header">
         <h2>Actividades de <span class="highlight">investigación</span></h2>
@@ -83,12 +88,9 @@ const stats: StatItem[] = [
       <div class="stats-grid">
         {stats.map((stat) => (
           <div class="stat-item">
-            <div class="stat-circle">
-              <div class="stat-content">
-                <span class="stat-number">{stat.number}</span>
-                <p class="stat-label">{stat.label}</p>
-              </div>
-            </div>
+            <div class="stat-icon">{stat.icon}</div>
+            <span class="stat-number" data-target={stat.number}>0</span>
+            <p class="stat-label">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -167,7 +169,74 @@ const stats: StatItem[] = [
     </div>
   </div>
 </section>
+
 <script>
+  // Función para animar números
+  function animateNumber(element, start, end, duration = 2000) {
+    const startTime = performance.now();
+    const startValue = parseInt(start);
+    const endValue = parseInt(end);
+    const difference = endValue - startValue;
+
+    function updateNumber(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Función de easing para suavizar la animación
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(startValue + (difference * easeOutCubic));
+      
+      element.textContent = currentValue.toLocaleString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      } else {
+        element.textContent = endValue.toLocaleString();
+      }
+    }
+    
+    requestAnimationFrame(updateNumber);
+  }
+
+  // Observer para detectar cuando la sección entra en el viewport
+  function createStatsObserver() {
+    const statsSection = document.getElementById('research-stats-section');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    if (!statsSection || statNumbers.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Agregar clase para activar animaciones CSS si es necesario
+          entry.target.classList.add('animate-stats');
+          
+          // Animar cada número
+          statNumbers.forEach((numberElement, index) => {
+            const target = numberElement.getAttribute('data-target');
+            if (target) {
+              // Pequeño delay entre cada número para efecto escalonado
+              setTimeout(() => {
+                animateNumber(numberElement, 0, target, 2000);
+              }, index * 200);
+            }
+          });
+          
+          // Desconectar el observer para que solo se ejecute una vez
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3, // Se activa cuando el 30% de la sección es visible
+      rootMargin: '-50px' // Margen adicional
+    });
+
+    observer.observe(statsSection);
+  }
+
+  // Inicializar cuando el DOM esté cargado
+  document.addEventListener('DOMContentLoaded', createStatsObserver);
+
   // Interactividad para las tarjetas de participación
   document.querySelectorAll('.participation-card').forEach(card => {
     card.addEventListener('click', () => {

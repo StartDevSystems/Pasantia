@@ -3,8 +3,13 @@
 }
 
 .research-stats {
-  background-color: #f5f5f5;
+  background-color: #f8f9fa;
   padding: 60px 0;
+  transition: all 0.3s ease;
+}
+
+.research-stats.animate-stats {
+  background-color: #f8f9fa;
 }
 
 .container {
@@ -59,48 +64,75 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.stat-circle {
-  width: 160px;
-  height: 160px;
-  border: 8px solid #e4193f;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+/* Animación cuando se activa */
+.animate-stats .stat-item {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.stat-circle:hover {
-  transform: translateY(-5px);
-  box-shadow: 0i 10px 20px rgba(233, 30, 99, 0.2);
+/* Delay escalonado para cada item */
+.animate-stats .stat-item:nth-child(1) { transition-delay: 0.1s; }
+.animate-stats .stat-item:nth-child(2) { transition-delay: 0.2s; }
+.animate-stats .stat-item:nth-child(3) { transition-delay: 0.3s; }
+.animate-stats .stat-item:nth-child(4) { transition-delay: 0.4s; }
+.animate-stats .stat-item:nth-child(5) { transition-delay: 0.5s; }
+
+.stat-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #6b7280;
+  transition: transform 0.3s ease;
 }
 
-.stat-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.stat-item:hover .stat-icon {
+  transform: scale(1.1);
 }
 
 .stat-number {
-  font-size: 3.2rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 800;
   color: #e4193f;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.animate-stats .stat-number {
+  text-shadow: 0 2px 4px rgba(228, 25, 63, 0.15);
 }
 
 .stat-label {
-  font-size: 1.2rem;
-  color: #4f403e;
-  font-weight: bold;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 600;
   margin: 0;
-  max-width: 120px;
-  line-height: 1.3;
   text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Efectos adicionales para la animación */
+.stat-item.counting {
+  animation: pulse 0.1s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 /* Responsive design */
@@ -131,19 +163,21 @@
     gap: 25px;
   }
 
-  .stat-circle {
-    width: 120px;
-    height: 120px;
-    border: 6px solid #e91e63;
+  .stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
   }
 
   .stat-number {
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 
   .stat-label {
-    font-size: 0.9rem;
-    max-width: 100px;
+    font-size: 0.8rem;
+  }
+
+  .stat-item {
+    padding: 25px 15px;
   }
 }
 
@@ -153,299 +187,299 @@
     gap: 30px;
   }
 
-  .stat-circle {
-    width: 130px;
-    height: 130px;
+  .stat-icon {
+    font-size: 2.8rem;
   }
 
   .stat-number {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+  }
+
+  .stat-item {
+    padding: 30px 20px;
   }
 }
- .congress-participation {
-    background: linear-gradient(135deg, #e8f4fd 0%, #fef7e8 100%);
-  }
 
-  /* Banner del Congreso */
-  .congress-banner {
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #a8d8f0 0%, #f0c8d4 50%, #e8c4f0 100%);
-    position: relative;
-    overflow: hidden;
-  }
+/* Estilos para el congreso */
+.congress-participation {
+  background: linear-gradient(135deg, #e8f4fd 0%, #fef7e8 100%);
+}
 
+/* Banner del Congreso */
+.congress-banner {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #a8d8f0 0%, #f0c8d4 50%, #e8c4f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.congress-logo .logo-x {
+  font-size: 8rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #2563eb, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.congress-info {
+  text-align: left;
+}
+
+.congress-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e40af;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.congress-date {
+  background: #dc2626;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.date-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: block;
+}
+
+.location {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.banner-illustration {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.illustration-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.illustration-elements > div {
+  position: absolute;
+  font-size: 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.rocket { top: 10%; right: 20%; animation-delay: 0s; }
+.bulb { top: 20%; left: 10%; animation-delay: 0.5s; }
+.atoms { bottom: 30%; right: 10%; animation-delay: 1s; }
+.graph { bottom: 10%; left: 20%; animation-delay: 1.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Sección de Participación */
+.participation-section {
+  padding: 4rem 1rem;
+  background: white;
+}
+
+.participation-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.participation-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #374151;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.participation-description {
+  font-size: 1.1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #dc2626;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(185, 28, 28, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #374151;
+  padding: 1rem 2rem;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+  transform: translateY(-2px);
+}
+
+.participation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.participation-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  height: 200px;
+}
+
+.participation-card:hover {
+  transform: scale(1.02);
+}
+
+.card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.card-title h4 {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .banner-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr;
+    text-align: center;
     gap: 2rem;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .congress-logo .logo-x {
-    font-size: 8rem;
-    font-weight: 900;
-    background: linear-gradient(45deg, #2563eb, #dc2626);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-
-  .congress-info {
-    text-align: left;
   }
 
   .congress-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1e40af;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  .congress-date {
-    background: #dc2626;
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    display: inline-block;
-  }
-
-  .date-text {
-    font-size: 1.1rem;
-    font-weight: 700;
-    display: block;
-  }
-
-  .location {
-    font-size: 0.9rem;
-    opacity: 0.9;
-  }
-
-  .banner-illustration {
-    position: relative;
-    width: 300px;
-    height: 200px;
-  }
-
-  .illustration-elements {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-  .illustration-elements > div {
-    position: absolute;
     font-size: 2rem;
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .rocket { top: 10%; right: 20%; animation-delay: 0s; }
-  .bulb { top: 20%; left: 10%; animation-delay: 0.5s; }
-  .atoms { bottom: 30%; right: 10%; animation-delay: 1s; }
-  .graph { bottom: 10%; left: 20%; animation-delay: 1.5s; }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  /* Sección de Participación */
-  .participation-section {
-    padding: 4rem 1rem;
-    background: white;
   }
 
   .participation-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .congress-logo .logo-x {
+    font-size: 6rem;
+  }
+
+  .congress-title {
+    font-size: 1.8rem;
   }
 
   .participation-title {
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: #374151;
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
-  }
-
-  .highlight {
-    font-weight: 700;
-    color: #dc2626;
-  }
-
-  .participation-description {
-    font-size: 1.1rem;
-    color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
-
-  .action-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: #dc2626;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-  }
-
-  .btn-primary:hover {
-    background: #b91c1c;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(185, 28, 28, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: #374151;
-    padding: 1rem 2rem;
-    border: 2px solid #d1d5db;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-  }
-
-  .btn-secondary:hover {
-    border-color: #dc2626;
-    color: #dc2626;
-    transform: translateY(-2px);
+    font-size: 2rem;
   }
 
   .participation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr;
   }
 
   .participation-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    height: 200px;
+    height: 150px;
   }
 
-  .participation-card:hover {
-    transform: scale(1.02);
+  .action-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .congress-banner,
+  .participation-section {
+    padding: 2rem 1rem;
   }
 
-  .card-image {
-    position: absolute;
-    inset: 0;
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
   }
-
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-  }
-
-  .card-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    z-index: 2;
-  }
-
-  .card-title h4 {
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.3;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .banner-content {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 2rem;
-    }
-
-    .congress-title {
-      font-size: 2rem;
-    }
-
-    .participation-container {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .congress-logo .logo-x {
-      font-size: 6rem;
-    }
-
-    .congress-title {
-      font-size: 1.8rem;
-    }
-
-    .participation-title {
-      font-size: 2rem;
-    }
-
-    .participation-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .participation-card {
-      height: 150px;
-    }
-
-    .action-buttons {
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .congress-banner,
-    .participation-section {
-      padding: 2rem 1rem;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      padding: 0.8rem 1.5rem;
-      font-size: 0.8rem;
-    }
-  }
+}
