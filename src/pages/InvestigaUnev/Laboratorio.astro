@@ -1,0 +1,209 @@
+---
+// src/pages/observatorios.astro
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Nuestros Observatorios - INTEC">
+  <main class="observatorios-page">
+    <!-- Header Section -->
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="page-title">Nuestros observatorios</h1>
+      </div>
+    </section>
+
+    <!-- Observatorios Content -->
+    <section class="observatorios-content">
+      <div class="container">
+        
+        <!-- ODCI -->
+        <div class="observatorio-card">
+          <div class="observatorio-image">
+            <img src="/images/odci-investigacion.jpeg" alt="Observatorio Dominicano de Comercio Internacional" />
+          </div>
+          <div class="observatorio-info">
+            <h2>Observatorio Dominicano de Comercio Internacional</h2>
+            <p>Centro especializado en el análisis y seguimiento del comercio internacional dominicano, proporcionando información estratégica para la toma de decisiones en el sector empresarial y gubernamental.</p>
+          </div>
+        </div>
+
+        <!-- ONLT -->
+        <div class="observatorio-card">
+          <div class="observatorio-info">
+            <h2>Observatorio Nacional de Logística y Transporte de Carga</h2>
+            <p>Unidad de investigación dedicada al estudio y análisis del sector logístico y de transporte de carga en República Dominicana, contribuyendo al desarrollo de políticas públicas y mejores prácticas en el sector.</p>
+          </div>
+          <div class="observatorio-image">
+            <img src="/images/onlt-rd-investigacion.jpeg" alt="Observatorio Nacional de Logística y Transporte" />
+          </div>
+        </div>
+
+        <!-- ONTIC -->
+        <div class="observatorio-card">
+          <div class="observatorio-image">
+            <img src="/images/ontic.jpeg" alt="ONTIC" />
+          </div>
+          <div class="observatorio-info">
+            <h2>ONTIC</h2>
+            <p>Es un centro de gestión de información, investigación y monitoreo del sector de las Tecnologías de la Información y las Comunicaciones (TIC) y su entorno cuya finalidad es incidir en las políticas públicas y en la mejora de la actividad productiva nacional.</p>
+          </div>
+        </div>
+
+        <!-- OCCR -->
+        <div class="observatorio-card">
+          <div class="observatorio-info">
+            <h2>OCCR</h2>
+            <p>El Observatorio de Cambio Climático y Resiliencia (Infoclima | Rep. Dom) tiene sede en el Instituto Tecnológico de Santo Domingo (INTEC) y cuenta con la participación del City College of New York (CCNY) y la Red Ambiental de Universidades Dominicanas (RAUDO) que desarrollan herramientas de información climática para ponerlas a disposición de la sociedad para la toma de decisiones.</p>
+          </div>
+          <div class="observatorio-image">
+            <img src="/images/occr-banner.jpeg" alt="Observatorio de Cambio Climático y Resiliencia" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .observatorios-page {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero-section {
+    background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+    color: white;
+    padding: 80px 0 60px;
+    margin-bottom: 60px;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .observatorios-content {
+    padding-bottom: 80px;
+  }
+
+  .observatorio-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .observatorio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  .observatorio-card:nth-child(even) {
+    direction: rtl;
+  }
+
+  .observatorio-card:nth-child(even) .observatorio-info,
+  .observatorio-card:nth-child(even) .observatorio-image {
+    direction: ltr;
+  }
+
+  .observatorio-image {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .observatorio-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .observatorio-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .observatorio-info h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .observatorio-info p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.2rem;
+    }
+
+    .hero-section {
+      padding: 60px 0 40px;
+      margin-bottom: 40px;
+    }
+
+    .observatorio-card {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 30px 20px;
+    }
+
+    .observatorio-card:nth-child(even) {
+      direction: ltr;
+    }
+
+    .observatorio-image img {
+      height: 250px;
+    }
+
+    .observatorio-info h2 {
+      font-size: 1.5rem;
+    }
+
+    .observatorio-info p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px;
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+    }
+
+    .observatorio-card {
+      padding: 20px 15px;
+    }
+
+    .observatorio-image img {
+      height: 200px;
+    }
+  }
+</style>

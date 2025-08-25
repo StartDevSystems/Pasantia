@@ -1,0 +1,522 @@
+---
+// src/pages/proyectos.astro
+
+import Layout from '../../layouts/Layout.astro';
+export interface Props {
+  title?: string;
+}
+
+const { title = "Proyectos de investigación - INTEC" } = Astro.props;
+
+// Datos de proyectos reales basados en INTEC
+const proyectos = [
+  {
+    id: 1,
+    titulo: "Monitoreo y Caracterización de los Contaminantes Atmosféricos a Nivel de Micro Escala a través de una Red Inalámbrica de Sensores para Tres Zonas de la Ciudad de Santo Domingo en la República Dominicana",
+    categoria: "ACTUALES",
+    tipo: "FONDO EXTERNO"
+  },
+  {
+    id: 2,
+    titulo: "Evaluación De Alternativas De Valorización Energética Del Potencial De Biomasa Residual De Monte Plata Como Recurso Energético A Integrarse Con Redes De Generación Eléctrica Distribuida Con Energías Renovables Intermitentes.",
+    categoria: "ACTUALES",
+    tipo: "FONDO PROPIO"
+  },
+  {
+    id: 3,
+    titulo: "Análisis de riesgos objetivos y subjetivos asociados al cambio climático (CC) para la producción arrocera en la República Dominicana",
+    categoria: "ACTUALES",
+    tipo: "FONDO EXTERNO"
+  },
+  {
+    id: 4,
+    titulo: "Desarrollo de Algoritmos de Machine Learning para Optimización de Procesos Industriales",
+    categoria: "CONCLUIDOS",
+    tipo: "FONDO EXTERNO"
+  },
+  {
+    id: 5,
+    titulo: "Análisis de Vulnerabilidades en Sistemas de Telecomunicaciones mediante Técnicas de Penetration Testing",
+    categoria: "ACTUALES",
+    tipo: "FONDO PROPIO"
+  },
+  {
+    id: 6,
+    titulo: "Estudio de Factibilidad para Implementación de Energía Solar en Comunidades Rurales",
+    categoria: "CONCLUIDOS",
+    tipo: "FONDO EXTERNO"
+  },
+  {
+    id: 7,
+    titulo: "Investigación sobre Materiales Biodegradables para Envases Alimentarios",
+    categoria: "ACTUALES",
+    tipo: "FONDO PROPIO"
+  },
+  {
+    id: 8,
+    titulo: "Desarrollo de Sistemas IoT para Monitoreo Ambiental en Tiempo Real",
+    categoria: "ACTUALES",
+    tipo: "FONDO EXTERNO"
+  },
+  {
+    id: 9,
+    titulo: "Optimización de Procesos de Tratamiento de Aguas Residuales mediante Biotecnología",
+    categoria: "CONCLUIDOS",
+    tipo: "FONDO PROPIO"
+  }
+];
+
+const filtros = [
+  { id: 'ALL', label: 'ALL', active: true },
+  { id: 'ACTUALES', label: 'ACTUALES', active: false },
+  { id: 'CONCLUIDOS', label: 'CONCLUIDOS', active: false },
+  { id: 'FONDO_EXTERNO', label: 'FONDO EXTERNO', active: false },
+  { id: 'FONDO_PROPIO', label: 'FONDO PROPIO', active: false }
+];
+---
+
+<Layout title={title}>
+  <main class="main">
+    <div class="container">
+      <div class="page-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="filter-list">
+            {filtros.map((filtro) => (
+              <button 
+                class={`filter-btn ${filtro.active ? 'active' : ''}`}
+                data-filter={filtro.id}
+              >
+                {filtro.label}
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="content">
+          <header class="main-header">
+            <h1 class="main-title">Proyectos de investigación</h1>
+          </header>
+          
+          <header class="content-header">
+            <h2 class="page-title">
+              Proyectos de <span class="highlight">investigación</span>
+            </h2>
+          </header>
+
+          <div class="proyectos-container">
+            {proyectos.map((proyecto, index) => (
+              <article 
+                class="proyecto-card lazy-load"
+                data-categoria={proyecto.categoria}
+                data-tipo={proyecto.tipo.replace(' ', '_')}
+                style={`animation-delay: ${index * 0.1}s`}
+              >
+                <div class="proyecto-image">
+                  <div class="placeholder-image">
+                    <svg viewBox="0 0 100 80" class="image-icon">
+                      <rect x="10" y="20" width="80" height="50" fill="none" stroke="#ccc" stroke-width="2"/>
+                      <circle cx="25" cy="35" r="5" fill="#ccc"/>
+                      <path d="M15 55 L35 40 L50 50 L85 25" stroke="#ccc" stroke-width="2" fill="none"/>
+                    </svg>
+                  </div>
+                </div>
+                
+                <div class="proyecto-content">
+                  <h2 class="proyecto-titulo">{proyecto.titulo}</h2>
+                  <button class="btn-ver-info" data-proyecto-id={proyecto.id}>
+                    VER INFORMACIÓN
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    padding: 2rem 0;
+min-height: calc(100vh - 200px);
+margin-bottom:2.5rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 2rem 1.5rem;
+    margin-top:2rem; 
+    top: 2rem;
+    height: fit-content;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 0.25rem;
+    position: relative;
+    border-left: 3px solid transparent;
+  }
+
+  .filter-btn:hover {
+    background: #f9fafb;
+    color: #374151;
+    transform: translateX(2px);
+    border-left-color: #e5e7eb;
+  }
+
+  .filter-btn.active {
+    background: #fef2f2;
+    color: #dc2626;
+    font-weight: 700;
+    border-left-color: #dc2626;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+  }
+
+  .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #dc2626;
+    border-radius: 50%;
+  }
+
+  /* Content */
+  .content {
+    flex: 1;
+  }
+
+  .main-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f3f4f6;
+  }
+
+  .main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .content-header {
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .highlight {
+    color: #dc2626;
+    font-weight: 400;
+  }
+
+  /* Proyectos Container */
+  .proyectos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .proyecto-card {
+    display: flex;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .proyecto-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .proyecto-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .proyecto-image {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fafb;
+    border-right: 1px solid #e5e7eb;
+  }
+
+  .placeholder-image {
+    width: 60px;
+    height: 48px;
+  }
+
+  .image-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .proyecto-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .proyecto-titulo {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .btn-ver-info {
+    background: transparent;
+    border: none;
+    color: #dc2626;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: color 0.3s;
+    padding: 0;
+  }
+
+  .btn-ver-info:hover {
+    color: #991b1b;
+    text-decoration: underline;
+  }
+
+  /* Hidden state for filtering */
+  .proyecto-card.hidden {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      width: 100%;
+    }
+
+    .filter-list {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .filter-btn {
+      white-space: nowrap;
+      padding: 0.5rem 0;
+    }
+
+    .filter-btn.active::before {
+      display: none;
+    }
+
+    .proyecto-card {
+      flex-direction: column;
+    }
+
+    .proyecto-image {
+      width: 100%;
+      height: 100px;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .container {
+      padding: 0 15px;
+    }
+  }
+
+  /* Lazy loading animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  class ProyectosManager {
+    private proyectos: NodeListOf<HTMLElement>;
+    private filterButtons: NodeListOf<HTMLButtonElement>;
+    private observer: IntersectionObserver;
+
+    constructor() {
+      this.proyectos = document.querySelectorAll('.proyecto-card');
+      this.filterButtons = document.querySelectorAll('.filter-btn');
+      this.setupLazyLoading();
+      this.setupFiltering();
+      this.setupProjectButtons();
+    }
+
+    private setupLazyLoading() {
+      const options = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+      };
+
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.classList.add('visible');
+            this.observer.unobserve(element);
+          }
+        });
+      }, options);
+
+      // Observar todos los proyectos
+      this.proyectos.forEach(proyecto => {
+        this.observer.observe(proyecto);
+      });
+    }
+
+    private setupFiltering() {
+      this.filterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const target = e.target as HTMLButtonElement;
+          const filter = target.dataset.filter;
+
+          // Actualizar botones activos
+          this.filterButtons.forEach(btn => btn.classList.remove('active'));
+          target.classList.add('active');
+
+          // Filtrar proyectos
+          this.filterProjects(filter);
+        });
+      });
+    }
+
+    private filterProjects(filter: string | undefined) {
+      if (!filter) return;
+
+      this.proyectos.forEach((proyecto) => {
+        const categoria = proyecto.dataset.categoria;
+        const tipo = proyecto.dataset.tipo;
+        let shouldShow = false;
+
+        switch (filter) {
+          case 'ALL':
+            shouldShow = true;
+            break;
+          case 'ACTUALES':
+            shouldShow = categoria === 'ACTUALES';
+            break;
+          case 'CONCLUIDOS':
+            shouldShow = categoria === 'CONCLUIDOS';
+            break;
+          case 'FONDO_EXTERNO':
+            shouldShow = tipo === 'FONDO_EXTERNO';
+            break;
+          case 'FONDO_PROPIO':
+            shouldShow = tipo === 'FONDO_PROPIO';
+            break;
+        }
+
+        if (shouldShow) {
+          proyecto.classList.remove('hidden');
+          // Re-observar para lazy loading si es necesario
+          if (!proyecto.classList.contains('visible')) {
+            this.observer.observe(proyecto);
+          }
+        } else {
+          proyecto.classList.add('hidden');
+        }
+      });
+    }
+
+    private setupProjectButtons() {
+      document.querySelectorAll('.btn-ver-info').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const projectId = (e.target as HTMLElement).dataset.proyectoId;
+          this.showProjectInfo(projectId);
+        });
+      });
+    }
+
+    private showProjectInfo(projectId: string | undefined) {
+      if (!projectId) return;
+
+      // En una implementación real, esto navegaría a la página de detalles
+      // o abriría un modal con la información completa
+      console.log(`Ver información del proyecto: ${projectId}`);
+      
+      // Simular navegación
+      alert(`Información del proyecto ${projectId}\n\nEn una implementación real, esto navegaría a /proyectos/${projectId} o abriría un modal con los detalles completos.`);
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new ProyectosManager();
+  });
+</script>

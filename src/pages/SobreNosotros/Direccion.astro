@@ -1,5 +1,6 @@
 ---
 // src/pages/nosotros/direccion.astro
+import Layout from '../../layouts/Layout.astro'
 export const prerender = true;
 
 const pageTitle = "Dirección de Investigación - UNEV";
@@ -61,64 +62,7 @@ const teamMembers: TeamMember[] = [
   }
 ];
 ---
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription}>
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content={pageTitle}>
-    <meta property="og:description" content={pageDescription}>
-    <meta property="og:site_name" content="UNEV - Universidad de Estudios Virtuales">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={pageTitle}>
-    <meta name="twitter:description" content={pageDescription}>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="container">
-                <div class="nav-brand">
-                    <a href="/" class="logo">
-                        <img src="/images/logo-unev.svg" alt="UNEV" width="120" height="40">
-                    </a>
-                </div>
-                <div class="nav-menu">
-                    <a href="/" class="nav-link">Inicio</a>
-                    <a href="/nosotros" class="nav-link">Nosotros</a>
-                    <a href="/investigacion" class="nav-link active">Investigación</a>
-                    <a href="/programas" class="nav-link">Programas</a>
-                    <a href="/admisiones" class="nav-link">Admisiones</a>
-                    <a href="/contacto" class="nav-link">Contacto</a>
-                </div>
-                <button class="nav-toggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
+<Layout>
     <!-- Breadcrumb -->
     <section class="breadcrumb">
         <div class="container">
@@ -198,49 +142,8 @@ const teamMembers: TeamMember[] = [
                 </div>
             </section>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>UNEV</h3>
-                    <p>Universidad de Estudios Virtuales</p>
-                    <p>Excelencia académica en modalidad virtual</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul>
-                        <li><a href="/nosotros">Nosotros</a></li>
-                        <li><a href="/programas">Programas</a></li>
-                        <li><a href="/admisiones">Admisiones</a></li>
-                        <li><a href="/investigacion">Investigación</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>📍 Santo Domingo, República Dominicana</p>
-                    <p>📞 +1 (809) 123-4567</p>
-                    <p>✉️ info@unev.edu.do</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Síguenos</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="LinkedIn">💼</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 UNEV - Universidad de Estudios Virtuales. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-
+  </main>
+</Layout>
 <style>
     :root {
         --primary-color: #1e40af;

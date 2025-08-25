@@ -1,0 +1,534 @@
+---
+// src/pages/documentacion.astro
+
+import Layout from "../../layouts/Layout.astro"
+
+
+export interface Props {
+    title?: string;
+}
+
+const { title = "Reglamentos y Políticas - Investigación INTEC" } = Astro.props;
+
+// Datos de reglamentos - en un proyecto real, esto podría venir de un CMS o API
+const reglamentos = [
+    {
+        id: "grupos-investigacion",
+        nombre: "REGLAMENTO DE GRUPOS DE INVESTIGACIÓN",
+        tamaño: "1.2 MB",
+        archivo: "Reglamento_Grupos_Investigacion.pdf"
+    },
+    {
+        id: "investigacion",
+        nombre: "REGLAMENTO DE INVESTIGACIÓN",
+        tamaño: "980 KB",
+        archivo: "Reglamento_Investigacion.pdf"
+    },
+    {
+        id: "propiedad-intelectual",
+        nombre: "REGLAMENTO DE PROPIEDAD INTELECTUAL DEL INTEC",
+        tamaño: "1.5 MB",
+        archivo: "Reglamento_Propiedad_Intelectual.pdf"
+    },
+    {
+        id: "consejo-investigaciones",
+        nombre: "REGLAMENTO DEL CONSEJO DE INVESTIGACIONES",
+        tamaño: "750 KB",
+        archivo: "Reglamento_Consejo_Investigaciones.pdf"
+    }
+];
+---
+
+<Layout>
+    <main class="main">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="/">Inicio</a> > <a href="/nosotros">Nosotros</a> > Documentación
+            </nav>
+
+            <h1 class="page-title">Reglamentos y Políticas de Investigación</h1>
+
+            <section class="intro-section">
+                <p class="intro-text">
+                    La Política de Investigación del INTEC es el instrumento plurianual de planificación de la producción de conocimiento, con base en los programas y líneas de investigación de interés estratégico para la República Dominicana y la región latinoamericana y caribeña. Estas líneas de investigación se encuentran alineadas con las políticas públicas de ciencia, tecnología e innovación y con los intereses de la Estrategia Nacional de Desarrollo 2030.
+                </p>
+            </section>
+
+            <section class="requirements-section">
+                <h2 class="section-title">Requisitos para ser investigador</h2>
+                <p class="requirements-note">
+                    Reglamento en revisión, sin embargo, debajo el detalle de algunos de los requerimientos para ser investigador del INTEC.
+                </p>
+
+                <div class="article-card">
+                    <div class="article-number">Artículo N.° 12</div>
+                    <div class="article-title">Formalización</div>
+                    <div class="article-content">
+                        El personal de investigación del INTEC descrito y definido en el presente reglamento, al momento de involucrarse en un proyecto de investigación, deberá formalizar sus registros profesionales como investigadores. Tendrán que obtener sus respectivos números ORCID, su número único de investigador (research ID) y presentar la evidencia de haber concluido el curso en línea de ética de investigación, impartido por los Institutos Nacionales de Salud de los Estados Unidos (NIH por sus siglas en el idioma Inglés), o su equivalente.
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-number">Artículo N.° 13</div>
+                    <div class="article-title">Propiedad Intelectual</div>
+                    <div class="article-content">
+                        La participación del INTEC en actividades de investigación, en lo que respecta a las cuestiones de propiedad intelectual, seguirá los parámetros y las disposiciones contenidos en el Reglamento de Propiedad Intelectual.
+                    </div>
+                </div>
+            </section>
+
+            <section class="institutional-section">
+                <div class="institutional-header">
+                    <h2 class="institutional-title">¿Estas interesado (a) en hacer investigación en el INTEC?</h2>
+                    <p class="institutional-subtitle">Conozca los reglamentos para cumplir con los procedimientos institucionales.</p>
+                </div>
+
+                <div class="regulations-container">
+                    <div class="regulations-list">
+                        {reglamentos.map((reglamento) => (
+                            <div class="regulation-item" data-regulation={reglamento.id}>
+                                <div class="regulation-content">
+                                    <h3 class="regulation-name">{reglamento.nombre}</h3>
+                                    <div class="regulation-meta">
+                                        <span class="file-type">PDF</span>
+                                        <span class="file-size">{reglamento.tamaño}</span>
+                                    </div>
+                                </div>
+                                <div class="download-icon">📄</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section class="image-section">
+                <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    alt="Grupo de investigación trabajando en laboratorio" 
+                    class="research-image"
+                    loading="lazy"
+                />
+            </section>
+        </div>
+    </main>
+</Layout>
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --red-institutional: #b91c1c;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 3rem 0;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .intro-section {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .requirements-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: "📋";
+            font-size: 1.5rem;
+        }
+
+        .requirements-note {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .article-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .article-number {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .article-content {
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+        /* Institutional Section */
+        .institutional-section {
+            margin-bottom: 3rem;
+        }
+
+        .institutional-header {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .institutional-title {
+            font-size: 1.4rem;
+            color: var(--red-institutional);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .institutional-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .regulations-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .regulations-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .regulation-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .regulation-item:last-child {
+            border-bottom: none;
+        }
+
+        .regulation-item:hover {
+            background: #f8fafc;
+            transform: translateX(5px);
+        }
+
+        .regulation-content {
+            flex: 1;
+        }
+
+        .regulation-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .regulation-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .file-type {
+            background: #dc2626;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .file-size {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .download-icon {
+            font-size: 1.5rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .regulation-item:hover .download-icon {
+            opacity: 1;
+        }
+
+        .image-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .research-image {
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .regulation-item {
+                padding: 1rem;
+            }
+
+            .regulation-name {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .article-card:nth-child(1) { animation-delay: 0.1s; }
+        .article-card:nth-child(2) { animation-delay: 0.2s; }
+    </style>
+
+    <script>
+        // Función para manejar descargas de PDFs
+        function downloadPDF(reglamentoId: string, archivo: string) {
+            // En un proyecto real, esto redirigiría al PDF correspondiente
+            const baseUrl = '/assets/documentos/';
+            const pdfUrl = `${baseUrl}${archivo}`;
+            
+            // Simular descarga o abrir en nueva pestaña
+            window.open(pdfUrl, '_blank');
+        }
+
+        // Event listeners para los elementos de reglamentos
+        document.addEventListener('DOMContentLoaded', () => {
+            const regulationItems = document.querySelectorAll('.regulation-item');
+            
+            regulationItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    const reglamentoId = item.getAttribute('data-regulation');
+                    const reglamentoData = {
+                        'grupos-investigacion': 'Reglamento_Grupos_Investigacion.pdf',
+                        'investigacion': 'Reglamento_Investigacion.pdf',
+                        'propiedad-intelectual': 'Reglamento_Propiedad_Intelectual.pdf',
+                        'consejo-investigaciones': 'Reglamento_Consejo_Investigaciones.pdf'
+                    };
+                    
+                    if (reglamentoId && reglamentoData[reglamentoId]) {
+                        downloadPDF(reglamentoId, reglamentoData[reglamentoId]);
+                    }
+                });
+            });
+
+            // Smooth scrolling para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href') || '');
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer para animaciones
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        (entry.target as HTMLElement).style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.article-card').forEach(card => {
+                (card as HTMLElement).style.animationPlayState = 'paused';
+                observer.observe(card);
+            });
+        });
+    </script>
+
