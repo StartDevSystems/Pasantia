@@ -1,0 +1,190 @@
+---
+// --- DATOS DE LOS OBSERVATORIOS ---
+const observatorios = [
+  {
+    titulo: 'Observatorio Dominicano de Comercio Internacional',
+    descripcion: 'El Observatorio Dominicano de Comercio Internacional (ODCI) es un espacio académico-institucional permanente de investigación, creación de capacidades, prestación de servicios y comunicación estratégica.',
+    imagenUrl: 'https://placehold.co/500x375/f0f0f0/333?text=ODCI',
+    portalUrl: '#'
+  },
+  {
+    titulo: 'Observatorio Nacional de Logística y Transporte de Carga',
+    descripcion: 'El ONLT-RD es un sistema de información y análisis cuya función es la de contribuir al desarrollo y divulgación de indicadores y parámetros clave orientados al incremento del desempeño.',
+    imagenUrl: 'https://placehold.co/500x375/f0f0f0/333?text=ONLT-RD',
+    portalUrl: '#'
+  },
+  {
+    titulo: 'ONTIC',
+    descripcion: 'Es un centro de gestión de información, investigación y monitoreo del sector de las Tecnologías de la Información y las Comunicaciones (TIC) y su entorno cuya finalidad es incidir en las políticas públicas.',
+    imagenUrl: 'https://placehold.co/500x375/f0f0f0/333?text=ONTIC',
+    portalUrl: '#'
+  },
+  {
+    titulo: 'OCCR',
+    descripcion: 'El Observatorio de Cambio Climático y Resiliencia (Infoclima | Rep. Dom) tiene sede en el Instituto Tecnológico de Santo Domingo (INTEC) y cuenta con la participación del City College of New York (CCNY).',
+    imagenUrl: 'https://placehold.co/500x375/f0f0f0/333?text=OCCR',
+    portalUrl: '#'
+  },
+];
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Observatorios - UNEV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">UNEV INVESTIGACIÓN</div>
+            <nav>
+                <a href="#">SOBRE NOSOTROS</a>
+                <a href="#">INVESTIGA UNEV</a>
+                <a href="#">CULTURA CIENTÍFICA</a>
+                <a href="#">PROYECTOS DESTACADOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <main>
+            <h1 class="main-title">Nuestros <span class="text-red">observatorios</span></h1>
+            
+            <div class="observatorios-list">
+                {observatorios.map(obs => (
+                    <section class="observatorio-item">
+                        <div class="observatorio-image">
+                            <img src={obs.imagenUrl} alt={`Imagen de ${obs.titulo}`} />
+                        </div>
+                        <div class="observatorio-content">
+                            <h2>{obs.titulo}</h2>
+                            <p>{obs.descripcion}</p>
+                            <a href={obs.portalUrl} class="portal-button">VISITAR PORTAL</a>
+                        </div>
+                    </section>
+                ))}
+            </div>
+        </main>
+    </div>
+
+    <footer class="detailed-footer">
+        <!-- El footer sigue igual -->
+    </footer>
+
+</body>
+</html>
+<style>
+    :root {
+        --color-rojo-principal: #e4002b;
+        --color-fondo: #ffffff;
+        --color-texto: #333333;
+        --color-texto-secundario: #555;
+        --color-borde: #eeeeee;
+    }
+    body { font-family: 'Roboto', sans-serif; margin: 0; }
+    .site-header { border-bottom: 1px solid var(--color-borde); padding: 1rem 0; }
+    
+    .header-container, .page-container, .footer-container {
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .logo { font-weight: 700; font-size: 1.5rem; }
+    nav a { margin-left: 2rem; text-decoration: none; color: var(--color-texto-secundario); font-weight: 500; font-size: 0.9rem; }
+    
+    .page-container { padding-top: 3rem; padding-bottom: 3rem; }
+    
+    .main-title { 
+        font-size: 1.6rem; 
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 4rem;
+        padding-left: 1rem;
+        border-left: 3px solid var(--color-borde);
+    }
+    .main-title .text-red { color: var(--color-rojo-principal); font-weight: 700; }
+
+    .observatorios-list { display: flex; flex-direction: column; gap: 5rem; }
+
+    /* --- ESTA ES LA CORRECCIÓN MÁS IMPORTANTE --- */
+    .observatorio-item {
+        display: flex; /* Usamos flexbox, más simple */
+        gap: 40px;     /* Espacio fijo entre imagen y texto */
+        align-items: center;
+    }
+
+    .observatorio-image {
+        width: 40%;      /* La imagen ocupa el 40% */
+        flex-shrink: 0; /* Evita que la imagen se encoja */
+    }
+
+    .observatorio-content {
+        width: 60%;      /* El texto ocupa el 60% */
+    }
+
+    .observatorio-image img { width: 100%; height: auto; border: 1px solid var(--color-borde); border-radius: 4px;}
+
+    .observatorio-content h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin: 0 0 1rem 0;
+        line-height: 1.3;
+    }
+
+    .observatorio-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--color-texto-secundario);
+        margin: 0 0 2rem 0;
+    }
+    
+    .portal-button {
+        display: inline-block;
+        background-color: var(--color-rojo-principal);
+        color: white;
+        padding: 8px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: opacity 0.2s ease;
+    }
+    .portal-button:hover { opacity: 0.85; }
+
+    /* Estilos del footer omitidos por brevedad, son los mismos */
+    .detailed-footer {
+        background-color: #f9f9f9;
+        border-top: 1px solid var(--color-borde);
+        padding: 3rem 0 0 0;
+        margin-top: 5rem;
+        font-size: 0.9rem;
+        color: var(--color-texto-secundario);
+    }
+    .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; }
+    .footer-column h3 { font-size: 1.5rem; color: var(--color-texto); margin-top:0; }
+    .footer-column h4 { font-size: 1rem; color: var(--color-texto); }
+    .footer-column p { line-height: 1.6; }
+    .footer-column.links ul { list-style: none; padding: 0; margin: 0; }
+    .footer-column.links li { margin-bottom: 0.5rem; }
+    .footer-column.links a { color: var(--color-texto-secundario); text-decoration: none; }
+    .footer-column.links a:hover { color: var(--color-rojo-principal); }
+    .footer-bottom { border-top: 1px solid var(--color-borde); text-align: center; margin-top: 2rem; padding: 1.5rem 0; }
+    
+    @media (max-width: 768px) {
+        nav { display: none; }
+        .observatorio-item { flex-direction: column; }
+        .observatorio-image, .observatorio-content { width: 100%; }
+        .footer-container { grid-template-columns: 1fr; }
+    }
+</style>
