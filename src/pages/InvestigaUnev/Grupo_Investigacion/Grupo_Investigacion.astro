@@ -1,5 +1,6 @@
 ---
 // --- DATOS PÁGINA 1 ---
+import Layout from "../../../layouts/Layout.astro";
 const gruposDeInvestigacion = [
   { nombre: 'ARIMA', slug: 'arima' },
   { nombre: 'Arqueología y Culturas del Caribe', slug: 'arqueologia-culturas-caribe' },
@@ -12,8 +13,6 @@ const gruposDeInvestigacion = [
   { nombre: 'Energía Renovable, ER', slug: 'energia-renovable' },
 ];
 ---
-<!doctype html>
-<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,21 +21,8 @@ const gruposDeInvestigacion = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo">UNEV INVESTIGACIÓN</div>
-            <nav>
-                <a href="#">SOBRE NOSOTROS</a>
-                <a href="#">INVESTIGA UNEV</a>
-                <a href="#">CULTURA CIENTÍFICA</a>
-                <a href="#">PROYECTOS DESTACADOS</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-container">
+<Layout>
+<div class="page-container">
         <main>
             <h1 class="main-title">Grupos de investigación</h1>
             
@@ -71,20 +57,7 @@ const gruposDeInvestigacion = [
             </section>
         </main>
     </div>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <p>&copy; {new Date().getFullYear()} UNEV - Universidad Nacional Evangélica. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de Uso</a>
-                <a href="#">Contacto</a>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+</Layout>
 <style>
     :root {
         --color-rojo-principal: #e4002b;
@@ -99,7 +72,10 @@ const gruposDeInvestigacion = [
         background-color: var(--color-fondo);
         color: var(--color-texto);
         margin: 0;
-    }
+}
+main{
+margin-top:4.5rem;
+}
     .site-header { border-bottom: 1px solid var(--color-borde); padding: 1rem 0; }
     .header-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-weight: 700; font-size: 1.5rem; }

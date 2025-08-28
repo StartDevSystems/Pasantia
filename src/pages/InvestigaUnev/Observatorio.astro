@@ -1,5 +1,6 @@
 ---
 // --- DATOS DE LOS OBSERVATORIOS ---
+import Layout from "../../layouts/Layout.astro";
 const observatorios = [
   {
     titulo: 'Observatorio Dominicano de Comercio Internacional',
@@ -27,31 +28,7 @@ const observatorios = [
   },
 ];
 ---
-
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Observatorios - UNEV</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo">UNEV INVESTIGACIÓN</div>
-            <nav>
-                <a href="#">SOBRE NOSOTROS</a>
-                <a href="#">INVESTIGA UNEV</a>
-                <a href="#">CULTURA CIENTÍFICA</a>
-                <a href="#">PROYECTOS DESTACADOS</a>
-            </nav>
-        </div>
-    </header>
-
+<Layout>
     <div class="page-container">
         <main>
             <h1 class="main-title">Nuestros <span class="text-red">observatorios</span></h1>
@@ -72,13 +49,7 @@ const observatorios = [
             </div>
         </main>
     </div>
-
-    <footer class="detailed-footer">
-        <!-- El footer sigue igual -->
-    </footer>
-
-</body>
-</html>
+</Layout>
 <style>
     :root {
         --color-rojo-principal: #e4002b;
