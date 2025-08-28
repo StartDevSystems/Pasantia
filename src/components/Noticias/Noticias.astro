@@ -1,69 +1,134 @@
 ---
+import './Noticias.css';
+
+// --- DATOS PARA EL NUEVO CARRUSEL HERO ---
+interface HeroSlide {
+  id: number;
+  image: string;
+  title: string;
+  link: string;
+}
+
+const heroSlides: HeroSlide[] = [
+  {
+    id: 1,
+    image: "/imagenes/hero-slide-1.jpg",
+    title: "Suman 60 las iniciativas de investigación en ejecución del INTEC para una inversión total de alrededor de RD$300 millones",
+    link: "#"
+  },
+  {
+    id: 2,
+    image: "/imagenes/hero-slide-2.jpg",
+    title: "Estudio revela nuevos avances en la lucha contra el sargazo en las costas dominicanas",
+    link: "#"
+  },
+  {
+    id: 3,
+    image: "/imagenes/hero-slide-3.jpg",
+    title: "UNEV presenta innovador prototipo de brazo robótico para la industria manufacturera",
+    link: "#"
+  }
+];
+
+// --- DATOS PARA LA SECCIÓN DE NOTICIAS (INTACTOS) ---
 interface Noticia {
   id: string;
-  img: string;
+  img?: string;
   title: string;
   url: string;
 }
 
-// src/components/IntecHome.astro
-import './Noticias.css';
-
-const News: Noticia[] = [
-  {
-    id: "1",
-    img: "/api/placeholder/400/200",
-    title: "INTEC fortalece cooperación científica con instituciones francesas en el marco del proyecto ResAgroSargazo",
-    url: "#"
-  },
-  {
-    id: "2", 
-    img: "/api/placeholder/400/200",
-    title: "Expertos analizan los riesgos climáticos en el sector arrocero",
-    url: "#"
-  },
-  {
-    id: "3",
-    img: "/api/placeholder/400/200", 
-    title: "CEG-INTEC advierte República Dominicana sigue lejos de alcanzar la igualdad de género",
-    url: "#"
-  }
+const news: Noticia[] = [
+  { id: "1", img: "/imagenes/noticia-unev-rector.jpg", title: "UNEV elige como nuevo rector a Rafael Reyes...", url: "#" },
+  { id: "2", img: "/imagenes/noticias-unev.jpg", title: "Expertos de UNEV analizan el impacto de la sequía...", url: "#" },
+  { id: "3", img: "/imagenes/noticia-acuerdo-academico.jpg", title: "UNEV y universidades internacionales firman acuerdo...", url: "#" }
 ];
 ---
 
-<!-- News Section -->
+<!-- ============================ -->
+<!-- SECCIÓN DE NOTICIAS (INTACTA) -->
+<!-- ============================ -->
 <section class="news-section">
+    <!-- ... (El código de la sección de noticias se queda exactamente igual) ... -->
     <div class="container">
         <div class="news-header">
             <h2>Nuestras <strong>noticias</strong></h2>
-            <a href="#" class="news-link">VER NOTAS PRENSA <span class="rss-icon">📡</span></a>
+            <a href="#" class="news-link">
+                VER NOTAS PRENSA 
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="rss-icon">
+                    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+                </svg>
+            </a>
         </div>
-        
         <div class="news-grid">
-            {News.map((noticia) => (
-                <article class="news-item">
-                    <div class="news-category">NOTA DE PRENSA</div>
-                    <h3>{noticia.title}</h3>
-                    <a href={noticia.url} class="news-read-more">VER NOTICIA</a>
+            {news.map((noticia) => (
+                <article class="news-card">
+                    {noticia.img && <a href={noticia.url} class="news-card-image-link"><img src={noticia.img} alt={`Imagen para la noticia: ${noticia.title}`} class="news-card-image" /></a>}
+                    <div class="news-card-content">
+                        <div class="news-card-category">NOTA DE PRENSA</div>
+                        <h3 class="news-card-title"><a href={noticia.url}>{noticia.title}</a></h3>
+                        <a href={noticia.url} class="news-card-read-more">VER NOTICIA</a>
+                    </div>
                 </article>
             ))}
         </div>
     </div>
 </section>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Investigación analizó la calidad de cuatro de las varillas que se comercializan en el país.</h1>
-            <a href="#" class="btn-primary">VER MÁS</a>
+<!-- ============================================== -->
+<!-- === NUEVA SECCIÓN HERO CON CARRUSEL (ESTILO INTEC) === -->
+<!-- ============================================== -->
+<section class="hero-carousel-section">
+    <div class="hero-carousel-container">
+        <!-- Columna Izquierda: El Carrusel -->
+        <div class="hero-carousel-slider">
+            {heroSlides.map((slide, index) => (
+                <div class:list={["hero-slide", { active: index === 0 }]}>
+                    <img src={slide.image} alt={slide.title} class="hero-slide-img" />
+                    <div class="hero-slide-content">
+                        <h1 class="hero-slide-title">{slide.title}</h1>
+                        <a href={slide.link} class="hero-slide-link">VER MÁS</a>
+                    </div>
+                </div>
+            ))}
+            <!-- Las flechas ahora estarán sobre el carrusel -->
+            <button class="hero-carousel-prev" aria-label="Anterior">&#10094;</button>
+            <button class="hero-carousel-next" aria-label="Siguiente">&#10095;</button>
+        </div>
+
+        <!-- Columna Derecha: Contenido Fijo -->
+        <div class="hero-sidebar-fixed">
+            <h2 class="hero-sidebar-title">Proyectos de Investigación</h2>
+            <p class="hero-sidebar-text">
+                Desde su fundación en 1972 se han desarrollado más de 600 proyectos de investigación en las distintas áreas de su quehacer científico y tecnológico. Una buena parte de estas investigaciones ha sido realizada con fondos propios e involucrando, fundamentalmente, a profesores-investigadores y estudiantes de la institución.
+            </p>
+            <a href="#" class="hero-sidebar-link">CONOCER MÁS PROYECTOS</a>
         </div>
     </div>
-    <div class="hero-sidebar">
-        <h2>Proyectos de Investigación</h2>
-        <p>
-            Desde su fundación en 1972 en el INTEC se han desarrollado más de 600 proyectos de investigación en las distintas áreas de su quehacer científico y tecnológico. Una buena parte de estas investigaciones ha sido realizada con fondos propios e involucrando, fundamentalmente, a profesores-investigadores y estudiantes de la institución.
-        </p>
-        <a href="#" class="btn-secondary">CONOCER MÁS PROYECTOS</a>
-    </div>
 </section>
+
+<script>
+    // Script para el nuevo carrusel Hero
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.hero-slide');
+        const nextBtn = document.querySelector('.hero-carousel-next');
+        const prevBtn = document.querySelector('.hero-carousel-prev');
+        let currentSlide = 0;
+
+        function goToSlide(slideIndex) {
+            slides[currentSlide].classList.remove('active');
+            slides[slideIndex].classList.add('active');
+            currentSlide = slideIndex;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            goToSlide(nextIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(prevIndex);
+        });
+    });
+</script>
