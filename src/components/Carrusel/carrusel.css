@@ -184,3 +184,12 @@
     font-size: 0.7rem;
   }
 }
+/* Cursor para indicar que se puede arrastrar */
+.carousel {
+  cursor: grab;
+}
+
+/* Cursor mientras se está arrastrando */
+.carousel.grabbing {
+  cursor: grabbing;
+}

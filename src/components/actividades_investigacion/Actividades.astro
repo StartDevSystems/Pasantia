@@ -1,4 +1,6 @@
 ---
+// He añadido la propiedad "link" para que las tarjetas funcionen como enlaces.
+// Asegúrate de poner las URLs correctas.
 interface ParticipationOption {
   id: string;
   title: string;
@@ -12,32 +14,35 @@ const participationOptions: ParticipationOption[] = [
     id: "research-projects",
     title: "Proyectos de Investigación",
     image: "https://unev.edu.do/wp-content/uploads/2022/03/UNEV-Conmemora-el-di%CC%81a-Internacional-de-la-Mujer-con-Varias-Actividades-1.jpg",
-    alt: "Vista aérea de investigación ambiental"
+    alt: "Vista aérea de investigación ambiental",
+    link: "/proyectos" // Ejemplo de link
   },
   {
     id: "research-groups",
     title: "Grupos de Investigación",
     image: "https://unev.edu.do/wp-content/uploads/2025/06/DSC6697-3-1110x624.jpg",
-    alt: "Equipo de investigadores profesionales"
+    alt: "Equipo de investigadores profesionales",
+    link: "/grupos" // Ejemplo de link
   },
   {
     id: "laboratories",
     title: "Nuestros Laboratorios",
     image: "https://unev.edu.do/wp-content/uploads/2025/06/DSC5308-1110x624.jpg",
-    alt: "Investigador trabajando en laboratorio"
+    alt: "Investigador trabajando en laboratorio",
+    link: "/laboratorios" // Ejemplo de link
   },
   {
     id: "donations",
     title: "DONUNEV (Donaciones UNEV)",
     image: "https://unev.edu.do/wp-content/uploads/2025/05/DSC4505-1110x624.jpg",
-    alt: "Manos colaborando en equipo"
+    alt: "Manos colaborando en equipo",
+    link: "/donaciones" // Ejemplo de link
   }
 ];
 
 import TopBar from "../TopBar/TopBar.astro";
 import "./Actividades.css";
 
-/** Stats sin emoji; usaremos SVG inline por cada id */
 interface StatItem {
   id: "publications" | "profiles" | "projects" | "groups" | "patents";
   number: string;
@@ -53,6 +58,7 @@ const stats: StatItem[] = [
 ];
 ---
 
+<!-- TU CÓDIGO ORIGINAL (INTACTO) -->
 <div class="activities-container">
   <TopBar/>
   <section class="research-stats" id="research-stats-section">
@@ -68,43 +74,12 @@ const stats: StatItem[] = [
         {stats.map((stat) => (
           <div class="stat-item">
             <div class="stat-icon" aria-hidden="true">
-              {stat.id === "publications" && (
-                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
-                  <path d="M6 4h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
-                  <path d="M14 4v4h4" />
-                  <path d="M8 12h8" />
-                  <path d="M8 16h8" />
-                </svg>
-              )}
-              {stat.id === "profiles" && (
-                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
-                  <circle cx="12" cy="8" r="3" />
-                  <path d="M5 20c0-3.2 3.8-6 7-6s7 2.8 7 6" />
-                </svg>
-              )}
-              {stat.id === "projects" && (
-                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
-                  <rect x="7" y="6" width="10" height="14" rx="2" />
-                  <path d="M9 4h6a1 1 0 0 1 1 1v2H8V5a1 1 0 0 1 1-1z" />
-                  <path d="M9 12h6M9 16h6" />
-                </svg>
-              )}
-              {stat.id === "groups" && (
-                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
-                  <circle cx="8" cy="9" r="3" />
-                  <circle cx="16" cy="9" r="3" />
-                  <path d="M2.5 20c0-2.4 3-4.5 5.5-4.5" />
-                  <path d="M21.5 20c0-2.4-3-4.5-5.5-4.5" />
-                </svg>
-              )}
-              {stat.id === "patents" && (
-                <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor">
-                  <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
-              )}
+              {stat.id === "publications" && <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor"><path d="M6 4h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><path d="M14 4v4h4" /><path d="M8 12h8" /><path d="M8 16h8" /></svg>}
+              {stat.id === "profiles" && <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="3" /><path d="M5 20c0-3.2 3.8-6 7-6s7 2.8 7 6" /></svg>}
+              {stat.id === "projects" && <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor"><rect x="7" y="6" width="10" height="14" rx="2" /><path d="M9 4h6a1 1 0 0 1 1 1v2H8V5a1 1 0 0 1 1-1z" /><path d="M9 12h6M9 16h6" /></svg>}
+              {stat.id === "groups" && <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor"><circle cx="8" cy="9" r="3" /><circle cx="16" cy="9" r="3" /><path d="M2.5 20c0-2.4 3-4.5 5.5-4.5" /><path d="M21.5 20c0-2.4-3-4.5-5.5-4.5" /></svg>}
+              {stat.id === "patents" && <svg viewBox="0 0 24 24" class="icon-svg" fill="none" stroke="currentColor"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" /><path d="M9 12l2 2 4-4" /></svg>}
             </div>
-
             <span class="stat-number" data-target={stat.number}>0</span>
             <p class="stat-label">{stat.label}</p>
           </div>
@@ -114,86 +89,67 @@ const stats: StatItem[] = [
   </section>
 </div>
 
+<!-- TU CÓDIGO ORIGINAL (INTACTO) -->
 <section class="congress-participation">
-  <!-- Banner del Congreso -->
   <div class="congress-banner">
     <div class="banner-content">
-      <div class="congress-logo">
-        <div class="logo-x">X</div>
-      </div>
+      <div class="congress-logo"><div class="logo-x">X</div></div>
       <div class="congress-info">
-        <h2 class="congress-title">
-          CONGRESO ESTUDIANTIL DE<br>
-          INVESTIGACIÓN CIENTÍFICA<br>
-          Y TECNOLÓGICA
-        </h2>
-        <div class="congress-date">
-          <span class="date-text">11 y 12 de septiembre de 2025</span>
-          <span class="location">PUCMM, Campus de Santiago</span>
-        </div>
+        <h2 class="congress-title">CONGRESO ESTUDIANTIL DE<br>INVESTIGACIÓN CIENTÍFICA<br>Y TECNOLÓGICA</h2>
+        <div class="congress-date"><span class="date-text">11 y 12 de septiembre de 2025</span><span class="location">PUCMM, Campus de Santiago</span></div>
       </div>
       <div class="banner-illustration">
-        <div class="illustration-elements">
-          <div class="rocket">🚀</div>
-          <div class="bulb">💡</div>
-          <div class="atoms">⚛️</div>
-          <div class="graph">📊</div>
-        </div>
-        <div class="character-illustration">
-          <div class="scientist-character"></div>
-          <div class="students-working"></div>
-        </div>
+        <div class="illustration-elements"><div class="rocket">🚀</div><div class="bulb">💡</div><div class="atoms">⚛️</div><div class="graph">📊</div></div>
+        <div class="character-illustration"><div class="scientist-character"></div><div class="students-working"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- Sección de Participación -->
-  <div class="participation-section">
-    <div class="participation-container">
-      <div class="participation-text">
-        <h3 class="participation-title">
-          Puedes unirte o contribuir, <span class="highlight">tú decides</span>.
-        </h3>
-        <p class="participation-description">
+  <!-- ======================================================= -->
+  <!-- === SECCIÓN DE PARTICIPACIÓN REEMPLAZADA (ESTILO INTEC) === -->
+  <!-- ======================================================= -->
+  <section class="join-us-section">
+    <div class="join-us-container">
+      <div class="join-us-text">
+        <h2 class="join-us-title">
+          Puedes unirte o contribuir, <strong>tú decides.</strong>
+        </h2>
+        <p class="join-us-description">
           Desde investigaciones innovadoras hasta laboratorios de vanguardia, 
           cada aporte impulsa el avance. Apoya nuestros proyectos, únete a nuestros 
           grupos de investigación o haz posible el futuro con tu donación.
         </p>
-        <div class="action-buttons">
-          <button class="btn-primary">SER INVESTIGADOR</button>
-          <button class="btn-secondary">DONAR</button>
+        <div class="join-us-buttons">
+          <a href="/ruta/a/ser-investigador" class="btn-primary">SER INVESTIGADOR</a>
+          <a href="/ruta/a/donar" class="btn-secondary">DONAR</a>
         </div>
       </div>
-
-      <div class="participation-grid">
+  
+      <div class="join-us-grid">
         {participationOptions.map((option) => (
-          <div class="participation-card" data-option={option.id}>
-            <div class="card-image">
-              <img 
-                src={option.image} 
-                alt={option.alt}
-                loading="lazy"
-              />
-              <div class="card-overlay"></div>
-            </div>
-            <div class="card-title">
-              <h4>{option.title}</h4>
-            </div>
-          </div>
+          <a href={option.link || '#'} class="grid-card">
+            <img 
+              src={option.image} 
+              alt={option.alt}
+              loading="lazy"
+              class="grid-card-img"
+            />
+            <div class="grid-card-overlay"></div>
+            <h3 class="grid-card-title">{option.title}</h3>
+          </a>
         ))}
       </div>
     </div>
-  </div>
+  </section>
 </section>
 
+<!-- TU SCRIPT ORIGINAL (INTACTO) -->
 <script>
-  // Función para animar números
   function animateNumber(element, start, end, duration = 2000) {
     const startTime = performance.now();
     const startValue = parseInt(start);
     const endValue = parseInt(end);
     const difference = endValue - startValue;
-
     function updateNumber(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -208,13 +164,10 @@ const stats: StatItem[] = [
     }
     requestAnimationFrame(updateNumber);
   }
-
-  // Observer para activar animación
   function createStatsObserver() {
     const statsSection = document.getElementById('research-stats-section');
     const statNumbers = document.querySelectorAll('.stat-number');
     if (!statsSection || statNumbers.length === 0) return;
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -231,21 +184,15 @@ const stats: StatItem[] = [
         }
       });
     }, { threshold: 0.3, rootMargin: '-50px' });
-
     observer.observe(statsSection);
   }
-
   document.addEventListener('DOMContentLoaded', createStatsObserver);
-
-  // Interactividad para las tarjetas
   document.querySelectorAll('.participation-card').forEach(card => {
     card.addEventListener('click', () => {
       const optionId = card.getAttribute('data-option');
       console.log(`Clicked on: ${optionId}`);
     });
   });
-
-  // Interactividad para los botones
   document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
     button.addEventListener('click', (e) => {
       const buttonText = e.target.textContent;
