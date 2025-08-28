@@ -1,1786 +1,257 @@
 ---
 // src/pages/nosotros/investigacion.astro
-import Layout from '../../layouts/Layout.astro'
+import Layout from '../../layouts/Layout.astro';
 export const prerender = true;
 
-const pageTitle = "La Investigación en UNEV - Universidad de Estudios Virtuales";
-const pageDescription = "Descubre los objetivos, funciones y enfoque de la investigación en UNEV. Conoce cómo promovemos la producción de conocimiento y la innovación académica";
+const pageTitle = "La Investigación en UNEV";
 
-interface ResearchFunction {
-  number: string;
-  title: string;
-  description: string;
-  icon: string;
-}
-
-const researchFunctions: ResearchFunction[] = [
+const researchFunctions = [
   {
-    number: "01",
-    title: "Planificación Estratégica",
-    description: "Planificar y dirigir acciones estratégicas tendentes a estimular las actividades de investigación en ciencia y tecnología de UNEV, a fin de fortalecer estas funciones básicas de la Institución.",
-    icon: "🎯"
+    number: "1",
+    description: "Planificar y dirigir acciones estratégicas tendentes a estimular las actividades Investigación en ciencia y tecnología de la UNEV, a fin de fortalecer estas funciones básicas de la Institución.",
   },
   {
-    number: "02", 
-    title: "Relaciones Institucionales",
+    number: "2",
     description: "Establecer y mantener relaciones con organismos nacionales e internacionales a fin de lograr los acuerdos y financiamientos necesarios para la realización de investigaciones.",
-    icon: "🤝"
   },
   {
-    number: "03",
-    title: "Gestión de Recursos",
-    description: "Planificar, organizar y controlar todos los recursos humanos y financieros asignados a la ejecución de un proyecto investigativo, de modo que se garanticen los resultados previstos, cumpliendo con las normativas nacionales e internacionales en materia de investigación.",
-    icon: "📊"
+    number: "3",
+    description: "Planificar, organizar y controlar todos los recursos humanos y financieros asignados a la ejecución de un proyecto investigativo, de modo que se garanticen los resultados previstos, cumpliendo con las normativas nacionales e internacionales en materia de Investigación.",
   },
   {
-    number: "04",
-    title: "Estrategias y Políticas",
-    description: "Divulgar, aplicar y dar seguimiento a las estrategias y políticas de investigación de UNEV.",
-    icon: "📋"
+    number: "4",
+    description: "Divulgar, aplicar y dar seguimiento a las estrategias y políticas de investigación de la UNEV.",
   },
   {
-    number: "05",
-    title: "Cultura Investigativa",
+    number: "5",
     description: "Fomentar la cultura de la investigación entre los profesores y estudiantes.",
-    icon: "🌱"
   },
   {
-    number: "06",
-    title: "Normativas y Procedimientos",
+    number: "6",
     description: "Definir, establecer y hacer cumplir las políticas, normas y procedimientos en materia de investigación científica.",
-    icon: "⚖️"
   },
   {
-    number: "07",
-    title: "Emprendimiento e Innovación",
-    description: "Impulsar los proyectos en materia de emprendimiento, propiedad intelectual y pre-incubación de empresas.",
-    icon: "🚀"
-  }
-];
-
-interface ResearchArea {
-  title: string;
-  description: string;
-  color: string;
-}
-
-const researchAreas: ResearchArea[] = [
-  {
-    title: "Disciplinar",
-    description: "Investigación enfocada en una sola disciplina específica",
-    color: "primary"
-  },
-  {
-    title: "Interdisciplinar",
-    description: "Integración de métodos y conceptos de múltiples disciplinas",
-    color: "accent"
-  },
-  {
-    title: "Multidisciplinar",
-    description: "Colaboración entre diferentes disciplinas manteniendo sus enfoques",
-    color: "secondary"
-  },
-  {
-    title: "Transdisciplinar",
-    description: "Transcendencia de límites disciplinares para crear nuevos marcos",
-    color: "tertiary"
+    number: "7",
+    description: "Impulsar los proyectos en materia de emprendimiento propiedad intelectual y pre-incubación de empresas.",
   }
 ];
 ---
-   <!-- Breadcrumb -->
-<Layout>
-<section class="breadcrumb">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb-list">
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/nosotros">Nosotros</a></li>
-                    <li aria-current="page">La Investigación en UNEV</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
 
+<Layout title={pageTitle}>
     <!-- Main Content -->
-    <main class="main" id="main-content">
+    <main>
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">La Investigación en UNEV</h1>
-                        <p class="hero-subtitle">
-                            Impulsando el conocimiento y la innovación en la era digital
-                        </p>
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">50</span>
-                                <span class="stat-label">Proyectos Activos</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">120</span>
-                                <span class="stat-label">Investigadores</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">25</span>
-                                <span class="stat-label">Publicaciones</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="/images/research/research-hero.jpg" alt="Investigación en UNEV" width="600" height="400" loading="eager">
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-decoration">
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
+            <div class="hero-content">
+                <h1>La Investigación en <br><span class="highlight">UNEV</span></h1>
             </div>
         </section>
 
         <!-- Objectives Section -->
-        <section class="objectives-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Objetivos de Investigación</h2>
-                    <div class="title-decoration"></div>
+        <section class="section-container">
+            <div class="container objectives-grid">
+                <div class="objectives-text">
+                    <h2>Objetivos de Investigación</h2>
+                    <p>
+                        El objetivo principal de la División de Investigación es la producción de
+                        conocimiento que realiza la universidad. Con esto mover las fronteras
+                        de los distintos campos, las áreas, las disciplinas y subdisciplinas de
+                        las ciencias, las humanidades y la tecnología. Por su vocación de
+                        cooperación, integración y complejidad, dichas actividades se definen
+                        como de tipo disciplinar, inter-disciplinar, multidisciplinar y
+                        transdisciplinar, así como de otros tipos.
+                    </p>
                 </div>
-                
-                <div class="objectives-content">
-                    <div class="objectives-text">
-                        <p class="main-objective">
-                            El objetivo principal de la División de Investigación es la producción de conocimiento que realiza la universidad. Con esto mover las fronteras de los distintos campos, las áreas, las disciplinas y subdisciplinas de las ciencias, las humanidades y la tecnología.
-                        </p>
-                        <p class="secondary-objective">
-                            Por su vocación de cooperación, integración y complejidad, dichas actividades se definen como de tipo disciplinar, inter-disciplinar, multidisciplinar y transdisciplinar, así como de otros tipos.
-                        </p>
-                    </div>
-                    
-                    <div class="research-types">
-                        {researchAreas.map((area) => (
-                            <div class={`research-type-card ${area.color}`}>
-                                <h3 class="type-title">{area.title}</h3>
-                                <p class="type-description">{area.description}</p>
-                            </div>
-                        ))}
-                    </div>
+                <div class="objectives-image">
+                    <img src="https://noticiasbrevesjazb.com/wp-content/uploads/2024/05/Screenshot_20240530-210341-e1717770489300.png" alt="Investigadores trabajando en un laboratorio">
                 </div>
             </div>
         </section>
 
         <!-- Functions Section -->
-        <section class="functions-section">
+        <section class="section-container bg-light">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Funciones</h2>
-                    <div class="title-decoration"></div>
-                    <p class="section-subtitle">
-                        Nuestras responsabilidades principales en el desarrollo de la investigación institucional
-                    </p>
+                <div class="functions-header">
+                    <h2>Funciones</h2>
                 </div>
 
                 <div class="functions-grid">
                     {researchFunctions.map((func) => (
                         <article class="function-card">
-                            <div class="function-header">
-                                <div class="function-number">{func.number}</div>
-                                <div class="function-icon">{func.icon}</div>
-                            </div>
-                            <div class="function-content">
-                                <h3 class="function-title">{func.title}</h3>
-                                <p class="function-description">{func.description}</p>
-                            </div>
+                            <div class="function-number">{func.number}</div>
+                            <p class="function-description">{func.description}</p>
                         </article>
                     ))}
                 </div>
             </div>
         </section>
-
-        <!-- Research Impact Section -->
-        <section class="impact-section">
-            <div class="container">
-                <div class="impact-content">
-                    <div class="impact-text">
-                        <h2 class="impact-title">Impacto de Nuestra Investigación</h2>
-                        <p class="impact-description">
-                            En UNEV, la investigación trasciende las aulas virtuales para generar un impacto real 
-                            en la sociedad dominicana y la comunidad internacional. Nuestros proyectos abordan 
-                            desafíos contemporáneos y contribuyen al desarrollo sostenible.
-                        </p>
-                        <div class="impact-highlights">
-                            <div class="highlight-item">
-                                <div class="highlight-icon">🌍</div>
-                                <div class="highlight-text">
-                                    <h4>Alcance Global</h4>
-                                    <p>Colaboraciones internacionales</p>
-                                </div>
-                            </div>
-                            <div class="highlight-item">
-                                <div class="highlight-icon">💡</div>
-                                <div class="highlight-text">
-                                    <h4>Innovación</h4>
-                                    <p>Soluciones tecnológicas avanzadas</p>
-                                </div>
-                            </div>
-                            <div class="highlight-item">
-                                <div class="highlight-icon">🏆</div>
-                                <div class="highlight-text">
-                                    <h4>Excelencia</h4>
-                                    <p>Reconocimiento académico</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="impact-visual">
-                        <div class="research-metrics">
-                            <div class="metric-circle">
-                                <div class="metric-value">95%</div>
-                                <div class="metric-label">Proyectos Exitosos</div>
-                            </div>
-                            <div class="metric-circle">
-                                <div class="metric-value">40+</div>
-                                <div class="metric-label">Publicaciones ISI</div>
-                            </div>
-                            <div class="metric-circle">
-                                <div class="metric-value">15</div>
-                                <div class="metric-label">Países Colaboradores</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 class="cta-title">¿Interesado en Participar?</h2>
-                    <p class="cta-description">
-                        Únete a nuestra comunidad investigativa y contribuye al avance del conocimiento
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="/investigacion/convocatorias" class="cta-button primary">Ver Convocatorias</a>
-                        <a href="/contacto" class="cta-button secondary">Contactar</a>
-                    </div>
-                </div>
-                <div class="cta-decoration">
-                    <div class="decoration-grid">
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item active"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item active"></div>
-                        <div class="grid-item"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-</main>
+    </main>
 </Layout>
-<style>
-    :root {
-        --primary-color: #1e40af;
-        --primary-dark: #1e3a8a;
-        --primary-light: #3b82f6;
-        --secondary-color: #f59e0b;
-        --secondary-light: #fbbf24;
-        --accent-color: #10b981;
-        --accent-light: #34d399;
-        --tertiary-color: #8b5cf6;
-        --tertiary-light: #a78bfa;
-        --text-primary: #1f2937;
-        --text-secondary: #6b7280;
-        --text-light: #9ca3af;
-        --text-white: #ffffff;
-        --bg-primary: #ffffff;
-        --bg-secondary: #f9fafb;
-        --bg-tertiary: #f3f4f6;
-        --bg-dark: #1f2937;
-        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --border-color: #e5e7eb;
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        --border-radius: 0.75rem;
-        --border-radius-lg: 1rem;
-        --border-radius-xl: 1.5rem;
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-        --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
-        --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
-        --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--tertiary-light) 100%);
-    }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<style>
+    /* === VARIABLES Y ESTILOS GLOBALES === */
+    :root {
+        --unev-red: #d90000;
+        --text-dark: #333333;
+        --text-light: #666666;
+        --border-color: #e0e0e0;
+        --bg-light: #f8f9fa;
+        --bg-white: #ffffff;
     }
 
     body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.6;
-        color: var(--text-primary);
-        background-color: var(--bg-primary);
-        overflow-x: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-dark);
+        background-color: var(--bg-white);
+        margin: 0;
+    }
+    
+    /* MEJORA: El main no debe tener un margen superior si el header es sticky */
+    main {
+        padding-top: 0; 
     }
 
     .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
 
-    /* Header Styles */
-    .header {
-        background: var(--bg-primary);
-        box-shadow: var(--shadow-sm);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        backdrop-filter: blur(10px);
-    }
-
-    .nav {
-        padding: 1rem 0;
-    }
-
-    .nav .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .nav-brand .logo img {
-        height: 40px;
-        width: auto;
-        transition: var(--transition);
-    }
-
-    .nav-brand .logo:hover img {
-        transform: scale(1.05);
-    }
-
-    .nav-menu {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 500;
-        transition: var(--transition);
+    h2 {
+        font-size: 2rem;
+        font-weight: 300;
         position: relative;
-        padding: 0.5rem 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
     }
 
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--primary-color);
-    }
-
-    .nav-link.active::after {
+    h2::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
-        height: 2px;
-        background: var(--gradient-primary);
-        border-radius: 1px;
+        width: 50px;
+        height: 3px;
+        background-color: var(--unev-red);
     }
 
-    .nav-toggle {
-        display: none;
-        flex-direction: column;
-        gap: 0.25rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-    }
-
-    .nav-toggle span {
-        width: 24px;
-        height: 2px;
-        background: var(--text-primary);
-        transition: var(--transition);
-        border-radius: 1px;
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-        background: var(--bg-secondary);
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .breadcrumb-list {
-        display: flex;
-        list-style: none;
-        gap: 0.5rem;
-        align-items: center;
-        font-size: 0.9rem;
-    }
-
-    .breadcrumb-list li::after {
-        content: '>';
-        margin-left: 0.5rem;
+    p {
+        line-height: 1.6;
         color: var(--text-light);
     }
 
-    .breadcrumb-list li:last-child::after {
-        display: none;
-    }
-
-    .breadcrumb-list a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-    .breadcrumb-list a:hover {
-        text-decoration: underline;
-    }
-
-    /* Main Content */
-    .main {
-        min-height: 70vh;
-    }
-
-    /* Hero Section */
+    /* === HERO SECTION === */
     .hero-section {
-        background: var(--bg-gradient);
-        color: var(--text-white);
-        padding: 4rem 0 5rem;
+        height: 500px;
+        background-color: #333;
+        background-image: url('https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
         position: relative;
-        overflow: hidden;
     }
 
     .hero-content {
+        background-color: var(--bg-white);
+        padding: 2.5rem 3.5rem;
+        max-width: 550px;
+        position: relative;
+        left: 10%;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .hero-content .highlight {
+        color: var(--unev-red);
+        font-weight: 700;
+    }
+
+    /* === SECCIONES GENERALES === */
+    .section-container {
+        padding: 4rem 0;
+    }
+    
+    .bg-light {
+        background-color: var(--bg-light);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* === OBJECTIVES SECTION === */
+    .objectives-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        gap: 3rem;
         align-items: center;
-        position: relative;
-        z-index: 2;
     }
 
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .hero-subtitle {
-        font-size: 1.25rem;
-        opacity: 0.9;
-        margin-bottom: 2rem;
-        line-height: 1.7;
-    }
-
-    .hero-stats {
-        display: flex;
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .stat-item {
-        text-align: center;
-    }
-
-    .stat-number {
+    .objectives-image img {
+        width: 100%;
+        height: auto;
         display: block;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--text-white);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
     }
 
-    .stat-label {
-        font-size: 0.875rem;
-        opacity: 0.8;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .hero-image {
-        position: relative;
-        border-radius: var(--border-radius-xl);
-        overflow: hidden;
-        box-shadow: var(--shadow-xl);
-    }
-
-    .hero-image img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        transition: var(--transition);
-    }
-
-    .image-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(30, 64, 175, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
-        opacity: 0;
-        transition: var(--transition);
-    }
-
-    .hero-image:hover .image-overlay {
-        opacity: 1;
-    }
-
-    .hero-image:hover img {
-        transform: scale(1.05);
-    }
-
-    .hero-decoration {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .floating-shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .shape-1 {
-        width: 100px;
-        height: 100px;
-        top: 20%;
-        right: 10%;
-        animation-delay: 0s;
-    }
-
-    .shape-2 {
-        width: 60px;
-        height: 60px;
-        top: 60%;
-        right: 20%;
-        animation-delay: 2s;
-    }
-
-    .shape-3 {
-        width: 80px;
-        height: 80px;
-        bottom: 20%;
-        left: 10%;
-        animation-delay: 4s;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    /* Section Headers */
-    .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-    }
-
-    .title-decoration {
-        width: 80px;
-        height: 4px;
-        background: var(--gradient-primary);
-        margin: 0 auto 1rem;
-        border-radius: 2px;
-    }
-
-    .section-subtitle {
-        font-size: 1.125rem;
-        color: var(--text-secondary);
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.7;
-    }
-
-    /* Objectives Section */
-    .objectives-section {
-        padding: 5rem 0;
-        background: var(--bg-primary);
-    }
-
-    .objectives-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-
-    .objectives-text {
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .main-objective {
-        font-size: 1.375rem;
-        line-height: 1.8;
-        color: var(--text-primary);
+    /* === FUNCTIONS SECTION === */
+    .functions-header {
+        text-align: left;
         margin-bottom: 2rem;
-        font-weight: 500;
-    }
-
-    .secondary-objective {
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: var(--text-secondary);
-    }
-
-    .research-types {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-    }
-
-    .research-type-card {
-        padding: 2rem;
-        border-radius: var(--border-radius-lg);
-        text-align: center;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .research-type-card.primary {
-        background: var(--gradient-primary);
-        color: var(--text-white);
-    }
-
-    .research-type-card.accent {
-        background: var(--gradient-accent);
-        color: var(--text-white);
-    }
-
-    .research-type-card.secondary {
-        background: var(--gradient-secondary);
-        color: var(--text-white);
-    }
-
-    .research-type-card.tertiary {
-        background: var(--gradient-tertiary);
-        color: var(--text-white);
-    }
-
-    .research-type-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-xl);
-    }
-
-    .type-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .type-description {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        opacity: 0.9;
-    }
-
-    /* Functions Section */
-    .functions-section {
-        padding: 5rem 0;
-        background: var(--bg-secondary);
     }
 
     .functions-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
     }
 
     .function-card {
-        background: var(--bg-primary);
-        padding: 2.5rem;
-        border-radius: var(--border-radius-lg);
-        box-shadow: var(--shadow-md);
-        transition: var(--transition);
-        border-left: 4px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .function-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-xl);
-        border-left-color: var(--primary-color);
-    }
-
-    .function-card:nth-child(odd) {
-        border-left-color: var(--primary-color);
-    }
-
-    .function-card:nth-child(even) {
-        border-left-color: var(--accent-color);
-    }
-
-    .function-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
+        background-color: var(--bg-white);
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        border-top: 4px solid var(--unev-red);
     }
 
     .function-number {
-        width: 60px;
-        height: 60px;
-        background: var(--gradient-primary);
-        color: var(--text-white);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
+        font-size: 3rem;
         font-weight: 700;
-        flex-shrink: 0;
-        box-shadow: var(--shadow-md);
-    }
-
-    .function-card:nth-child(even) .function-number {
-        background: var(--gradient-accent);
-    }
-
-    .function-icon {
-        font-size: 2rem;
-        opacity: 0.8;
-    }
-
-    .function-title {
-        font-size: 1.375rem;
-        font-weight: 600;
-        color: var(--text-primary);
+        color: var(--unev-red);
         margin-bottom: 1rem;
-        line-height: 1.3;
     }
 
-    .function-description {
-        color: var(--text-secondary);
-        line-height: 1.7;
-        font-size: 1rem;
-    }
-
-    /* Impact Section */
-    .impact-section {
-        padding: 5rem 0;
-        background: var(--bg-primary);
-        position: relative;
-    }
-
-    .impact-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-    }
-
-    .impact-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-        line-height: 1.3;
-    }
-
-    .impact-description {
-        font-size: 1.125rem;
-        color: var(--text-secondary);
-        line-height: 1.8;
-        margin-bottom: 2.5rem;
-    }
-
-    .impact-highlights {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .highlight-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        background: var(--bg-secondary);
-        border-radius: var(--border-radius);
-        transition: var(--transition);
-    }
-
-    .highlight-item:hover {
-        transform: translateX(8px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .highlight-icon {
-        font-size: 2rem;
-        flex-shrink: 0;
-    }
-
-    .highlight-text h4 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
-    }
-
-    .highlight-text p {
-        font-size: 0.95rem;
-        color: var(--text-secondary);
-    }
-
-    .impact-visual {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .research-metrics {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .metric-circle {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: var(--gradient-primary);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-white);
-        box-shadow: var(--shadow-xl);
-        transition: var(--transition);
-        position: relative;
-    }
-
-    .metric-circle:nth-child(2) {
-        background: var(--gradient-accent);
-        transform: scale(1.1);
-    }
-
-    .metric-circle:nth-child(3) {
-        background: var(--gradient-secondary);
-    }
-
-    .metric-circle:hover {
-        transform: scale(1.05);
-    }
-
-    .metric-circle:nth-child(2):hover {
-        transform: scale(1.15);
-    }
-
-    .metric-value {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-
-    .metric-label {
-        font-size: 0.75rem;
-        text-align: center;
-        opacity: 0.9;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 0;
-        background: var(--bg-gradient);
-        color: var(--text-white);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .cta-content {
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    .cta-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .cta-description {
-        font-size: 1.25rem;
-        margin-bottom: 2.5rem;
-        opacity: 0.9;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .cta-button {
-        padding: 1rem 2rem;
-        border-radius: var(--border-radius);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: var(--transition);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        min-width: 150px;
-        justify-content: center;
-    }
-
-    .cta-button.primary {
-        background: var(--text-white);
-        color: var(--primary-color);
-    }
-
-    .cta-button.primary:hover {
-        background: var(--bg-secondary);
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .cta-button.secondary {
-        background: transparent;
-        color: var(--text-white);
-        border: 2px solid var(--text-white);
-    }
-
-    .cta-button.secondary:hover {
-        background: var(--text-white);
-        color: var(--primary-color);
-        transform: translateY(-2px);
-    }
-
-    .cta-decoration {
-        position: absolute;
-        top: 50%;
-        right: 5%;
-        transform: translateY(-50%);
-        z-index: 1;
-        opacity: 0.1;
-    }
-
-    .decoration-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    .grid-item {
-        width: 40px;
-        height: 40px;
-        background: var(--text-white);
-        border-radius: var(--border-radius);
-        opacity: 0.3;
-    }
-
-    .grid-item.active {
-        opacity: 0.6;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% { opacity: 0.6; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.1); }
-    }
-
-    /* Footer */
-    .footer {
-        background: var(--bg-dark);
-        color: var(--text-white);
-        margin-top: 0;
-    }
-
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 3rem 0 2rem;
-    }
-
-    .footer-section h3,
-    .footer-section h4 {
-        margin-bottom: 1rem;
-        color: var(--text-white);
-    }
-
-    .footer-section h3 {
-        color: var(--secondary-color);
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-
-    .footer-section p {
-        color: #d1d5db;
-        line-height: 1.6;
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-section ul {
-        list-style: none;
-    }
-
-    .footer-section li {
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-section a {
-        color: #d1d5db;
-        text-decoration: none;
-        transition: var(--transition);
-        display: inline-block;
-    }
-
-    .footer-section a:hover {
-        color: var(--secondary-color);
-        transform: translateX(4px);
-    }
-
-    .social-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    .social-links a {
-        font-size: 1.5rem;
-        transition: var(--transition);
-        transform: none;
-    }
-
-    .social-links a:hover {
-        transform: scale(1.2);
-        color: var(--secondary-color);
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #374151;
-        padding: 1.5rem 0;
-        text-align: center;
-        color: #9ca3af;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .hero-content {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .impact-content {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            text-align: center;
-        }
-
+    /* === RESPONSIVE DESIGN === */
+    @media (max-width: 992px) {
         .functions-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
         }
-
-        .hero-stats {
-            justify-content: center;
+        .hero-content {
+            left: 5%;
         }
     }
 
     @media (max-width: 768px) {
-        .nav-menu {
-            display: none;
+        .hero-content {
+            left: 0;
+            margin: 0 1.5rem;
+            padding: 2rem;
         }
 
-        .nav-toggle {
-            display: flex;
-        }
-
-        .hero-title {
+        .hero-content h1 {
             font-size: 2.5rem;
         }
-
-        .section-title,
-        .impact-title,
-        .cta-title {
-            font-size: 2rem;
-        }
-
-        .hero-stats {
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-align: left;
-        }
-
-        .stat-number {
-            font-size: 2rem;
+        
+        .objectives-grid {
+            grid-template-columns: 1fr;
         }
 
         .functions-grid {
             grid-template-columns: 1fr;
         }
-
-        .function-card {
-            padding: 2rem;
-        }
-
-        .research-types {
-            grid-template-columns: 1fr;
-        }
-
-        .research-metrics {
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .metric-circle {
-            width: 120px;
-            height: 120px;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .cta-decoration {
-            display: none;
-        }
-
-        .container {
-            padding: 0 0.75rem;
-        }
-
-        .hero-section,
-        .objectives-section,
-        .functions-section,
-        .impact-section {
-            padding: 3rem 0;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-title {
-            font-size: 2rem;
-        }
-
-        .section-title,
-        .impact-title,
-        .cta-title {
-            font-size: 1.75rem;
-        }
-
-        .main-objective {
-            font-size: 1.25rem;
-        }
-
-        .secondary-objective {
-            font-size: 1rem;
-        }
-
-        .function-card {
-            padding: 1.5rem;
-        }
-
-        .function-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .function-number {
-            width: 50px;
-            height: 50px;
-            font-size: 1.25rem;
-        }
-
-        .function-title {
-            font-size: 1.25rem;
-        }
-
-        .research-type-card {
-            padding: 1.5rem;
-        }
-
-        .impact-highlights {
-            gap: 1rem;
-        }
-
-        .highlight-item {
-            flex-direction: column;
-            text-align: center;
-            gap: 0.75rem;
-        }
-
-        .metric-circle {
-            width: 100px;
-            height: 100px;
-        }
-
-        .metric-value {
-            font-size: 1.25rem;
-        }
-
-        .metric-label {
-            font-size: 0.7rem;
-        }
-
-        .footer-content {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-    }
-
-    /* Animation keyframes */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes fadeInRight {
-        from {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Scroll animations */
-    .function-card,
-    .research-type-card,
-    .highlight-item,
-    .metric-circle {
-        animation: fadeInUp 0.8s ease forwards;
-        opacity: 0;
-    }
-
-    .function-card:nth-child(odd) {
-        animation-delay: 0.1s;
-    }
-
-    .function-card:nth-child(even) {
-        animation-delay: 0.3s;
-    }
-
-    .research-type-card:nth-child(1) {
-        animation: fadeInLeft 0.8s ease forwards;
-        animation-delay: 0.1s;
-    }
-
-    .research-type-card:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .research-type-card:nth-child(3) {
-        animation-delay: 0.3s;
-    }
-
-    .research-type-card:nth-child(4) {
-        animation: fadeInRight 0.8s ease forwards;
-        animation-delay: 0.4s;
-    }
-
-    .highlight-item:nth-child(1) {
-        animation-delay: 0.2s;
-    }
-
-    .highlight-item:nth-child(2) {
-        animation-delay: 0.4s;
-    }
-
-    .highlight-item:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-
-    .metric-circle:nth-child(1) {
-        animation-delay: 0.1s;
-    }
-
-    .metric-circle:nth-child(2) {
-        animation-delay: 0.3s;
-    }
-
-    .metric-circle:nth-child(3) {
-        animation-delay: 0.5s;
-    }
-
-    /* Print Styles */
-    @media print {
-        .header,
-        .breadcrumb,
-        .footer,
-        .hero-decoration,
-        .floating-shape,
-        .cta-section {
-            display: none !important;
-        }
-
-        .hero-section {
-            background: none !important;
-            color: var(--text-primary) !important;
-            padding: 1rem 0;
-        }
-
-        .main {
-            padding: 0;
-        }
-
-        .function-card,
-        .research-type-card {
-            break-inside: avoid;
-            box-shadow: none;
-            border: 1px solid #ccc;
-            animation: none;
-            opacity: 1;
-        }
-
-        .research-type-card {
-            background: #f5f5f5 !important;
-            color: var(--text-primary) !important;
-        }
-
-        .section-title,
-        .impact-title {
-            color: var(--text-primary) !important;
-        }
-    }
-
-    /* Focus Styles for Accessibility */
-    .nav-link:focus,
-    .nav-toggle:focus,
-    .breadcrumb-list a:focus,
-    .cta-button:focus {
-        outline: 2px solid var(--primary-color);
-        outline-offset: 2px;
-        border-radius: 4px;
-    }
-
-    /* High contrast mode support */
-    @media (prefers-contrast: high) {
-        .hero-section,
-        .cta-section {
-            background: var(--text-primary) !important;
-        }
-
-        .function-card,
-        .research-type-card,
-        .highlight-item {
-            border: 2px solid var(--text-primary);
-        }
-
-        .metric-circle {
-            border: 3px solid var(--text-primary);
-        }
-    }
-
-    /* Reduced motion support */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-
-        .function-card,
-        .research-type-card,
-        .highlight-item,
-        .metric-circle,
-        .floating-shape {
-            opacity: 1;
-            animation: none;
-        }
-    }
-
-    /* Loading state for images */
-    .hero-image img[loading="lazy"],
-    img[loading="lazy"] {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-
-    /* Dark mode support */
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg-primary: #111827;
-            --bg-secondary: #1f2937;
-            --bg-tertiary: #374151;
-            --text-primary: #f9fafb;
-            --text-secondary: #d1d5db;
-            --text-light: #9ca3af;
-            --border-color: #374151;
-        }
-
-        .hero-section,
-        .cta-section {
-            background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%);
-        }
-
-        .research-type-card {
-            box-shadow: var(--shadow-lg);
-        }
     }
 </style>
-
-<script>
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-            }
-        });
-    }, observerOptions);
-
-    // Observe animated elements
-    document.querySelectorAll('.function-card, .research-type-card, .highlight-item, .metric-circle').forEach(element => {
-        element.style.animationPlayState = 'paused';
-        observer.observe(element);
-    });
-
-    // Enhanced parallax effect for hero section
-    let ticking = false;
-    
-    function updateParallax() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero-section');
-        const shapes = document.querySelectorAll('.floating-shape');
-
-        if (hero) {
-            const heroHeight = hero.offsetHeight;
-            const scrollRatio = scrolled / heroHeight;
-
-            if (scrollRatio <= 1) {
-                shapes.forEach((shape, index) => {
-                    const speed = 0.5 + (index * 0.2);
-                    const yPos = scrollRatio * 50 * speed;
-                    const rotation = scrollRatio * 90 * (index + 1);
-                    shape.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
-                });
-            }
-        }
-        
-        ticking = false;
-    }
-
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', requestTick);
-
-    // Counter animation for statistics
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-number, .metric-value');
-        
-        counters.forEach(counter => {
-            const target = parseInt(counter.textContent.replace(/\D/g, ''));
-            const increment = target / 50;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.textContent = counter.textContent.replace(/\d+/, target);
-                    clearInterval(timer);
-                } else {
-                    counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                }
-            }, 50);
-        });
-    }
-
-    // Trigger counter animation when in view
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('.hero-stats');
-    const metricsSection = document.querySelector('.research-metrics');
-    
-    if (statsSection) counterObserver.observe(statsSection);
-    if (metricsSection) counterObserver.observe(metricsSection);
-
-    // Interactive function cards
-    document.querySelectorAll('.function-card').forEach((card, index) => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-            this.style.zIndex = '10';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.zIndex = '1';
-        });
-
-        // Add keyboard navigation
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'article');
-        card.setAttribute('aria-label', `Función ${index + 1} de investigación`);
-
-        card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-
-        card.addEventListener('focus', function() {
-            this.style.transform = 'translateY(-4px)';
-            this.style.outline = '2px solid var(--primary-color)';
-            this.style.outlineOffset = '4px';
-        });
-
-        card.addEventListener('blur', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.outline = 'none';
-        });
-    });
-
-    // Research type cards interaction
-    document.querySelectorAll('.research-type-card').forEach((card, index) => {
-        card.addEventListener('click', function() {
-            // Remove active class from all cards
-            document.querySelectorAll('.research-type-card').forEach(c => c.classList.remove('active'));
-            // Add active class to clicked card
-            this.classList.add('active');
-        });
-
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', `Tipo de investigación: ${card.querySelector('.type-title').textContent}`);
-
-        card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-    });
-
-    // Image lazy loading and error handling
-    document.querySelectorAll('img').forEach(img => {
-        if (!img.complete) {
-            img.classList.add('loading');
-            
-            img.addEventListener('load', function() {
-                this.classList.remove('loading');
-            });
-        }
-
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            
-            // Create placeholder
-            const placeholder = document.createElement('div');
-            placeholder.style.cssText = `
-                width: 100%;
-                height: 400px;
-                background: linear-gradient(45deg, #f0f0f0 25%, #e0e0e0 25%, #e0e0e0 50%, #f0f0f0 50%, #f0f0f0 75%, #e0e0e0 75%);
-                background-size: 20px 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--text-light);
-                font-size: 14px;
-                border-radius: var(--border-radius-xl);
-            `;
-            placeholder.textContent = 'Imagen no disponible';
-            
-            this.parentNode.insertBefore(placeholder, this);
-        });
-    });
-
-    // Accessibility: Skip to content link
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Saltar al contenido principal';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--primary-color);
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 1001;
-        transition: top 0.3s;
-        font-weight: 600;
-    `;
-
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-
-    document.body.insertBefore(skipLink, document.body.firstChild);
-
-    // Performance optimization: Throttle scroll events
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(() => {
-            requestTick();
-        }, 10);
-    });
-
-    // Add loading states for better UX
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-    });
-
-    // Enhanced CTA button interactions
-    document.querySelectorAll('.cta-button').forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            const icon = document.createElement('span');
-            icon.textContent = this.classList.contains('primary') ? '→' : '↗';
-            icon.style.transition = 'transform 0.3s ease';
-            this.appendChild(icon);
-        });
-
-        button.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('span:last-child');
-            if (icon) {
-                this.removeChild(icon);
-            }
-        });
-    });
-
-    // Add smooth reveal animation for sections
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.objectives-section, .functions-section, .impact-section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        revealObserver.observe(section);
-    });
-</script>
-</html>
