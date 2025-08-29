@@ -1,6 +1,4 @@
 ---
-// src/pages/proyectos.astro
-
 import Layout from '../../layouts/Layout.astro';
 export interface Props {
   title?: string;
@@ -8,70 +6,24 @@ export interface Props {
 
 const { title = "Proyectos de investigación - INTEC" } = Astro.props;
 
-// Datos de proyectos reales basados en INTEC
 const proyectos = [
-  {
-    id: 1,
-    titulo: "Monitoreo y Caracterización de los Contaminantes Atmosféricos a Nivel de Micro Escala a través de una Red Inalámbrica de Sensores para Tres Zonas de la Ciudad de Santo Domingo en la República Dominicana",
-    categoria: "ACTUALES",
-    tipo: "FONDO EXTERNO"
-  },
-  {
-    id: 2,
-    titulo: "Evaluación De Alternativas De Valorización Energética Del Potencial De Biomasa Residual De Monte Plata Como Recurso Energético A Integrarse Con Redes De Generación Eléctrica Distribuida Con Energías Renovables Intermitentes.",
-    categoria: "ACTUALES",
-    tipo: "FONDO PROPIO"
-  },
-  {
-    id: 3,
-    titulo: "Análisis de riesgos objetivos y subjetivos asociados al cambio climático (CC) para la producción arrocera en la República Dominicana",
-    categoria: "ACTUALES",
-    tipo: "FONDO EXTERNO"
-  },
-  {
-    id: 4,
-    titulo: "Desarrollo de Algoritmos de Machine Learning para Optimización de Procesos Industriales",
-    categoria: "CONCLUIDOS",
-    tipo: "FONDO EXTERNO"
-  },
-  {
-    id: 5,
-    titulo: "Análisis de Vulnerabilidades en Sistemas de Telecomunicaciones mediante Técnicas de Penetration Testing",
-    categoria: "ACTUALES",
-    tipo: "FONDO PROPIO"
-  },
-  {
-    id: 6,
-    titulo: "Estudio de Factibilidad para Implementación de Energía Solar en Comunidades Rurales",
-    categoria: "CONCLUIDOS",
-    tipo: "FONDO EXTERNO"
-  },
-  {
-    id: 7,
-    titulo: "Investigación sobre Materiales Biodegradables para Envases Alimentarios",
-    categoria: "ACTUALES",
-    tipo: "FONDO PROPIO"
-  },
-  {
-    id: 8,
-    titulo: "Desarrollo de Sistemas IoT para Monitoreo Ambiental en Tiempo Real",
-    categoria: "ACTUALES",
-    tipo: "FONDO EXTERNO"
-  },
-  {
-    id: 9,
-    titulo: "Optimización de Procesos de Tratamiento de Aguas Residuales mediante Biotecnología",
-    categoria: "CONCLUIDOS",
-    tipo: "FONDO PROPIO"
-  }
+  { id: 1, titulo: "Monitoreo y Caracterización de los Contaminantes Atmosféricos...", categoria: "ACTUALES", tipo: "FONDO EXTERNO" },
+  { id: 2, titulo: "Evaluación De Alternativas De Valorización Energética...", categoria: "ACTUALES", tipo: "FONDO PROPIO" },
+  { id: 3, titulo: "Análisis de riesgos objetivos y subjetivos asociados al cambio climático...", categoria: "ACTUALES", tipo: "FONDO EXTERNO" },
+  { id: 4, titulo: "Desarrollo de Algoritmos de Machine Learning...", categoria: "CONCLUIDOS", tipo: "FONDO EXTERNO" },
+  { id: 5, titulo: "Análisis de Vulnerabilidades en Sistemas de Telecomunicaciones...", categoria: "ACTUALES", tipo: "FONDO PROPIO" },
+  { id: 6, titulo: "Estudio de Factibilidad para Implementación de Energía Solar...", categoria: "CONCLUIDOS", tipo: "FONDO EXTERNO" },
+  { id: 7, titulo: "Investigación sobre Materiales Biodegradables...", categoria: "ACTUALES", tipo: "FONDO PROPIO" },
+  { id: 8, titulo: "Desarrollo de Sistemas IoT para Monitoreo Ambiental...", categoria: "ACTUALES", tipo: "FONDO EXTERNO" },
+  { id: 9, titulo: "Optimización de Procesos de Tratamiento de Aguas Residuales...", categoria: "CONCLUIDOS", tipo: "FONDO PROPIO" }
 ];
 
 const filtros = [
   { id: 'ALL', label: 'ALL', active: true },
   { id: 'ACTUALES', label: 'ACTUALES', active: false },
   { id: 'CONCLUIDOS', label: 'CONCLUIDOS', active: false },
-  { id: 'FONDO_EXTERNO', label: 'FONDO EXTERNO', active: false },
-  { id: 'FONDO_PROPIO', label: 'FONDO PROPIO', active: false }
+  { id: 'FONDO EXTERNO', label: 'FONDO EXTERNO', active: false },
+  { id: 'FONDO PROPIO', label: 'FONDO PROPIO', active: false }
 ];
 ---
 
@@ -95,39 +47,27 @@ const filtros = [
 
         <!-- Main Content -->
         <section class="content">
-          <header class="main-header">
-            <h1 class="main-title">Proyectos de investigación</h1>
-          </header>
-          
-          <header class="content-header">
-            <h2 class="page-title">
+          <header class="page-header">
+            <h1 class="page-title">
               Proyectos de <span class="highlight">investigación</span>
-            </h2>
+            </h1>
           </header>
 
           <div class="proyectos-container">
-            {proyectos.map((proyecto, index) => (
+            {proyectos.map((proyecto) => (
               <article 
-                class="proyecto-card lazy-load"
+                class="proyecto-card"
                 data-categoria={proyecto.categoria}
                 data-tipo={proyecto.tipo.replace(' ', '_')}
-                style={`animation-delay: ${index * 0.1}s`}
               >
                 <div class="proyecto-image">
-                  <div class="placeholder-image">
-                    <svg viewBox="0 0 100 80" class="image-icon">
-                      <rect x="10" y="20" width="80" height="50" fill="none" stroke="#ccc" stroke-width="2"/>
-                      <circle cx="25" cy="35" r="5" fill="#ccc"/>
-                      <path d="M15 55 L35 40 L50 50 L85 25" stroke="#ccc" stroke-width="2" fill="none"/>
-                    </svg>
-                  </div>
+                  <svg viewBox="0 0 100 80"><rect x="10" y="20" width="80" height="50" fill="none" stroke="#ccc" stroke-width="2"/><circle cx="25" cy="35" r="5" fill="#ccc"/><path d="M15 55 L35 40 L50 50 L85 25" stroke="#ccc" stroke-width="2" fill="none"/></svg>
                 </div>
-                
                 <div class="proyecto-content">
                   <h2 class="proyecto-titulo">{proyecto.titulo}</h2>
-                  <button class="btn-ver-info" data-proyecto-id={proyecto.id}>
+                  <a href="#" class="btn-ver-info" data-proyecto-id={proyecto.id}>
                     VER INFORMACIÓN
-                  </button>
+                  </a>
                 </div>
               </article>
             ))}
@@ -139,384 +79,117 @@ const filtros = [
 </Layout>
 
 <style>
-  .main {
-    padding: 2rem 0;
-min-height: calc(100vh - 200px);
-margin-bottom:2.5rem;
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+  :root {
+    --color-rojo-unev: #960201;
+    --color-dorado-unev: #bc9201;
+    --color-texto-principal: #212529;
+    --color-texto-secundario: #5a5a5a;
+    --color-texto-claro: #888; /* Un gris más claro para los filtros */
+    --color-borde: #dee2e6;
+    --color-fondo-claro: #f8f9fa;
+    --font-principal: 'Lato', sans-serif;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .page-content {
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
-  }
-
-  /* Sidebar */
+  .main { font-family: var(--font-principal); padding: 4.5rem 0; background-color: white; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  .page-content { display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem; } /* Aumentamos un poco el gap */
   .sidebar {
-    width: 220px;
-    flex-shrink: 0;
-    background: #ffffff;
-    border-right: 1px solid #e5e7eb;
-    padding: 2rem 1.5rem;
-    margin-top:2rem; 
-    top: 2rem;
-    height: fit-content;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--color-borde); padding-right: 1.5rem;
+    position: sticky; top: 100px; 
   }
-
-  .filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
+  .filter-list { list-style: none; padding: 0; margin: 0; }
+  
+  /* --- AJUSTE FINO DEL SIDEBAR --- */
   .filter-btn {
-    background: transparent;
-    border: none;
-    padding: 1rem 1.5rem;
-    text-align: left;
-    font-size: 0.85rem;
-    color: #6b7280;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    font-weight: 600;
-    border-radius: 6px;
-    margin-bottom: 0.25rem;
-    position: relative;
-    border-left: 3px solid transparent;
+    background: transparent; border: none; width: 100%; text-align: left;
+    padding: 0.8rem 0; /* Un poco más de aire entre filtros */
+    font-size: 0.8rem;
+    color: var(--color-texto-claro); /* Usamos el gris claro de Intec */
+    cursor: pointer; font-weight: 400; text-transform: uppercase;
+    position: relative; transition: color 0.2s ease;
   }
-
-  .filter-btn:hover {
-    background: #f9fafb;
-    color: #374151;
-    transform: translateX(2px);
-    border-left-color: #e5e7eb;
+  .filter-btn::after {
+    content: ''; position: absolute; right: -1.5rem; top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px; height: 24px; transition: all 0.2s ease;
   }
-
-  .filter-btn.active {
-    background: #fef2f2;
-    color: #dc2626;
-    font-weight: 700;
-    border-left-color: #dc2626;
-    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
-  }
-
-  .filter-btn.active::after {
-    content: '';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    background: #dc2626;
-    border-radius: 50%;
-  }
-
-  /* Content */
-  .content {
-    flex: 1;
-  }
-
-  .main-header {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #f3f4f6;
-  }
-
-  .main-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-    letter-spacing: -0.5px;
-  }
-
-  .content-header {
-    margin-bottom: 3rem;
-  }
-
+  .filter-btn:hover:not(.active)::after { background-color: #ccc; transform: translateY(-50%) scaleY(1); }
+  .filter-btn.active::after { background-color: var(--color-rojo-unev); transform: translateY(-50%) scaleY(1); }
+  .filter-btn:hover { color: var(--color-texto-principal); }
+  .filter-btn.active { color: var(--color-rojo-unev); font-weight: 700; }
+  
+  .content { min-width: 0; }
+  
+  /* --- AJUSTE FINO DEL TÍTULO PRINCIPAL --- */
+  .page-header { margin-bottom: 2rem; }
   .page-title {
-    font-size: 1.75rem;
-    font-weight: 300;
-    color: #1f2937;
-    margin: 0;
+    font-size: 2rem; font-weight: 300; /* Texto "Proyectos de" más fino */
+    color: var(--color-texto-principal);
+    margin: 0; position: relative; padding-left: 1.25rem; 
   }
-
-  .highlight {
-    color: #dc2626;
-    font-weight: 400;
+  .page-title::before { /* La barra gris más fina y mejor alineada */
+    content: ''; position: absolute; left: 0; top: 5px; bottom: 5px;
+    width: 5px; background-color: #e0e0e0;
   }
-
-  /* Proyectos Container */
-  .proyectos-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
+  .page-title .highlight { color: var(--color-rojo-unev); font-weight: 700; /* Texto "investigación" más grueso */ }
+  
+  .proyectos-container { display: flex; flex-direction: column; gap: 1.5rem; }
   .proyecto-card {
-    display: flex;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow 0.3s, transform 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
+    display: flex; gap: 1.5rem; background: white; border-bottom: 1px solid var(--color-borde);
+    padding: 1.5rem 0; align-items: center;
   }
-
-  .proyecto-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .proyecto-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-  }
-
   .proyecto-image {
-    width: 120px;
-    height: 120px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f9fafb;
-    border-right: 1px solid #e5e7eb;
+    width: 100px; height: 100px; flex-shrink: 0; display: flex;
+    align-items: center; justify-content: center; background: var(--color-fondo-claro);
   }
-
-  .placeholder-image {
-    width: 60px;
-    height: 48px;
-  }
-
-  .image-icon {
-    width: 100%;
-    height: 100%;
-  }
-
-  .proyecto-content {
-    flex: 1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .proyecto-titulo {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #1f2937;
-    line-height: 1.5;
-    margin: 0 0 1.5rem 0;
-  }
-
+  .proyecto-image svg { width: 40px; height: 40px; }
+  .proyecto-content { flex-grow: 1; }
+  .proyecto-titulo { font-size: 1rem; font-weight: 500; color: var(--color-texto-principal); line-height: 1.6; margin: 0 0 1rem 0; }
   .btn-ver-info {
-    background: transparent;
-    border: none;
-    color: #dc2626;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: color 0.3s;
-    padding: 0;
+    background: white; border: 1px solid var(--color-borde); color: var(--color-texto-secundario);
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; padding: 0.6rem 1.2rem; border-radius: 50px;
+    transition: all 0.3s ease; text-decoration: none; display: inline-block;
   }
-
   .btn-ver-info:hover {
-    color: #991b1b;
-    text-decoration: underline;
+    background: var(--color-fondo-claro); color: var(--color-rojo-unev);
+    border-color: #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   }
 
-  /* Hidden state for filtering */
-  .proyecto-card.hidden {
-    display: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .page-content {
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .sidebar {
-      width: 100%;
-    }
-
-    .filter-list {
-      flex-direction: row;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
-    }
-
-    .filter-btn {
-      white-space: nowrap;
-      padding: 0.5rem 0;
-    }
-
-    .filter-btn.active::before {
-      display: none;
-    }
-
-    .proyecto-card {
-      flex-direction: column;
-    }
-
-    .proyecto-image {
-      width: 100%;
-      height: 100px;
-      border-right: none;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .container {
-      padding: 0 15px;
-    }
-  }
-
-  /* Lazy loading animation */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  .proyecto-card.hidden { display: none; }
+  @media (max-width: 768px) { .page-content { grid-template-columns: 1fr; } .sidebar { border-right: none; border-bottom: 1px solid var(--color-borde); padding-right: 0; padding-bottom: 1.5rem; position: static; } .filter-list { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 0.5rem;} .filter-btn { white-space: nowrap; } .filter-btn::after { display: none; } }
 </style>
 
 <script>
   class ProyectosManager {
-    private proyectos: NodeListOf<HTMLElement>;
-    private filterButtons: NodeListOf<HTMLButtonElement>;
-    private observer: IntersectionObserver;
-
     constructor() {
-      this.proyectos = document.querySelectorAll('.proyecto-card');
-      this.filterButtons = document.querySelectorAll('.filter-btn');
-      this.setupLazyLoading();
-      this.setupFiltering();
-      this.setupProjectButtons();
+      this.proyectos = document.querySelectorAll('.proyecto-card'); this.filterButtons = document.querySelectorAll('.filter-btn'); this.setupFiltering();
     }
-
-    private setupLazyLoading() {
-      const options = {
-        root: null,
-        rootMargin: '50px',
-        threshold: 0.1
-      };
-
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const element = entry.target as HTMLElement;
-            element.classList.add('visible');
-            this.observer.unobserve(element);
-          }
-        });
-      }, options);
-
-      // Observar todos los proyectos
-      this.proyectos.forEach(proyecto => {
-        this.observer.observe(proyecto);
-      });
-    }
-
-    private setupFiltering() {
+    setupFiltering() {
       this.filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-          const target = e.target as HTMLButtonElement;
-          const filter = target.dataset.filter;
-
-          // Actualizar botones activos
+          const target = e.currentTarget; const filter = target.dataset.filter;
           this.filterButtons.forEach(btn => btn.classList.remove('active'));
-          target.classList.add('active');
-
-          // Filtrar proyectos
-          this.filterProjects(filter);
+          target.classList.add('active'); this.filterProjects(filter);
         });
       });
     }
-
-    private filterProjects(filter: string | undefined) {
+    filterProjects(filter) {
       if (!filter) return;
-
       this.proyectos.forEach((proyecto) => {
-        const categoria = proyecto.dataset.categoria;
-        const tipo = proyecto.dataset.tipo;
+        const categoria = proyecto.dataset.categoria; const tipo = proyecto.dataset.tipo;
         let shouldShow = false;
-
         switch (filter) {
-          case 'ALL':
-            shouldShow = true;
-            break;
-          case 'ACTUALES':
-            shouldShow = categoria === 'ACTUALES';
-            break;
-          case 'CONCLUIDOS':
-            shouldShow = categoria === 'CONCLUIDOS';
-            break;
-          case 'FONDO_EXTERNO':
-            shouldShow = tipo === 'FONDO_EXTERNO';
-            break;
-          case 'FONDO_PROPIO':
-            shouldShow = tipo === 'FONDO_PROPIO';
-            break;
+          case 'ALL': shouldShow = true; break;
+          case 'ACTUALES': shouldShow = categoria === 'ACTUALES'; break;
+          case 'CONCLUIDOS': shouldShow = categoria === 'CONCLUIDOS'; break;
+          case 'FONDO EXTERNO': shouldShow = tipo === 'FONDO_EXTERNO'; break;
+          case 'FONDO PROPIO': shouldShow = tipo === 'FONDO_PROPIO'; break;
         }
-
-        if (shouldShow) {
-          proyecto.classList.remove('hidden');
-          // Re-observar para lazy loading si es necesario
-          if (!proyecto.classList.contains('visible')) {
-            this.observer.observe(proyecto);
-          }
-        } else {
-          proyecto.classList.add('hidden');
-        }
+        proyecto.classList.toggle('hidden', !shouldShow);
       });
-    }
-
-    private setupProjectButtons() {
-      document.querySelectorAll('.btn-ver-info').forEach(button => {
-        button.addEventListener('click', (e) => {
-          const projectId = (e.target as HTMLElement).dataset.proyectoId;
-          this.showProjectInfo(projectId);
-        });
-      });
-    }
-
-    private showProjectInfo(projectId: string | undefined) {
-      if (!projectId) return;
-
-      // En una implementación real, esto navegaría a la página de detalles
-      // o abriría un modal con la información completa
-      console.log(`Ver información del proyecto: ${projectId}`);
-      
-      // Simular navegación
-      alert(`Información del proyecto ${projectId}\n\nEn una implementación real, esto navegaría a /proyectos/${projectId} o abriría un modal con los detalles completos.`);
     }
   }
-
-  // Inicializar cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', () => {
-    new ProyectosManager();
-  });
+  document.addEventListener('DOMContentLoaded', () => { new ProyectosManager(); });
 </script>
