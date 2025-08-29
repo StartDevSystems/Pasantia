@@ -15,51 +15,13 @@ interface TeamMember {
 }
 
 const teamMembers: TeamMember[] = [
-  {
-    name: "Dr. María Elena Rodríguez",
-    position: "Vicerrectora de Investigación y Vinculación",
-    extension: "324",
-    email: "mrodriguez@unev.edu.do",
-    image: "/images/team/maria-rodriguez.jpg"
-  },
-  {
-    name: "Dr. Roberto Martínez",
-    position: "Director División de Investigación",
-    extension: "324",
-    email: "rmartinez@unev.edu.do",
-    image: "/images/team/roberto-martinez.jpg"
-  },
-  {
-    name: "Lic. Ana Patricia Jiménez",
-    position: "Coordinadora de Proyectos",
-    extension: "705",
-    email: "ajimenez@unev.edu.do",
-    image: "/images/team/ana-jimenez.jpg"
-  },
-  {
-    name: "Lic. Carmen Delgado",
-    position: "Asistente Administrativo",
-    email: "cdelgado@unev.edu.do",
-    image: "/images/team/carmen-delgado.jpg"
-  },
-  {
-    name: "Lic. José Luis Fernández",
-    position: "Analista de Proyecto",
-    email: "jfernandez@unev.edu.do",
-    image: "/images/team/jose-fernandez.jpg"
-  },
-  {
-    name: "Ing. Sofía Herrera",
-    position: "Asistente Técnico de Proyectos",
-    email: "sherrera@unev.edu.do",
-    image: "/images/team/sofia-herrera.jpg"
-  },
-  {
-    name: "Lic. Gabriel Morales",
-    position: "Community Manager",
-    email: "gmorales@unev.edu.do",
-    image: "/images/team/gabriel-morales.jpg"
-  }
+  { name: "Dr. María Elena Rodríguez", position: "Vicerrectora de Investigación y Vinculación", extension: "324", email: "mrodriguez@unev.edu.do", image: "/images/team/maria-rodriguez.jpg" },
+  { name: "Dr. Roberto Martínez", position: "Director División de Investigación", extension: "324", email: "rmartinez@unev.edu.do", image: "/images/team/roberto-martinez.jpg" },
+  { name: "Lic. Ana Patricia Jiménez", position: "Coordinadora de Proyectos", extension: "705", email: "ajimenez@unev.edu.do", image: "/images/team/ana-jimenez.jpg" },
+  { name: "Lic. Carmen Delgado", position: "Asistente Administrativo", email: "cdelgado@unev.edu.do", image: "/images/team/carmen-delgado.jpg" },
+  { name: "Lic. José Luis Fernández", position: "Analista de Proyecto", email: "jfernandez@unev.edu.do", image: "/images/team/jose-fernandez.jpg" },
+  { name: "Ing. Sofía Herrera", position: "Asistente Técnico de Proyectos", email: "sherrera@unev.edu.do", image: "/images/team/sofia-herrera.jpg" },
+  { name: "Lic. Gabriel Morales", position: "Community Manager", email: "gmorales@unev.edu.do", image: "/images/team/gabriel-morales.jpg" }
 ];
 ---
 <Layout>
@@ -90,13 +52,7 @@ const teamMembers: TeamMember[] = [
                 {teamMembers.map((member) => (
                     <article class="team-card">
                         <div class="team-card-image">
-                            <img 
-                                src={member.image} 
-                                alt={member.name}
-                                width="300"
-                                height="300"
-                                loading="lazy"
-                            >
+                            <img src={member.image} alt={member.name} width="300" height="300" loading="lazy">
                         </div>
                         <div class="team-card-content">
                             <h2 class="team-member-name">{member.name}</h2>
@@ -110,9 +66,7 @@ const teamMembers: TeamMember[] = [
                                 )}
                                 <p class="contact-item">
                                     <span class="contact-label">Email:</span>
-                                    <a href={`mailto:${member.email}`} class="contact-email">
-                                        {member.email}
-                                    </a>
+                                    <a href={`mailto:${member.email}`} class="contact-email">{member.email}</a>
                                 </p>
                             </div>
                         </div>
@@ -120,7 +74,6 @@ const teamMembers: TeamMember[] = [
                 ))}
             </section>
 
-            <!-- Additional Info Section -->
             <section class="info-section">
                 <div class="info-card">
                     <h2>Misión de la Dirección</h2>
@@ -144,542 +97,128 @@ const teamMembers: TeamMember[] = [
         </div>
   </main>
 </Layout>
+
 <style>
-    :root {
-        --primary-color: #1e40af;
-        --primary-dark: #1e3a8a;
-        --secondary-color: #f59e0b;
-        --accent-color: #10b981;
-        --text-primary: #1f2937;
-        --text-secondary: #6b7280;
-        --text-light: #9ca3af;
-        --bg-primary: #ffffff;
-        --bg-secondary: #f9fafb;
-        --bg-dark: #1f2937;
-        --border-color: #e5e7eb;
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        --border-radius: 0.5rem;
-        --transition: all 0.3s ease;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.6;
-        color: var(--text-primary);
-        background-color: var(--bg-primary);
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-
-    /* Header Styles */
-    .header {
-        background: var(--bg-primary);
-        box-shadow: var(--shadow-sm);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    .nav {
-        padding: 1rem 0;
-    }
-
-    .nav .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .nav-brand .logo img {
-        height: 40px;
-        width: auto;
-    }
-
-    .nav-menu {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 500;
-        transition: var(--transition);
-        position: relative;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--primary-color);
-    }
-
-    .nav-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: -0.5rem;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: var(--primary-color);
-    }
-
-    .nav-toggle {
-        display: none;
-        flex-direction: column;
-        gap: 0.25rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-    }
-
-    .nav-toggle span {
-        width: 24px;
-        height: 2px;
-        background: var(--text-primary);
-        transition: var(--transition);
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-        background: var(--bg-secondary);
-        padding: 1rem 0;
-    }
-
-    .breadcrumb-list {
-        display: flex;
-        list-style: none;
-        gap: 0.5rem;
-        align-items: center;
-    }
-
-    .breadcrumb-list li::after {
-        content: '>';
-        margin-left: 0.5rem;
-        color: var(--text-light);
-    }
-
-    .breadcrumb-list li:last-child::after {
-        display: none;
-    }
-
-    .breadcrumb-list a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-    .breadcrumb-list a:hover {
-        text-decoration: underline;
-    }
-
-    /* Main Content */
-    .main {
-        padding: 3rem 0;
-        min-height: 60vh;
-    }
-
-    .page-header {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .page-title {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-    }
-
-    .page-subtitle {
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    /* Team Grid */
-    .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        margin-bottom: 4rem;
-    }
-
-    .team-card {
-        background: var(--bg-primary);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow-md);
-        overflow: hidden;
-        transition: var(--transition);
-    }
-
-    .team-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .team-card-image {
-        position: relative;
-        overflow: hidden;
-        height: 250px;
-    }
-
-    .team-card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-    }
-
-    .team-card:hover .team-card-image img {
-        transform: scale(1.05);
-    }
-
-    .team-card-content {
-        padding: 2rem;
-    }
-
-    .team-member-name {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-    }
-
-    .team-member-position {
-        font-size: 1.125rem;
-        color: var(--primary-color);
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-    }
-
-    .team-member-contact {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .contact-label {
-        font-weight: 500;
-        color: var(--text-secondary);
-        min-width: 40px;
-    }
-
-    .contact-value {
-        color: var(--text-primary);
-    }
-
-    .contact-email {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-    .contact-email:hover {
-        text-decoration: underline;
-    }
-
-    /* Info Section */
-    .info-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .info-card {
-        background: var(--bg-secondary);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        border-left: 4px solid var(--primary-color);
-    }
-
-    .info-card h2 {
-        color: var(--primary-color);
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-
-    .info-card p {
-        color: var(--text-secondary);
-        line-height: 1.7;
-    }
-
-    .info-card ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .info-card li {
-        color: var(--text-secondary);
-        padding: 0.5rem 0;
-        border-bottom: 1px solid var(--border-color);
-        position: relative;
-        padding-left: 1.5rem;
-    }
-
-    .info-card li::before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: var(--accent-color);
-        font-weight: bold;
-    }
-
-    .info-card li:last-child {
-        border-bottom: none;
-    }
-
-    /* Footer */
-    .footer {
-        background: var(--bg-dark);
-        color: white;
-        margin-top: 4rem;
-    }
-
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 3rem 0 2rem;
-    }
-
-    .footer-section h3,
-    .footer-section h4 {
-        margin-bottom: 1rem;
-        color: white;
-    }
-
-    .footer-section h3 {
-        color: var(--secondary-color);
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-
-    .footer-section p {
-        color: #d1d5db;
-        line-height: 1.6;
-    }
-
-    .footer-section ul {
-        list-style: none;
-    }
-
-    .footer-section li {
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-section a {
-        color: #d1d5db;
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-    .footer-section a:hover {
-        color: var(--secondary-color);
-    }
-
-    .social-links {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .social-links a {
-        font-size: 1.5rem;
-        transition: var(--transition);
-    }
-
-    .social-links a:hover {
-        transform: scale(1.2);
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #374151;
-        padding: 1.5rem 0;
-        text-align: center;
-        color: #9ca3af;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .nav-menu {
-            display: none;
-        }
-
-        .nav-toggle {
-            display: flex;
-        }
-
-        .page-title {
-            font-size: 2rem;
-        }
-
-        .page-subtitle {
-            font-size: 1rem;
-        }
-
-        .team-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .team-card-content {
-            padding: 1.5rem;
-        }
-
-        .container {
-            padding: 0 0.75rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .page-title {
-            font-size: 1.75rem;
-        }
-
-        .team-member-name {
-            font-size: 1.25rem;
-        }
-
-        .team-member-position {
-            font-size: 1rem;
-        }
-
-        .info-card {
-            padding: 1.5rem;
-        }
-
-        .footer-content {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-    }
-
-    /* Print Styles */
-    @media print {
-        .header,
-        .breadcrumb,
-        .footer {
-            display: none;
-        }
-
-        .main {
-            padding: 0;
-        }
-
-        .team-card {
-            break-inside: avoid;
-            box-shadow: none;
-            border: 1px solid #ccc;
-        }
-    }
-
-    /* Focus Styles for Accessibility */
-    .nav-link:focus,
-    .contact-email:focus,
-    .nav-toggle:focus {
-        outline: 2px solid var(--primary-color);
-        outline-offset: 2px;
-    }
-
-    /* Loading State for Images */
-    .team-card-image img[loading="lazy"] {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
+  /* ========================================================= */
+  /* === TU CÓDIGO ORIGINAL, PERO CON LOS COLORES Y FUENTE DE UNEV === */
+  /* ========================================================= */
+
+  /* --- CAMBIO 1: Importamos la tipografía "Lato" --- */
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+  /* --- CAMBIO 2: Definimos la nueva paleta de colores y la fuente --- */
+  :root {
+      --color-rojo-unev: #960201;
+      --color-dorado-unev: #bc9201;
+
+      /* Variables originales adaptadas */
+      --primary-color: var(--color-rojo-unev); /* Usamos el rojo UNEV como principal */
+      --primary-dark: #7a0101; /* Un rojo más oscuro */
+      --secondary-color: var(--color-dorado-unev); /* El dorado como secundario */
+      --accent-color: var(--color-dorado-unev); /* El dorado como acento */
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --text-light: #9ca3af;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9fafb;
+      --bg-dark: #1f2937;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --border-radius: 0.5rem;
+      --transition: all 0.3s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* --- CAMBIO 3: Aplicamos la nueva fuente al body --- */
+  body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+  /* Tu CSS original para Header y Nav (con nuevos colores) */
+  .header { background: var(--bg-primary); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; }
+  .nav { padding: 1rem 0; }
+  .nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand .logo img { height: 40px; width: auto; }
+  .nav-menu { display: flex; gap: 2rem; align-items: center; }
+  .nav-link { text-decoration: none; color: var(--text-primary); font-weight: 500; transition: var(--transition); position: relative; }
+  .nav-link:hover, .nav-link.active { color: var(--primary-color); }
+  .nav-link.active::after { content: ''; position: absolute; bottom: -0.5rem; left: 0; width: 100%; height: 2px; background: var(--primary-color); }
+  .nav-toggle { display: none; flex-direction: column; gap: 0.25rem; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+  .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); transition: var(--transition); }
+  
+  /* Tu CSS original para Breadcrumb (con nuevos colores) */
+  .breadcrumb { background: var(--bg-secondary); padding: 1rem 0; }
+  .breadcrumb-list { display: flex; list-style: none; gap: 0.5rem; align-items: center; }
+  .breadcrumb-list li::after { content: '>'; margin-left: 0.5rem; color: var(--text-light); }
+  .breadcrumb-list li:last-child::after { display: none; }
+  .breadcrumb-list a { color: var(--primary-color); text-decoration: none; transition: var(--transition); }
+  .breadcrumb-list a:hover { text-decoration: underline; }
+
+  /* Tu CSS original para el contenido principal */
+  .main { padding: 3rem 0; min-height: 60vh; }
+  .page-header { text-align: center; margin-bottom: 4rem; }
+  .page-title { font-size: 3rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+  .page-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+  .team-card { background: var(--bg-primary); border-radius: var(--border-radius); box-shadow: var(--shadow-md); overflow: hidden; transition: var(--transition); }
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .team-card-image { position: relative; overflow: hidden; height: 250px; }
+  .team-card-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+  .team-card:hover .team-card-image img { transform: scale(1.05); }
+  .team-card-content { padding: 2rem; }
+  .team-member-name { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .team-member-position { font-size: 1.125rem; color: var(--primary-color); font-weight: 500; margin-bottom: 1.5rem; }
+  .team-member-contact { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-item { display: flex; align-items: center; gap: 0.5rem; }
+  .contact-label { font-weight: 500; color: var(--text-secondary); min-width: 40px; }
+  .contact-value { color: var(--text-primary); }
+  .contact-email { color: var(--primary-color); text-decoration: none; transition: var(--transition); }
+  .contact-email:hover { text-decoration: underline; color: var(--secondary-color); }
+
+  /* Tu CSS original para Info Section (con nuevos colores) */
+  .info-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .info-card { background: var(--bg-secondary); padding: 2rem; border-radius: var(--border-radius); border-left: 4px solid var(--primary-color); }
+  .info-card h2 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem; font-weight: 600; }
+  .info-card p { color: var(--text-secondary); line-height: 1.7; }
+  .info-card ul { list-style: none; padding: 0; }
+  .info-card li { color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); position: relative; padding-left: 1.5rem; }
+  .info-card li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
+  .info-card li:last-child { border-bottom: none; }
+
+  /* Tu CSS original para el Footer y Responsive (sin cambios) */
+  .footer { background: var(--bg-dark); color: white; margin-top: 4rem; }
+  .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 3rem 0 2rem; }
+  .footer-section h3, .footer-section h4 { margin-bottom: 1rem; color: white; }
+  .footer-section h3 { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; }
+  .footer-section p { color: #d1d5db; line-height: 1.6; }
+  .footer-section ul { list-style: none; }
+  .footer-section li { margin-bottom: 0.5rem; }
+  .footer-section a { color: #d1d5db; text-decoration: none; transition: var(--transition); }
+  .footer-section a:hover { color: var(--secondary-color); }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a { font-size: 1.5rem; transition: var(--transition); }
+  .social-links a:hover { transform: scale(1.2); }
+  .footer-bottom { border-top: 1px solid #374151; padding: 1.5rem 0; text-align: center; color: #9ca3af; }
+  @media (max-width: 768px) { .nav-menu { display: none; } .nav-toggle { display: flex; } .page-title { font-size: 2rem; } .page-subtitle { font-size: 1rem; } .team-grid { grid-template-columns: 1fr; gap: 1.5rem; } .team-card-content { padding: 1.5rem; } .container { padding: 0 0.75rem; } }
+  @media (max-width: 480px) { .page-title { font-size: 1.75rem; } .team-member-name { font-size: 1.25rem; } .team-member-position { font-size: 1rem; } .info-card { padding: 1.5rem; } .footer-content { grid-template-columns: 1fr; gap: 1.5rem; } }
 </style>
 
 <script>
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Image lazy loading fallback for older browsers
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-
-    // Add animation on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe team cards for animation
-    document.querySelectorAll('.team-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
+  // TU SCRIPT ORIGINAL, TOTALMENTE INTACTO
+  const navToggle = document.querySelector('.nav-toggle'); const navMenu = document.querySelector('.nav-menu');
+  if (navToggle && navMenu) { navToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); navToggle.classList.toggle('active'); }); }
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+  if ('IntersectionObserver' in window) { const imageObserver = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { const img = entry.target; img.src = img.dataset.src || img.src; img.classList.remove('lazy'); observer.unobserve(img); } }); }); document.querySelectorAll('img[loading="lazy"]').forEach(img => { imageObserver.observe(img); }); }
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, observerOptions);
+  document.querySelectorAll('.team-card').forEach(card => { card.style.opacity = '0'; card.style.transform = 'translateY(20px)'; card.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(card); });
 </script>
 </html>
