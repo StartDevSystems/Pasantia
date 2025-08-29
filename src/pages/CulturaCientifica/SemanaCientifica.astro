@@ -1,8 +1,13 @@
 ---
 // src/pages/semana-ciencia.astro
-const pageTitle = "Semana de la Ciencia - INTEC";
-import Layout from '../../layouts/Layout.astro'
 ---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana de la Ciencia 2024 - INTEC</title>
     <style>
         * {
             margin: 0;
@@ -11,591 +16,479 @@ import Layout from '../../layouts/Layout.astro'
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', Times, serif;
-            line-height: 1.7;
-            color: #2d3748;
-            background-color: #ffffff;
-            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
         }
 
-        .container {
-            max-width: 1100px;
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
         }
 
-        header {
-            background: #1a365d;
-            color: white;
-            padding: 3rem 0 2rem;
-            text-align: center;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .intec-red {
+            color: #e53e3e;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #e53e3e;
+            background-color: #fff5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 4rem 0;
             position: relative;
-            border-bottom: 4px solid #2c5aa0;
+            overflow: hidden;
         }
 
-        header::after {
+        .hero::before {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: #e53e3e;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e53e3e' fill-opacity='0.03'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
         }
 
-        .hero-content {
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
             position: relative;
             z-index: 2;
         }
 
-        .logo {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 400;
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #e53e3e;
+            line-height: 1.1;
             margin-bottom: 1rem;
-            font-family: 'Georgia', serif;
-            letter-spacing: 1px;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-            font-style: italic;
-            font-weight: 300;
+        .hero-content .year {
+            color: #666;
+            font-size: 3rem;
         }
 
-        main {
-            padding: 3rem 0;
-            background-color: #f7fafc;
+        .hero-graphics {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
-        .section {
+        .hero-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(229, 62, 62, 0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        .event-details {
             background: white;
-            margin-bottom: 2.5rem;
-            border-radius: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-            overflow: hidden;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
         }
 
-        .section:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .section-header {
-            background: #960201;
-            color: white;
-            padding: 1.5rem 2rem;
-            position: relative;
-            border-left: 5px solid  #bc9201;
-        }
-
-        .section-header h2 {
+        .event-details h2 {
+            color: #e53e3e;
             font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-            font-family: 'Georgia', serif;
-            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .section-content {
-            padding: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .section-content p {
-            text-align: justify;
-            margin-bottom: 1.5rem;
-            color: #4a5568;
-        }
-
-        .objectives {
-            list-style: none;
-            padding: 0;
-            counter-reset: objective-counter;
-        }
-
-        .objectives li {
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            background: #f8fafc;
-            border-radius: 0;
-            border-left: 4px solid #2c5aa0;
-            border-top: 1px solid #e2e8f0;
-            border-right: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-            position: relative;
-            counter-increment: objective-counter;
-            text-align: justify;
-        }
-
-        .objectives li::before {
-            content: counter(objective-counter, decimal) ".";
-            position: absolute;
-            left: -20px;
-            top: 1.5rem;
-            background: #960201;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 0.9rem;
-            min-width: 35px;
-            text-align: center;
-        }
-
-        .agenda {
+        .event-info {
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
 
-        .day {
-            background: #ffffff;
-            border-radius: 0;
-            overflow: hidden;
-            border: 2px solid #2c5aa0;
-            margin-bottom: 2rem;
-        }
-
-        .day-header {
-            background: #1a365d;
-            color: white;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            position: relative;
-            border-bottom: 3px solid #e53e3e;
-        }
-
-        .day-title {
-            font-size: 1.6rem;
-            font-weight: 400;
-            font-family: 'Georgia', serif;
-            margin-bottom: 0.5rem;
-        }
-
-        .day-date {
-            font-size: 1rem;
-            opacity: 0.9;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .activities {
-            padding: 2rem;
-            background: #fafbfc;
-        }
-
-        .activity {
-            background: white;
-            margin-bottom: 2rem;
-            border-radius: 0;
-            padding: 2rem;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid #2c5aa0;
-        }
-
-        .activity:last-child {
-            margin-bottom: 0;
-        }
-
-        .activity-time {
-            font-weight: 600;
-            color: #1a365d;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            font-family: 'Georgia', serif;
+        .info-item {
             display: flex;
             align-items: center;
-        }
-
-        .activity-time::before {
-            content: '⏰';
-            margin-right: 0.8rem;
+            gap: 0.5rem;
             font-size: 1.1rem;
         }
 
-        .activity-type {
-            background: #2c5aa0;
+        .info-icon {
+            color: #e53e3e;
+            font-size: 1.3rem;
+        }
+
+        .cta-button {
+            background: #e53e3e;
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 0;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .activity-title {
-            font-weight: 500;
-            color: #2d3748;
-            margin-bottom: 1rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
             font-size: 1.1rem;
-            line-height: 1.5;
-            font-family: 'Georgia', serif;
-            text-align: justify;
-        }
-
-        .activity-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: flex-start;
-            font-size: 0.95rem;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-
-        .detail-item strong {
-            color: #2c5aa0;
-            margin-right: 0.8rem;
             font-weight: 600;
-            font-family: 'Georgia', serif;
-            min-width: 80px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
         }
 
-        .interactive-element {
-            background: #f0f8f0;
-            border: 2px solid #38a169;
-            border-radius: 0;
+        .cta-button:hover {
+            background: #c53030;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #e53e3e;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .objectives-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .objectives-list li {
+            padding: 0.75rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .objectives-list li::before {
+            content: '•';
+            color: #e53e3e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .schedule-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            border: none;
+            background: white;
+            color: #666;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: #e53e3e;
+            color: white;
+        }
+
+        .schedule-table {
+            background: white;
+            border-radius: 0 8px 8px 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .table-header {
+            background: #e53e3e;
+            color: white;
             padding: 1.5rem;
-            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
             text-align: center;
         }
 
-        .interactive-element::before {
-            content: '🔬';
-            font-size: 1.8rem;
-            display: block;
-            margin-bottom: 0.8rem;
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr 2fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s ease;
         }
 
-        .interactive-element strong {
-            color: #2f855a;
-            font-family: 'Georgia', serif;
-            font-size: 1rem;
+        .table-row:hover {
+            background-color: #fafafa;
+        }
+
+        .table-header-row {
+            background: #e53e3e;
+            color: white;
+            font-weight: 600;
+        }
+
+        .table-header-row:hover {
+            background: #e53e3e;
+        }
+
+        .activity-theme {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+
+        .hexagon-logo {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 100px;
+            background: #e53e3e;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            z-index: 50;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .container {
-                padding: 0 20px;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
-            .section-content {
-                padding: 2rem;
-            }
-
-            .activity-details {
+            .event-info {
                 grid-template-columns: 1fr;
             }
 
-            .objectives li {
-                padding: 1.2rem;
-                margin-left: 0;
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
 
-            .objectives li::before {
-                left: -15px;
+            .nav-menu {
+                display: none;
             }
 
-            .day-header {
-                padding: 1.5rem;
-            }
-
-            .activities {
-                padding: 1.5rem;
-            }
-
-            .activity {
-                padding: 1.5rem;
+            .hexagon-logo {
+                display: none;
             }
         }
-
-        /* Eliminar animaciones excesivas para un look más formal */
     </style>
-<Layout>
-<main>
-        <div class="container">
-            <section class="section">
-                <div class="section-header">
-                    <h2>Sobre la Semana de la Ciencia</h2>
-                </div>
-                <div class="section-content">
-                    <p>
-                        La Semana de la Ciencia constituye una iniciativa académica institucional que tiene como propósito fundamental la celebración y divulgación de los avances científicos desarrollados en el marco de las actividades de investigación del Instituto Tecnológico de Santo Domingo (INTEC). Este evento de carácter multidisciplinario está dirigido a la comunidad académica y al público en general, proporcionando un espacio de encuentro entre investigadores, estudiantes y ciudadanos interesados en el conocimiento científico.
-                    </p>
-                    <p>
-                        La programación incluye conferencias magistrales, talleres especializados, seminarios temáticos y actividades interactivas que abordan problemáticas de actualidad y relevancia en el ámbito científico-tecnológico. Mediante la participación de expertos nacionales e internacionales, se busca promover el intercambio de conocimientos y fortalecer la cultura científica en nuestra sociedad.
-                    </p>
-                </div>
-            </section>
-
-            <section class="section">
-                <div class="section-header">
-                    <h2>Objetivos Institucionales</h2>
-                </div>
-                <div class="section-content">
-                    <ul class="objectives">
-                        <li>
-                            <strong>Promoción del desarrollo científico-tecnológico:</strong> Impulsar la divulgación de los avances científicos que contribuyen a la identificación de soluciones innovadoras para los desafíos económicos, sociales y medioambientales contemporáneos, en el marco de la construcción de un futuro sostenible y equitativo.
-                        </li>
-                        <li>
-                            <strong>Fomento de la vocación investigativa:</strong> Despertar el interés de la ciudadanía, particularmente de los jóvenes, hacia las disciplinas científicas y el fascinante mundo de la investigación, promoviendo la formación de nuevas generaciones de científicos e investigadores.
-                        </li>
-                        <li>
-                            <strong>Fortalecimiento de la cooperación internacional:</strong> Establecer y consolidar vínculos de colaboración académica y científica a nivel internacional, con el propósito de contribuir al logro de los Objetivos de Desarrollo Sostenible y al avance del conocimiento científico global.
-                        </li>
-                        <li>
-                            <strong>Democratización del conocimiento científico:</strong> Facilitar el acceso de la sociedad al conocimiento científico, proporcionando a los ciudadanos las herramientas conceptuales necesarias para la toma de decisiones informadas en los ámbitos profesional, personal y político, contribuyendo así a una ciudadanía más consciente y participativa.
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="section">
-                <div class="section-header">
-                    <h2>Programa Académico</h2>
-                </div>
-                <div class="section-content">
-                    <div class="agenda">
-                        <!-- Miércoles -->
-                        <div class="day">
-                            <div class="day-header">
-                                <div class="day-title">Miércoles</div>
-                                <div class="day-date">06 DE NOVIEMBRE 2024</div>
-                            </div>
-                            <div class="activities">
-                                <div class="activity">
-                                    <div class="activity-time">9:00 AM - 12:00 PM</div>
-                                    <span class="activity-type">Seminario</span>
-                                    <div class="activity-title">
-                                        "Cooperación académica y científica Franco-Dominicana" en marco del proyecto de la Embajada de Francia FEF Ciencia-Caliope-Ref.
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Dr. Ulises Jauregui
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> OSES
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Modalidad:</strong> Híbrida (50 presencial + YouTube live)
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">9:30 AM - 11:00 AM</div>
-                                    <span class="activity-type">Panel</span>
-                                    <div class="activity-title">
-                                        Políticas de Innovación y Tecnologías 4.0 para la sustentabilidad
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Dra. Adelheid Holl del IPP-CSIC-REf. Dr. Victor Gómez, Instituto tecnológico de Santo Domingo, INTEC
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Aula Radial AH
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">11:00 AM - 12:00 PM</div>
-                                    <span class="activity-type">Conferencia</span>
-                                    <div class="activity-title">
-                                        Sustainability and Machine Learning tools for circular economy design
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Amy Landys
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Aula radial EL
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">11:30 AM - 12:00 PM</div>
-                                    <span class="activity-type">Conferencia</span>
-                                    <div class="activity-title">
-                                        "Modelos de nichos para la selección de refugios de aves en respuesta ante el cambio global en República Dominicana."
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Martín Quiroga
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Aula Radial AH
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">2:00 PM - 3:00 PM</div>
-                                    <span class="activity-type">Conferencia</span>
-                                    <div class="activity-title">
-                                        "IA en predicción de la respuesta tumoral después de la cirugía con Gamma Knife"
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Velicko Vranes
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> OSES
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">3:00 PM - 5:00 PM</div>
-                                    <span class="activity-type">Taller</span>
-                                    <div class="activity-title">
-                                        "El proceso de innovación proyectual desvelado: Consejos para formular una idea innovadora"
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Heidi Sánchez
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> OSES
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">5:00 PM - 5:30 PM</div>
-                                    <span class="activity-type">Dinámica</span>
-                                    <div class="activity-title">Actividad interactiva</div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Laboratorio Plazoleta
-                                        </div>
-                                    </div>
-                                    <div class="interactive-element">
-                                        <strong>Actividad Interactiva - ¡Participa!</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Jueves -->
-                        <div class="day">
-                            <div class="day-header">
-                                <div class="day-title">Jueves</div>
-                                <div class="day-date">07 DE NOVIEMBRE 2024</div>
-                            </div>
-                            <div class="activities">
-                                <div class="activity">
-                                    <div class="activity-time">9:30 AM</div>
-                                    <span class="activity-type">Panel</span>
-                                    <div class="activity-title">
-                                        Eco-Parques ONUDI - Organismo Naciones Unidas en Desarrollo Industrial
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> OSES
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">2:00 PM - 4:00 PM</div>
-                                    <span class="activity-type">Taller</span>
-                                    <div class="activity-title">Life Cycle Thinking</div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Amy Landis
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Aula radial EL
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">3:00 PM - 4:00 PM</div>
-                                    <span class="activity-type">Conferencia</span>
-                                    <div class="activity-title">
-                                        Riesgo Sísmico en poblaciones de República Dominicana
-                                    </div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Expositor:</strong> Claudia Germoso
-                                        </div>
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> OSES
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="activity">
-                                    <div class="activity-time">4:00 PM - 4:30 PM</div>
-                                    <span class="activity-type">Dinámica</span>
-                                    <div class="activity-title">Actividad interactiva</div>
-                                    <div class="activity-details">
-                                        <div class="detail-item">
-                                            <strong>Lugar:</strong> Laboratorio Plazoleta
-                                        </div>
-                                    </div>
-                                    <div class="interactive-element">
-                                        <strong>Actividad Interactiva - ¡Participa!</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+</head>
+<body>
+       <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+               <!-- Replace 'your-image-url.jpg' with the actual path to your science week image -->
+                <img 
+            src="/public/imagenes/semana-image.png" 
+                    alt="Semana de la Ciencia 2024 - Ilustración" 
+                    class="hero-image"
+                />
+            </div>
         </div>
-    </main>
-</Layout>
-    <script>
-        // Funcionalidad mínima y profesional
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll para mejor experiencia de usuario
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre la Semana de la Ciencia</h2>
+            <p class="about-text">
+                Realiza una serie de actividades con fines de celebrar la ciencia y a través de ella hacer divulgación de los avances institucionales en la investigación. Es un evento para todo público en el que se realizan talleres, conferencias con temas de actualidad y relevancia, reuniendo experto para los fines y actividades interactivas que son asociadas a la ciencia.
+            </p>
             
-            // Mejorar accesibilidad en elementos interactivos
-            document.querySelectorAll('.activity').forEach(activity => {
-                activity.setAttribute('tabindex', '0');
-                activity.setAttribute('role', 'article');
+            <h3 style="font-size: 1.5rem; color: #333; margin: 2rem 0 1rem 0;">Objetivo:</h3>
+            <ul class="objectives-list">
+                <li>Promover los avances científicos los cuales permiten hallar soluciones a los nuevos desafíos económicos, sociales y medioambientales con los que construir un futuro sostenible.</li>
+                <li>Atraer a los ciudadanos hacia el apasionante mundo de la investigación.</li>
+                <li>Fomentar la cooperación internacional para alcanzar el desarrollo sostenible.</li>
+                <li>Difundir la ciencia a la sociedad, es fundamental para que los individuos tengan los conocimientos necesarios y, de esta forma, puedan elegir sus opciones profesionales, personales y políticas.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <h2 class="section-title">Agenda de actividades</h2>
+            
+            <div class="schedule-tabs">
+                <button class="tab-button active">MIÉRCOLES 06</button>
+                <button class="tab-button">JUEVES 07</button>
+            </div>
+
+            <div class="schedule-table">
+                <div class="table-header">
+                    MIÉRCOLES 06 DE NOVIEMBRE 2024
+                </div>
+                
+                <div class="table-row table-header-row">
+                    <div><strong>HORA</strong></div>
+                    <div><strong>ACTIVIDAD</strong></div>
+                    <div><strong>TEMA</strong></div>
+                    <div><strong>EXPOSITOR</strong></div>
+                    <div><strong>LUGAR</strong></div>
+                </div>
+
+                <div class="table-row">
+                    <div>9:00 AM - 12:00 PM</div>
+                    <div>Seminario</div>
+                    <div class="activity-theme">"Cooperación académica y científica Franco-Dominicana" en Modalidad: Híbrida, 50 participantes presencial y trasmisión en vivo por youtube (ponentes a distancia por ZOOM). marco del proyecto de la Embajada de Francia FEF Ciencia-Caliope-Ref.</div>
+                    <div>Dr. Ulises jauregui</div>
+                    <div>OSES</div>
+                </div>
+
+                <div class="table-row">
+                    <div>9:30 AM - 11:00 AM</div>
+                    <div>Panel</div>
+                    <div class="activity-theme">Políticas de Innovación y Tecnologías 4.0 para la sustentabilidad.</div>
+                    <div>Dra. Adelheid Holl del IPP-CSIC-REF.<br><br>Dr. Víctor Gómez, Instituto tecnológico de Santo Domingo, INTEC</div>
+                    <div>Aula Radial AH</div>
+                </div>
+
+                <div class="table-row">
+                    <div>11:00 AM - 12:00</div>
+                    <div>Conferencia</div>
+                    <div class="activity-theme">Sustainability and Machine Learning tools to for circular economy design.</div>
+                    <div>Amy Landys</div>
+                    <div>Aula radial EL</div>
+                </div>
+
+                <div class="table-row">
+                    <div>11:30 AM a 12:00 PM</div>
+                    <div>Conferencia</div>
+                    <div class="activity-theme">"Modelos de nichos para la selección de refugios de aves en respuesta ante el cambio global en República Dominicana"</div>
+                    <div>Martín Quiroga</div>
+                    <div>Aula Radial AH</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
             });
         });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
     </script>
+</body>
+</html>
+
