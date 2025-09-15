@@ -1,9 +1,29 @@
 ---
 // src/components/NavBar.astro
 import "./Navbar.css";
-
+const {style}=Astro.props
 ---
+<style>
 
+#navbar:has(.desktop-nav:hover) {
+  height:78px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+#navbar:has(.nav-item:hover) .nav-link {
+  color: black;
+}
+
+#navbar.scrolled {
+  height:78px;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+#navbar.scrolled .nav-link {
+  color: black;
+}
+
+</style>
 
 <nav id="navbar">
   <div class="navbar-container">
