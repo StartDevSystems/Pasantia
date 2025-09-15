@@ -1,63 +1,46 @@
 ---
 import "./carrusel.css"
-// Carousel.astro
+
 export interface Slide {
   id: string | number;
   image: string;
   title: string;
   label?: string;
-  labelLink?: string; // <--- PROPIEDAD AÑADIDA
+  labelLink?: string; 
   alt?: string;
 }
 
 export interface Props {
   slides: Slide[];
   height?: string;
-  autoplay?: boolean;
-  autoplayDelay?: number;
 }
 
-const { 
-  slides, 
-  height = "80vh", 
-  autoplay = false, 
-  autoplayDelay = 5000 
-} = Astro.props;
+const { slides, height = "83vh" } = Astro.props;
 ---
 
-<section class="carousel" style="height:83vh;">
-  {slides.map((slide, index) => (
-    <div 
-      class={`carousel-slide ${index === 0 ? 'active' : ''}`}
-      style={`background-image: url('${slide.image}');`}
-      data-slide-index={index}
-    >
-      <div class="carousel-content">
-        <h2>{slide.title}</h2>
-        
-        {/* --- SECCIÓN MODIFICADA --- */}
-        {slide.label && (
-          slide.labelLink ? (
-            <a href={slide.labelLink} class="carousel-label-button">
-              {slide.label}
-            </a>
-          ) : (
-            <p class="carousel-label">{slide.label}</p>
-          )
-        )}
-        {/* --- FIN DE SECCIÓN MODIFICADA --- */}
-
+<section class="carousel" style={`height: ${height};`}>
+  <div class="carousel-slides-container">
+    {slides.map((slide) => (
+      <div class="carousel-slide" style={`background-image: url('${slide.image}');`}>
+        <div class="carousel-content">
+          <h2>{slide.title}</h2>
+          {slide.label && (
+            slide.labelLink ? (
+              <a href={slide.labelLink} class="carousel-label-button">{slide.label}</a>
+            ) : (
+              <p class="carousel-label">{slide.label}</p>
+            )
+          )}
+        </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
   
-  <!-- Flechas de navegación estilo INTEC - esquina inferior derecha -->
   <div class="carousel-navigation">
     <button class="carousel-prev" aria-label="Anterior"></button>
     <button class="carousel-next" aria-label="Siguiente"></button>
   </div>
   
-  <!-- Indicadores de puntos (opcional) -->
   <div class="carousel-indicators">
     {slides.map((_, index) => (
       <button 
@@ -70,116 +53,52 @@ const {
 </section>
 
 <script>
-  // Tu script de JavaScript se mantiene exactamente igual.
-  // No es necesario pegarlo aquí de nuevo para no alargar la respuesta.
-  // Déjalo como lo tienes.
-  class CarouselManager {
+// =========================================================================
+// SCRIPT CORREGIDO: SE HA ELIMINADO LA FUNCIONALIDAD DE ARRASTRE CON MOUSE
+// =========================================================================
+class CarouselManager {
     constructor() {
       this.current = 0;
       this.slides = document.querySelectorAll('.carousel-slide');
       this.dots = document.querySelectorAll('.carousel-dot');
       this.total = this.slides.length;
-      this.autoplayInterval = null;
+      this.container = document.querySelector('.carousel-slides-container');
       
       this.init();
     }
     
     init() {
-      // Botones de navegación
       const nextBtn = document.querySelector('.carousel-next');
       const prevBtn = document.querySelector('.carousel-prev');
       
       if (nextBtn) nextBtn.addEventListener('click', () => this.next());
       if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
       
-      // Indicadores de puntos
       this.dots.forEach((dot, index) => {
         dot.addEventListener('click', () => this.goToSlide(index));
       });
-      
-      // Autoplay si está habilitado
-      const carousel = document.querySelector('.carousel');
-      const autoplay = carousel?.dataset.autoplay === 'true';
-      const delay = parseInt(carousel?.dataset.delay || '5000');
-      
-      if (autoplay) {
-        this.startAutoplay(delay);
-        
-        // Pausar autoplay al hacer hover
-        carousel?.addEventListener('mouseenter', () => this.stopAutoplay());
-        carousel?.addEventListener('mouseleave', () => this.startAutoplay(delay));
-      }
-      
-      // Navegación con teclado
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') this.prev();
-        if (e.key === 'ArrowRight') this.next();
-      });
-      
-      // Soporte para gestos táctiles
-      this.setupTouchNavigation();
     }
-    
+
     next() {
-      this.goToSlide((this.current + 1) % this.total);
+      const nextIndex = (this.current + 1) % this.total;
+      this.goToSlide(nextIndex);
     }
     
     prev() {
-      this.goToSlide((this.current - 1 + this.total) % this.total);
+      const prevIndex = (this.current - 1 + this.total) % this.total;
+      this.goToSlide(prevIndex);
     }
-    
+
     goToSlide(index) {
-      // Remover clases activas
-      this.slides[this.current]?.classList.remove('active');
+      if (!this.container || index < 0 || index >= this.total) return;
+      this.container.style.transform = `translateX(-${index * 100}%)`;
       this.dots[this.current]?.classList.remove('active');
-      
-      // Actualizar índice actual
+      this.dots[index]?.classList.add('active');
       this.current = index;
-      
-      // Agregar clases activas
-      this.slides[this.current]?.classList.add('active');
-      this.dots[this.current]?.classList.add('active');
     }
-    
-    startAutoplay(delay) {
-      this.stopAutoplay();
-      this.autoplayInterval = setInterval(() => this.next(), delay);
-    }
-    
-    stopAutoplay() {
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-        this.autoplayInterval = null;
-      }
-    }
-    
-    setupTouchNavigation() {
-      let startX = 0;
-      let endX = 0;
-      
-      const carousel = document.querySelector('.carousel');
-      
-      carousel?.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-      });
-      
-      carousel?.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-          if (diff > 0) {
-            this.next(); // Swipe left - next slide
-          } else {
-            this.prev(); // Swipe right - previous slide
-          }
-        }
-      });
-    }
-  }
+}
   
-  // Inicializar cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     new CarouselManager();
-  });
+});
 </script>

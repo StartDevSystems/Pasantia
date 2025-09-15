@@ -1,104 +1,60 @@
 ---
+/**
+ * @archivo     ConvocatoriaInvestigacion.astro
+ * @descripcion Página de convocatorias de investigación. Muestra diferentes
+ *              convocatorias que se pueden filtrar mediante un menú lateral
+ *              interactivo, replicando el diseño del sitio de investigación de INTEC.
+ * @autor       Micchael Consuegra Sanchez
+ * @version     1.1.0
+ * @fecha       09 de Septiembre de 2025
+ * @empresa     Universidad Nacional Evangélica (UNEV)
+ */
+
 import Layout from '../../layouts/Layout.astro';
 
 const pageTitle = "Convocatorias de Investigación - UNEV";
 
+const sidebarLinks = [
+  { id: 'fondos-unev', label: 'FONDOS UNEV' },
+  { id: 'estudiantes', label: 'ESTUDIANTES' },
+  { id: 'fondos-externos', label: 'FONDO EXTERNOS' }
+];
+
 const convocatoriasData = [
   {
     id: 'fondos-unev',
-    label: 'FONDOS UNEV',
-    contentBlocks: [
-      {
-        type: 'title',
-        content: 'Presentacion de propuestas de investigacion para financiamiento con fondos propios de UNEV'
-      },
-      {
-        type: 'text',
-        content: 'La Vicerrectoría de Investigación y Vinculación de UNEV convoca a todo el personal docente y administrativo a presentar propuestas de investigación para financiarse con fondos propios de la institución. El objetivo general de esta convocatoria es impulsar la investigación de calidad y multidisciplinaria, alineada con las líneas estratégicas de la institución.'
-      },
-      {
-        type: 'cards',
-        columns: 3,
-        items: [
-          { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.', link: true },
-          { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan proyectos de naturaleza básica, aplicada, o de desarrollo tecnológico en todas las áreas del conocimiento, priorizando investigaciones que se alineen con temas como inteligencia artificial, energía renovable, bioprospección, economía, salud, entre otros.', link: true },
-          { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas mediante un procedimiento de doble ciego por pares calificados y deben incluir el aval del área académica correspondiente. Se priorizarán propuestas de investigadores sin proyectos activos y se tomarán en cuenta aspectos éticos y legales.', link: true }
-        ]
-      },
-      {
-        type: 'text',
-        content: 'La convocatoria busca no solo apoyar la investigación en UNEV, sino también establecer vínculos con fuentes externas que contribuyan a la realización de proyectos de alto impacto y relevancia social. Se invita a todos los interesados a participar y presentar sus propuestas.'
-      },
-      {
-        type: 'cards',
-        columns: 2,
-        items: [
-          { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de terceros, siempre que estén debidamente registradas en el presupuesto.' },
-          { icon: 'lupa', title: 'Resultados Esperados', text: 'Los investigadores seleccionados deberán entregar informes trimestrales, un informe final, y un artículo científico en una revista indexada.' }
-        ]
-      }
+    title: 'Presentacion de propuestas de investigacion para financiamiento con fondos propios de UNEV',
+    intro: 'La Vicerrectoría de Investigación y Vinculación de UNEV convoca a todo el personal docente y administrativo a presentar propuestas de investigación para financiarse con fondos propios de la institución. El objetivo general de esta convocatoria es impulsar la investigación de calidad y multidisciplinaria, alineada con las líneas estratégicas de la institución.',
+    cards: [
+      { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.' },
+      { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan proyectos de naturaleza básica, aplicada, o de desarrollo tecnológico en todas las áreas del conocimiento, priorizando investigaciones que se alineen con temas como inteligencia artificial, energía renovable, bioprospección, economía, salud, entre otros.' },
+      { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas mediante un procedimiento de doble ciego por pares calificados y deben incluir el aval del área académica correspondiente. Se priorizarán propuestas de investigadores sin proyectos activos y se tomarán en cuenta aspectos éticos y legales.' },
+      { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de terceros, siempre que estén debidamente registradas en el presupuesto.' },
+      { icon: 'lupa', title: 'Resultados Esperados', text: 'Los investigadores seleccionados deberán entregar informes trimestrales, un informe final, y un artículo científico en una revista indexada.' }
     ]
   },
   {
     id: 'estudiantes',
-    label: 'ESTUDIANTES',
-    contentBlocks: [
-      {
-        type: 'title',
-        content: 'Presentacion de propuestas para desarrollo de proyectos estudiantiles con fondos propios'
-      },
-      {
-        type: 'text',
-        content: 'Esta convocatoria busca fomentar la excelencia en la investigación, contribuir a la solución de problemas sociales y ambientales, y promover el desarrollo tecnológico y científico en la región. Se anima a todos los estudiantes a participar y presentar sus propuestas.<br><br>La Vicerrectoría de Investigación y Vinculación de UNEV convoca a los estudiantes de grado a presentar propuestas de investigación, innovación y emprendimiento para ser financiadas con fondos propios de la institución. El objetivo general de esta convocatoria es fomentar la creatividad y el desarrollo de proyectos que generen un impacto significativo en diversas áreas del conocimiento y que estén alineados con la estrategia institucional.'
-      },
-      {
-        type: 'cards',
-        columns: 3,
-        items: [
-          { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.', link: true },
-          { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan propuestas en todas las áreas del saber, excluyendo investigaciones de tipo comercial. Se priorizarán los proyectos de estudiantes inscritos en Trabajo de Grado que tengan alto potencial de impacto y viabilidad para la incubación.', link: true },
-          { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas por el Consejo de Investigación, el Comité de Ética y el área académica correspondiente. Se considerará la calidad técnica, originalidad, metodología y relevancia social de los proyectos.', link: true }
-        ]
-      },
-      {
-        type: 'cards',
-        columns: 2,
-        items: [
-          { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de fondos de terceros.' },
-          { icon: 'lupa', title: 'Resultados Esperados', text: 'Los estudiantes seleccionados deberán entregar informes trimestrales, una presentación final y participar en actividades de divulgación científica.' }
-        ]
-      }
+    title: 'Presentacion de propuestas para desarrollo de proyectos estudiantiles con fondos propios',
+    intro: 'La convocatoria busca fomentar la excelencia en la investigación, contribuir a la solución de problemas sociales y ambientales, y promover el desarrollo tecnológico y científico en la región. Se invita a todos los interesados a participar activamente en esta oportunidad. La Vicerrectoría de Investigación y Vinculación del INTEC convoca a los estudiantes de grado a presentar propuestas de investigación, innovación y emprendimiento para ser financiadas con fondos propios de la institución. El objetivo general de esta convocatoria es fomentar la creatividad y el desarrollo de proyectos que generen un impacto significativo en diversas áreas del conocimiento y que estén alineados con la estrategia institucional.',
+    cards: [
+        { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.' },
+        { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan propuestas en todas las áreas del saber, excluyendo investigaciones de tipo comercial. Se priorizarán los proyectos de estudiantes inscritos en Trabajo de Grado que tengan alto potencial de impacto y viabilidad para la incubación.' },
+        { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas por el Consejo de Investigación, el Comité de Ética y el área académica correspondiente. Se considerará la calidad técnica, originalidad, metodología y relevancia social de los proyectos.' },
+        { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de fondos de terceros.' },
+        { icon: 'lupa', title: 'Resultados Esperados', text: 'Los estudiantes seleccionados deberán entregar informes trimestrales, una presentación final y participar en actividades de divulgación científica.' }
     ]
   },
   {
     id: 'fondos-externos',
-    label: 'FONDO EXTERNOS',
-    contentBlocks: [
-      {
-        type: 'title',
-        content: 'Convocatoria para proyectos de investigación con fondos externos'
-      },
-      {
-        type: 'text',
-        content: 'La Vicerrectoría de Investigación y Vinculación de UNEV convoca a todo el personal docente y administrativo a presentar propuestas de investigación para ser financiadas mediante fondos externos. El objetivo general de esta convocatoria es fomentar la investigación innovadora y colaborativa que aborde problemáticas relevantes en diversas áreas del conocimiento, contribuyendo así al desarrollo científico y tecnológico del país.'
-      },
-      {
-        type: 'cards',
-        columns: 3,
-        items: [
-          { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.', link: true },
-          { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan investigaciones de carácter básico, aplicado y de desarrollo tecnológico, abarcando todas las disciplinas científicas. Las propuestas deberán alinearse con las prioridades institucionales y se priorizarán aquellas de carácter multidisciplinario y que no tengan proyectos activos asociados.', link: true },
-          { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas mediante un proceso de revisión por pares, y se tomarán en cuenta aspectos como la calidad científica, la originalidad y la viabilidad del proyecto. El Consejo de Investigación tendrá la autoridad final para seleccionar los proyectos y asignar los fondos.', link: true }
-        ]
-      },
-      {
-        type: 'cards',
-        columns: 2,
-        items: [
-          { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de fondos de terceros.' },
-          { icon: 'lupa', title: 'Resultados Esperados', text: 'Las propuestas serán evaluadas mediante un proceso de revisión por pares, y se tomarán en cuenta aspectos como la calidad científica, la originalidad y la viabilidad del proyecto. El Consejo de Investigación tendrá la autoridad final para seleccionar los proyectos y asignar los fondos.' }
-        ]
-      }
+    title: 'Convocatoria para proyectos de investigación con fondos externos',
+    intro: 'La Vicerrectoría de Investigación y Vinculación convoca a todo el personal docente y administrativo a presentar propuestas de investigación para ser financiadas mediante fondos externos. El objetivo general de esta convocatoria es fomentar la investigación innovadora y colaborativa que aborde problemáticas relevantes en diversas áreas del conocimiento, contribuyendo así al desarrollo científico y tecnológico del país.',
+    cards: [
+        { icon: 'calendario', title: 'Plazos y Presentación', text: 'La fecha será anunciada por los medios instituciones, y la propuesta debe ser enviada a través de la plataforma institucional. Las propuestas deben seguir un formato específico y tener un máximo de 10 páginas.' },
+        { icon: 'diana', title: 'Ámbito de Investigación', text: 'Se aceptan investigaciones de carácter básico, aplicado y de desarrollo tecnológico, abarcando todas las disciplinas científicas. Las propuestas deberán alinearse con las prioridades institucionales y se priorizarán aquellas de carácter multidisciplinario y que no tengan proyectos activos asociados.' },
+        { icon: 'usuarios', title: 'Evaluación y Selección', text: 'Las propuestas serán evaluadas mediante un proceso de revisión por pares, y se tomarán en cuenta aspectos como la calidad científica, la originalidad y la viabilidad del proyecto. El Consejo de Investigación tendrá la autoridad final para seleccionar los proyectos y asignar los fondos.' },
+        { icon: 'mano-moneda', title: 'Financiamiento y Duración', text: 'El monto y la duración depende de cada convocatoria. Se aceptan contrapartidas de fondos de terceros.' },
+        { icon: 'lupa', title: 'Resultados Esperados', text: 'Las propuestas serán evaluadas mediante un proceso de revisión por pares, y se tomarán en cuenta aspectos como la calidad científica, la originalidad y la viabilidad del proyecto. El Consejo de Investigación tendrá la autoridad final para seleccionar los proyectos y asignar los fondos.' }
     ]
   }
 ];
@@ -116,7 +72,7 @@ const convocatoriasData = [
             <aside class="sidebar">
                 <nav class="sidebar-nav">
                     <ul>
-                        {convocatoriasData.map((link, index) => (
+                        {sidebarLinks.map((link, index) => (
                             <li>
                                 <button class:list={["nav-btn", { active: index === 0 }]} data-target={link.id}>
                                     {link.label}
@@ -130,40 +86,28 @@ const convocatoriasData = [
             <div class="content-area">
                 {convocatoriasData.map((convocatoria, index) => (
                     <section id={convocatoria.id} class:list={["content-section", { active: index === 0 }]}>
-                        {convocatoria.contentBlocks.map(block => {
-                            if (block.type === 'title') {
-                                return <h2 class="section-title">{block.content}</h2>;
-                            }
-                            if (block.type === 'text') {
-                                return <div class="section-intro" set:html={block.content} />;
-                            }
-                            if (block.type === 'cards') {
-                                const gridClass = block.columns === 2 ? 'cols-2' : 'cols-3';
-                                return (
-                                    <div class:list={["info-grid", gridClass]}>
-                                        {block.items.map(card => (
-                                            <article class="info-card">
-                                                <header class="info-card-header">
-                                                    <div class="info-card-icon">
-                                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            {card.icon === 'calendario' && <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></>}
-                                                            {card.icon === 'diana' && <><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></>}
-                                                            {card.icon === 'usuarios' && <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></>}
-                                                            {card.icon === 'mano-moneda' && <><path d="M14 9.172a4.015 4.015 0 0 1-4.344 4.158A4 4 0 0 1 6 10a4 4 0 0 1 4-4c.513 0 1.006.097 1.46.273"></path><path d="M15 11.328a4.015 4.015 0 0 1-4.344 4.158A4 4 0 0 1 7 12a4 4 0 0 1 4-4c.513 0 1.006.097 1.46.273"></path><path d="M2 12h20"></path><path d="M17.5 17.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path><path d="M6.5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path></>}
-                                                            {card.icon === 'lupa' && <><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></>}
-                                                        </svg>
-                                                    </div>
-                                                    <h3 class="info-card-title">{card.title}</h3>
-                                                </header>
-                                                <p class="info-card-text">{card.text}</p>
-                                                {card.link && <a href="#" class="info-card-link">VER DETALLE</a>}
-                                            </article>
-                                        ))}
-                                    </div>
-                                );
-                            }
-                            return null;
-                        })}
+                        <h2 class="section-title">{convocatoria.title}</h2>
+                        <div class="section-intro" set:html={convocatoria.intro.replace(/\n/g, '<br/>')} />
+                        <div class="info-grid">
+                            {convocatoria.cards.map(card => (
+                                <article class="info-card">
+                                    <header class="info-card-header">
+                                        <div class="info-card-icon">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                {card.icon === 'calendario' && <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></>}
+                                                {card.icon === 'diana' && <><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></>}
+                                                {card.icon === 'usuarios' && <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></>}
+                                                {card.icon === 'mano-moneda' && <><path d="M10 17c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path><path d="M14 7h-4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4l2 2 2-2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2l-2-2-2 2z"></path></>}
+                                                {card.icon === 'lupa' && <><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></>}
+                                            </svg>
+                                        </div>
+                                        <h3 class="info-card-title">{card.title}</h3>
+                                    </header>
+                                    <p class="info-card-text">{card.text}</p>
+                                    <a href="#" class="info-card-link">VER DETALLE</a>
+                                </article>
+                            ))}
+                        </div>
                     </section>
                 ))}
             </div>
@@ -172,112 +116,112 @@ const convocatoriasData = [
 </Layout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+/*
+ * =====================================================================================
+ * ESTILOS CSS DE LA PÁGINA DE CONVOCATORIAS
+ * Autor: Micchael Consuegra Sanchez
+ * =====================================================================================
+ */
+
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
   :root {
     --color-rojo-unev: #960201;
     --color-texto-principal: #212529;
     --color-texto-secundario: #5a5a5a;
-    --color-borde: #e7e7e7;
+    --color-borde: #dee2e6;
     --color-fondo-claro: #f8f9fa;
     --font-principal: 'Lato', sans-serif;
   }
-  * { box-sizing: border-box; }
   .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-  .page-hero { background-color: var(--color-rojo-unev); color: white; padding: 3rem 0; }
-  .page-hero h1 { font-size: 2.25rem; font-weight: 700; }
+  .page-hero { background-color: var(--color-rojo-unev); color: white; padding: 4rem 0 3rem 0; }
+  .page-hero h1 { font-size: 2.5rem; font-weight: 700; text-align: left; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;}
   .main-content { padding: 4rem 0; font-family: var(--font-principal); background-color: white; }
-  .content-wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 3rem; }
+  .content-wrapper { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; }
   
-  .sidebar { position: sticky; top: 100px; align-self: start; }
-  .sidebar-nav ul { list-style: none; padding: 0; margin: 0; background-color: var(--color-fondo-claro); }
+  /* --- ESTILOS DEL SIDEBAR CON CORRECCIONES --- */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    margin-left: -5.9rem; /* <-- TU AJUSTE RESTAURADO */
+  }
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* --- CAJA GRIS ELIMINADA (background, padding y border) --- */
+  }
   .nav-btn {
-    background: transparent; border: none; width: 100%; text-align: left;
-    padding: 1rem 1.2rem;
-    font-size: 0.8rem; letter-spacing: 0.5px; color: var(--color-texto-secundario);
-    cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; text-transform: uppercase;
-    font-weight: 700; border-left: 4px solid transparent;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-left: 3px solid transparent;
   }
   .nav-btn:hover { color: var(--color-rojo-unev); }
-  .nav-btn.active { color: var(--color-rojo-unev); border-left-color: var(--color-rojo-unev); background-color: white; }
+  .nav-btn.active {
+    color: var(--color-rojo-unev);
+    border-left-color: var(--color-rojo-unev);
+    background-color: transparent; /* Fondo transparente para el activo */
+  }
 
+  /* --- RESTO DE ESTILOS (INTACTOS) --- */
   .content-section { display: none; }
   .content-section.active { display: block; animation: fadeIn 0.4s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   
-  .section-title { font-size: 2rem; color: var(--color-rojo-unev); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.3; }
-  .section-intro { font-size: 1rem; color: var(--color-texto-secundario); line-height: 1.8; margin-bottom: 3rem; }
+  .section-title { font-size: 1.75rem; color: var(--color-rojo-unev); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.4; }
+  .section-intro { font-size: 1rem; color: var(--color-texto-secundario); line-height: 1.7; margin-bottom: 3rem; }
   
-  .info-grid { display: grid; gap: 1.5rem; margin-bottom: 3rem; }
-  .info-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .info-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-
-  .info-card { 
-    background: white; 
-    border: 1px solid var(--color-borde);
-    padding: 2.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .info-card { background: var(--color-fondo-claro); border: 1px solid var(--color-borde); padding: 2rem; }
+  .info-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .info-card-icon {
+    width: 48px; height: 48px; border-radius: 50%; background-color: rgba(150, 2, 1, 0.1);
+    color: var(--color-rojo-unev); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .info-card-header { 
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
-    gap: 1.25rem; 
-    margin-bottom: 1.25rem; 
-  }
-  .info-card-icon { color: var(--color-rojo-unev); }
-  .info-card-title { 
-    font-size: 1.5rem;
-    font-weight: 900; 
-    color: var(--color-texto-principal); 
-    line-height: 1.4; 
-  }
-  .info-card-text { 
-    font-size: 0.9rem;
-    color: var(--color-texto-secundario); 
-    line-height: 1.7; 
-    flex-grow: 1; 
-  }
-  .info-card-link { 
-    margin-top: 1.5rem; 
-    font-size: 0.8rem; 
-    color: var(--color-texto-secundario); 
-    text-decoration: none; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-  }
+  .info-card-title { font-size: 1.1rem; font-weight: 700; color: var(--color-texto-principal); }
+  .info-card-text { font-size: 0.9rem; color: var(--color-texto-secundario); line-height: 1.6; }
+  .info-card-link { display: block; margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-texto-secundario); text-decoration: none; font-weight: 700; text-transform: uppercase; }
   .info-card-link:hover { color: var(--color-rojo-unev); }
 
-  @media (max-width: 992px) {
-    .content-wrapper { grid-template-columns: 1fr; }
-    .sidebar { position: static; margin-bottom: 2.5rem; }
-    .sidebar-nav ul { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 1rem; background: transparent; }
-    .nav-btn { border: 1px solid var(--color-borde); border-radius: 4px; border-left-width: 1px; white-space: nowrap; }
-    .nav-btn.active { border-color: var(--color-rojo-unev); }
-    .info-grid.cols-3, .info-grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  }
-
+  @media (max-width: 992px) { .info-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 768px) {
-    .section-title { font-size: 1.75rem; }
-    .info-grid.cols-3, .info-grid.cols-2 { grid-template-columns: 1fr; }
+    .content-wrapper { grid-template-columns: 1fr; }
+    .sidebar { position: static; margin-bottom: 2rem; margin-left: 0; }
+    .sidebar-nav ul { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 1rem; border: none; padding-left: 0; background: transparent; }
+    .nav-btn { border: 1px solid var(--color-borde); border-radius: 4px; border-left: 1px solid var(--color-borde); }
+    .nav-btn.active { border-color: var(--color-rojo-unev); border-left-color: var(--color-rojo-unev); }
+    .info-grid { grid-template-columns: 1fr; }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+/*
+ * =====================================================================================
+ * SCRIPT DE INTERACTIVIDAD
+ * Autor: Micchael Consuegra Sanchez
+ * =====================================================================================
+ */
+document.addEventListener('DOMContentLoaded', () => {
     const navButtons = document.querySelectorAll('.nav-btn');
     const contentSections = document.querySelectorAll('.content-section');
     navButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetId = button.dataset.target;
-        navButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        contentSections.forEach(section => {
-          section.classList.toggle('active', section.id === targetId);
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            contentSections.forEach(section => {
+                section.classList.toggle('active', section.id === targetId);
+            });
         });
-      });
     });
-  });
+});
 </script>
