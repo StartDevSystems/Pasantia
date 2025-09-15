@@ -1,6 +1,6 @@
 ---
-// --- DATOS PÁGINA 1 ---
 import Layout from "../../../layouts/Layout.astro";
+
 const gruposDeInvestigacion = [
   { nombre: 'ARIMA', slug: 'arima' },
   { nombre: 'Arqueología y Culturas del Caribe', slug: 'arqueologia-culturas-caribe' },
@@ -13,94 +13,147 @@ const gruposDeInvestigacion = [
   { nombre: 'Energía Renovable, ER', slug: 'energia-renovable' },
 ];
 ---
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grupos de Investigación - UNEV</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<Layout>
-<div class="page-container">
-        <main>
-            <h1 class="main-title">Grupos de investigación</h1>
-            
-            <div class="grid-container">
-                {gruposDeInvestigacion.map(grupo => (
-                    <a href={`/grupos/${grupo.slug}`} class="card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                        </div>
-                        <span class="card-title">{grupo.nombre}</span>
-                    </a>
-                ))}
-            </div>
 
-          <div class="pagination-container">
-                 
-                <span class="page-number active">1</span>
-                <a href="/InvestigaUnev/Grupo_Investigacion/pagina-2" class="page-number">2</a>
-             <a href="/InvestigaUnev/Grupo_Investigacion/pagina-2" class="page-arrow" aria-label="Página siguiente">&rsaquo;</a>
+<Layout>
+  <div class="page-container">
+    <main>
+      <h1 class="main-title">
+        Grupos de <span class="highlight">investigación</span>
+      </h1>
+      
+      <div class="grid-container">
+        {gruposDeInvestigacion.map(grupo => (
+          <a href={`/grupos/${grupo.slug}`} class="card">
+            <div class="icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <span class="card-title">{grupo.nombre}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="pagination-container">
+        <span class="page-number active">1</span>
+        <a href="/InvestigaUnev/Grupo_Investigacion/pagina-2" class="page-number">2</a>
+        <a href="/InvestigaUnev/Grupo_Investigacion/pagina-2" class="page-arrow" aria-label="Página siguiente">&rsaquo;</a>
+      </div>
+      
+      <section class="cta-section">
+        <div class="cta-content">
+          <h2>¿Deseas ser parte de un grupo de investigación o crear uno?</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed diam nonumy eirmod tempor invidunt ut.</p>
+          <a href="#" class="cta-button">SOLICITAR INFORMACIÓN</a>
         </div>
-            
-            <section class="cta-section">
-                <div class="cta-content">
-                    <h2>¿Deseas ser parte de un grupo de investigación o crear uno?</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed diam nonumy eirmod tempor invidunt ut.</p>
-                    <a href="#" class="cta-button">SOLICITAR INFORMACIÓN</a>
-                </div>
-            </section>
-        </main>
-    </div>
+      </section>
+    </main>
+  </div>
 </Layout>
+
 <style>
-    :root {
-        --color-rojo-principal: #e4002b;
-        --color-fondo: #ffffff;
-        --color-texto: #333333;
-        --color-texto-secundario: #666;
-        --color-borde: #e0e0e0;
-        --color-gris-claro: #f9f9f9;
-    }
-    body {
-        font-family: 'Roboto', sans-serif;
-        background-color: var(--color-fondo);
-        color: var(--color-texto);
-        margin: 0;
+/* --- 1. CONFIGURACIÓN GENERAL Y VARIABLES DE COLOR --- */
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+  :root {
+    --color-rojo-unev: #960201;
+    --color-dorado-unev: #bc9201;
+    --color-texto-principal: #212529;
+    --color-texto-secundario: #5a5a5a;
+    --color-borde: white;
+    --color-fondo-claro: white;
+    --font-principal: 'Lato', sans-serif;
+  }
+  main {
+    font-family: var(--font-principal);
+    margin-top: 4.5rem;
+    background-color: white; /* Fondo de la página en blanco */
+  }
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* --- 2. TÍTULO PRINCIPAL DE LA PÁGINA (ESTILO FINAL) --- */
+  .main-title {
+    font-size: 2.25rem; /* Un poco más grande */
+    font-weight: 300;
+    color: var(--color-texto-principal);
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem; /* Más espacio para la barra */
+    position: relative;
+    border-bottom: none;
+  }
+  .main-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%; /* 1. La centramos verticalmente */
+    transform: translateY(-50%); /* 2. Ajustamos la posición para que quede perfecta */
+    height: 80%; /* <-- 3. AQUÍ CONTROLAS EL LARGO (60% de la altura del título) */
+    width: 8px;
+    background-color: var(--color-dorado-unev);
 }
-main{
-margin-top:4.5rem;
-}
-    .site-header { border-bottom: 1px solid var(--color-borde); padding: 1rem 0; }
-    .header-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: 700; font-size: 1.5rem; }
-    nav a { margin-left: 2rem; text-decoration: none; color: var(--color-texto-secundario); font-weight: 500; font-size: 0.9rem; }
-    .page-container { max-width: 1100px; margin: 0 auto; padding: 2rem 20px; }
-    .main-title { font-size: 2rem; font-weight: 700; color: var(--color-rojo-principal); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-borde); }
-    .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .card { background-color: var(--color-gris-claro); border: 1px solid var(--color-borde); border-radius: 8px; padding: 2rem; display: flex; align-items: center; text-decoration: none; color: var(--color-texto); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
-    .icon-container { color: var(--color-rojo-principal); margin-right: 1.5rem; flex-shrink: 0; }
-    .card-title { font-size: 1.1rem; font-weight: 500; line-height: 1.4; }
-    .pagination-container { text-align: center; margin: 3rem 0; }
-    .page-number, .page-arrow { display: inline-block; padding: 0.4rem 0.8rem; margin: 0 0.2rem; font-size: 0.9rem; text-decoration: none; color: var(--color-texto-secundario); border-radius: 4px; }
-    .page-number:hover, .page-arrow:hover { color: var(--color-rojo-principal); background-color: var(--color-gris-claro); }
-    .page-number.active { color: var(--color-texto); font-weight: 700; cursor: default; }
-    .page-number.active:hover { background-color: transparent; color: var(--color-texto); }
-    .cta-section { background-color: var(--color-rojo-principal); color: white; border-radius: 8px; padding: 1px; }
-    .cta-content { border: 1px solid white; border-radius: 6px; margin: 2rem; padding: 3rem; text-align: center; }
-    .cta-content h2 { font-size: 2.2rem; font-weight: 700; margin: 0 0 1rem 0; }
-    .cta-content p { font-size: 1rem; max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
-    .cta-button { background-color: white; color: var(--color-rojo-principal); padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; }
-    .site-footer { background-color: var(--color-gris-claro); border-top: 1px solid var(--color-borde); padding: 2rem 0; font-size: 0.9rem; color: var(--color-texto-secundario); }
-    .footer-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-links a { margin-left: 1.5rem; color: var(--color-texto-secundario); text-decoration: none; }
-    @media (max-width: 900px) { .grid-container { grid-template-columns: repeat(2, 1fr); } nav { display: none; } }
-    @media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } .footer-container { flex-direction: column; gap: 1rem; } }
+  .main-title .highlight {
+    color: var(--color-rojo-unev);
+    font-weight: 700;
+  }
+
+  /* --- 3. CUADRÍCULA DE TARJETAS DE GRUPOS (ESTILO FINAL) --- */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .card {
+    background-color: var(--color-fondo-claro); /* Fondo gris claro */
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    padding: 2rem 1.5rem; /* Más espaciado interno */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 80px; /* Asegura una altura mínima */
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+  }
+  .icon-container {
+    color: var(--color-rojo-unev);
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+  }
+  .icon-container svg { /* Hacemos el ícono más grande */
+      width: 50px;
+      height: 50px;
+  }
+  .card-title {
+    font-size: 1.05rem; /* Letra un poco más grande */
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* --- 4. PAGINACIÓN --- */
+  .pagination-container { text-align: center; margin: 3rem 0; }
+  .page-number, .page-arrow { display: inline-block; padding: 0.4rem 0.8rem; margin: 0 0.2rem; font-size: 0.9rem; text-decoration: none; color: var(--color-texto-secundario); border-radius: 4px; }
+  .page-number:hover, .page-arrow:hover { color: var(--color-rojo-unev); background-color: var(--color-fondo-claro); }
+  .page-number.active { color: var(--color-texto-principal); font-weight: 700; cursor: default; }
+  .page-number.active:hover { background-color: transparent; color: var(--color-texto-principal); }
+  
+  /* --- 5. SECCIÓN DE LLAMADA A LA ACCIÓN (CTA) --- */
+  .cta-section { background-color: var(--color-rojo-unev); color: white; border-radius: 8px; padding: 1px; }
+  .cta-content { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; margin: 2rem; padding: 3rem; text-align: center; }
+  .cta-content h2 { font-size: 2rem; font-weight: 700; margin: 0 0 1rem 0; }
+  .cta-content p { font-size: 1rem; max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
+  .cta-button { background-color: white; color: var(--color-rojo-unev); padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; }
+  
+  /* --- 6. ESTILOS PARA PANTALLAS PEQUEÑAS (RESPONSIVE) --- */
+  @media (max-width: 900px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } }
 </style>
