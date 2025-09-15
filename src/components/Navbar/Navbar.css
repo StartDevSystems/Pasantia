@@ -1,9 +1,11 @@
 #navbar {
   position: fixed;
   top: 0;
+background-color: rgba(255, 255, 255, 0.95);
+
   width: 100%;
   z-index: 1000;
-  height:0.5px;
+  height:78px;
   transition: all 0.3s ease; 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -90,17 +92,17 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  color: #fff;
+  color: black;
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: #bc9201;
   background-color: rgba(239, 246, 255, 1);
   transform: translateY(-2px);
 }
 
 .nav-link.active {
-  color: #2563eb;
+  color: ##960201;
   background-color: rgba(239, 246, 255, 1);
   font-weight: 600;
 }
@@ -167,7 +169,7 @@
 
 .dropdown-link:hover {
   color: white;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #bc9201, #bc9201);
   transform: translateX(4px);
 }
 
