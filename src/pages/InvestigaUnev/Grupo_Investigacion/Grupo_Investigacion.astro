@@ -25,12 +25,16 @@ const gruposDeInvestigacion = [
         {gruposDeInvestigacion.map(grupo => (
           <a href={`/grupos/${grupo.slug}`} class="card">
             <div class="icon-container">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
+             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                <path class="icono-secundario" d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path class="icono-secundario" d="M16 3.13a4 4 0 0 1 0 7.75" />
+    
+                     <!-- Piezas de la persona de adelante (en rojo) -->
+                <path class="icono-principal" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle class="icono-principal" cx="9" cy="7" r="4" />
+             </svg>
+
             </div>
             <span class="card-title">{grupo.nombre}</span>
           </a>
@@ -125,14 +129,31 @@ const gruposDeInvestigacion = [
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
   }
   .icon-container {
-    color: var(--color-rojo-unev);
     margin-right: 1.5rem;
     flex-shrink: 0;
-  }
+}
   .icon-container svg { /* Hacemos el ícono más grande */
       width: 50px;
       height: 50px;
   }
+/* Estilo para la persona de adelante */
+.icono-principal {
+    stroke: var(--color-rojo-unev);
+    transition: stroke 0.3s ease;
+}
+
+/* Estilo para la persona de atrás */
+.icono-secundario {
+    stroke: var(--color-dorado-unev);
+    transition: stroke 0.3s ease;
+}
+
+/* Efecto opcional al pasar el ratón: ¡ambos se ponen dorados! */
+.card:hover .icono-principal,
+.card:hover .icono-secundario {
+    
+}
+
   .card-title {
     font-size: 1.05rem; /* Letra un poco más grande */
     font-weight: 500;
