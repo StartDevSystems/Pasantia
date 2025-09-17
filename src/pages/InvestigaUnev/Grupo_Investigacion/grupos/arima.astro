@@ -1,0 +1,193 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+
+const grupo = {
+  slug: 'arima',
+  nombre: 'ARIMA',
+  lider: { nombre: 'Patricia Liranzo Soto', email: 'patricia.liranzo@unev.edu.do' },
+  miembros: [
+    { nombre: 'Maricécili Mora Ramis', email: 'maricecili.mora@unev.edu.do' },
+    { nombre: 'Julissa Gómez', email: 'julissa.gomez@unev.edu.do' },
+    { nombre: 'Erimar Hurtado Tillman', email: 'erimar.hurtado@unev.edu.do' },
+    { nombre: 'Mariel Stefany Ferreira Sánchez', email: 'mariel.fs0922@gmail.com' }
+  ],
+  area: 'Psicología',
+  logo: 'https://investigacion.intec.edu.do/templates/yootheme/cache/28/about-avatar-28d3091c.png'
+};
+---
+
+<Layout title={`Grupo de Investigación: ${grupo.nombre}`}>
+  <main class="main-content">
+    <div class="container page-wrapper">
+
+      <!-- Columna Izquierda: Tarjeta de Perfil del Grupo -->
+      <aside class="group-card">
+        <div class="group-logo">
+          <img src={grupo.logo} alt={`Logo de ${grupo.nombre}`} />
+        </div>
+        <h2 class="group-name">{grupo.nombre}</h2>
+      </aside>
+
+      <!-- Columna Derecha: Información Principal -->
+      <section class="group-info">
+        <h1 class="info-title">
+          Información <span class="highlight">general</span>
+        </h1>
+        <div class="info-block">
+          <p class="leader-info">
+            <strong>Líder del Grupo:</strong> {grupo.lider.nombre} - <a href={`mailto:${grupo.lider.email}`}>{grupo.lider.email}</a>
+          </p>
+        </div>
+        {grupo.miembros && grupo.miembros.length > 0 && (
+          <div class="info-block">
+            <ul class="members-list">
+              {grupo.miembros.map(miembro => (
+                <li>
+                  {miembro.nombre} - <a href={`mailto:${miembro.email}`}>{miembro.email}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {grupo.area && (
+          <div class="info-block">
+            <p class="area-info">{grupo.area}</p>
+          </div>
+        )}
+      </section>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+/*
+ * =====================================================================================
+ * ESTILOS CSS DE LA PÁGINA DE DETALLE DE GRUPO DE INVESTIGACIÓN
+ * Autor: Micchael Consuegra Sanchez
+ * =====================================================================================
+ */
+
+  /* --- 1. CONFIGURACIÓN GENERAL Y VARIABLES --- */
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+  :root {
+    --color-rojo-unev: #960201;
+    --color-dorado-unev: #bc9201;
+    --color-texto-principal: #212529;
+    --color-texto-secundario: #5a5a5a;
+    --color-borde: #dee2e6;
+    --color-fondo-claro: #f8f9fa;
+    --font-principal: 'Lato', sans-serif;
+  }
+
+  /* --- 2. LAYOUT PRINCIPAL Y CONTENEDOR --- */
+  .main-content {
+    font-family: var(--font-principal);
+    background-color: var(--color-fondo-claro);
+    padding: 4rem 0;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  /* --- 3. TARJETA IZQUIERDA (PERFIL DEL GRUPO) --- */
+  .group-card {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 4px;
+    padding: 2.5rem;
+    text-align: center;
+    position: sticky;
+    top: 100px;
+  }
+  .group-logo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .group-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .group-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+  }
+  
+  /* --- 4. TARJETA DERECHA (INFORMACIÓN) --- */
+  .group-info {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 2.5rem;
+  }
+  .info-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-texto-principal);
+    margin: 0 0 2rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 1.5rem;
+  }
+  .info-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 6px;
+    background-color: #e0e0e0;
+  }
+  .info-title .highlight {
+    color: var(--color-rojo-unev);
+    font-weight: 700;
+  }
+  .info-block {
+    margin-bottom: 1.5rem;
+  }
+  .leader-info, .members-list li, .area-info {
+    color: var(--color-texto-secundario);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .leader-info a, .members-list a {
+    color: var(--color-rojo-unev);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .leader-info a:hover, .members-list a:hover {
+    text-decoration: underline;
+  }
+  .members-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  /* --- 5. RESPONSIVE DESIGN --- */
+  @media (max-width: 768px) {
+    .page-wrapper {
+      grid-template-columns: 1fr; /* Una sola columna en móvil */
+    }
+    .group-card {
+      position: static; /* El sticky no funciona bien en una sola columna */
+    }
+  }
+</style>
