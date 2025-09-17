@@ -1,6 +1,7 @@
 ---
 // --- DATOS DE EVENTOS PASADOS ---
 import Layout from "../../layouts/Layout.astro";
+import type { NavBarProps } from "../../types/types";
 const eventosPasados = [
   {
     titulo: 'Situación de la Inocuidad Alimentaria en Rep. Dom.',
@@ -18,8 +19,28 @@ const eventosPasados = [
     enlaceUrl: '#'
   },
 ];
+
+const customStyle: NavBarProps = {
+navBarStyle: `
+#navbar {
+ height: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.nav-link{
+  color:  rgba(255, 255, 255, 0.7);
+}
+#navbar:has(.desktop-nav:hover) {
+      height: 78px;
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  
+#navbar:has(.nav-item:hover) .nav-link {
+      color: black;
+    }
+`}
+
 ---
-<Layout>
+<Layout customStyle={customStyle}>
     <main>
         <!-- SECCIÓN HERO CON VIDEO DE FONDO -->
         <section class="hero-section">

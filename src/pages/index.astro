@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Carrusel from '../components/Carrusel/Carrusel.astro';
 import Actividades from '../components/actividades_investigacion/Actividades.astro';
 import Noticias from '../components/Noticias/Noticias.astro';
+import type {NavBarProps} from "../types/types.ts" 
 // Ejemplo con datos dinámicos (desde API, CMS, etc.)
 
 // Simular datos desde una API o CMS
@@ -20,7 +21,7 @@ imagen: '/imagenes/unev-simposio.jpeg',
     {
       id: 2,
       titulo: 'UNEV reconoce a 27 docentes destacados',
-imagen: '/imagenes/docentes-unev',
+imagen: '/imagenes/docentes-unev.jpg',
       categoria: 'RECONOCIMIENTO',
       fecha: '2025-07-10'
     }
@@ -38,9 +39,28 @@ const slides = noticias.map(noticia => ({
   label: noticia.categoria,
   alt: `Imagen de ${noticia.titulo}`
 }));
+
+const customStyle: NavBarProps = {
+navBarStyle: `
+#navbar {
+ height: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.nav-link{
+  color:  rgba(255, 255, 255, 0.7);
+}
+#navbar:has(.desktop-nav:hover) {
+      height: 78px;
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  
+#navbar:has(.nav-item:hover) .nav-link {
+      color: black;
+    }
+`}
 ---
 
-<Layout>
+<Layout customStyle={customStyle}>
     <Carrusel 
         slides={slides} 
         height="70vh" 

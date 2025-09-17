@@ -2,7 +2,7 @@
 //import "../style/global.css"
 import Navbar from "../components/Navbar/Navbar.astro"
 import Footer from "../components/footer/footer.astro"
-const {style}= Astro.props
+const {customStyle}= Astro.props
 ---
 <!doctype html>
 <html lang="en">
@@ -15,7 +15,7 @@ const {style}= Astro.props
 		<title>Universidad Nacional Evangélica Unev</title>
 	</head>
   <body>
-    <Navbar style={style}/>  
+    <Navbar customStyle={customStyle}/>  
     <slot />
     <Footer/>
 	</body>

@@ -1,18 +1,18 @@
 #navbar {
   position: fixed;
   top: 0;
-background-color: rgba(255, 255, 255, 0.95);
-
   width: 100%;
   z-index: 1000;
-  height:78px;
-  transition: all 0.3s ease; 
+  height: 78px;
+  transition: all 0.3s ease;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: rgba(255, 255, 255, 0.95);
 }
+
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -24,6 +24,7 @@ background-color: rgba(255, 255, 255, 0.95);
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  gap: 2rem;
 }
 
 /* Logo */
@@ -45,7 +46,7 @@ background-color: rgba(255, 255, 255, 0.95);
 .logo-icon {
   font-size: 32px;
   margin-right: 12px;
-  animation: bounce 2s infinite;
+  animation: bounce 0.5s;
 }
 
 @keyframes bounce {
@@ -83,7 +84,7 @@ background-color: rgba(255, 255, 255, 0.95);
 }
 
 .nav-link {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Serif", sans-serif;
   display: block;
   padding: 12px 24px;
   border-radius: 8px;
@@ -92,12 +93,11 @@ background-color: rgba(255, 255, 255, 0.95);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  color: black;
+  color:black
 }
 
 .nav-link:hover {
-  color: #bc9201;
-  background-color: rgba(239, 246, 255, 1);
+  color: ##960201;
   transform: translateY(-2px);
 }
 
@@ -114,12 +114,6 @@ background-color: rgba(255, 255, 255, 0.95);
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(59, 130, 246, 0.2),
-    transparent
-  );
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
@@ -137,8 +131,8 @@ background-color: rgba(255, 255, 255, 0.95);
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 8px;
-  width: 208px;
+  padding-top: 20px;
+  width: 308px;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -150,7 +144,14 @@ background-color: rgba(255, 255, 255, 0.95);
   visibility: hidden;
   transform: translateY(-8px);
 }
-
+.nav-link .turn{
+  display: inline-block;
+  transform: scaleY(1); /* normal */
+  transition: transform 0.3s ease-in-out;
+}
+.nav-link:hover .turn{
+  transform: scaleY(-1); /* normal */
+}
 .dropdown-container:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -159,7 +160,7 @@ background-color: rgba(255, 255, 255, 0.95);
 
 .dropdown-link {
   display: block;
-  padding: 12px 20px;
+  padding: 11px 19px;
   color: #000000;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -168,8 +169,7 @@ background-color: rgba(255, 255, 255, 0.95);
 }
 
 .dropdown-link:hover {
-  color: white;
-  background: linear-gradient(135deg, #bc9201, #bc9201);
+  color:#d90000;
   transform: translateX(4px);
 }
 
@@ -399,7 +399,6 @@ background-color: rgba(255, 255, 255, 0.95);
   .logo-icon {
     font-size: 28px;
     margin-right: 8px;
-  }
 }
 
-
+}

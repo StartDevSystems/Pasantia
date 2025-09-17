@@ -1,29 +1,11 @@
 ---
 // src/components/NavBar.astro
-import "./Navbar.css";
-const {style}=Astro.props
+import "./Navbar.css"
+
+const { customStyle } = Astro.props;
+console.log("Prop recibido:", customStyle); // Debug
+console.log("NavBar style:", customStyle?.navBarStyle); // Debug
 ---
-<style>
-/*
-#navbar:has(.desktop-nav:hover) {
-  height:78px;
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-#navbar:has(.nav-item:hover) .nav-link {
-  color: black;
-}
-
-#navbar.scrolled {
-  height:78px;
-  background-color: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-#navbar.scrolled .nav-link {
-  color: black;
-}*/
-</style>
-
 <nav id="navbar">
   <div class="navbar-container">
     <div class="navbar-flex">
@@ -36,13 +18,14 @@ const {style}=Astro.props
 
       <!-- Desktop Navigation -->
       <ul class="desktop-nav">
-        <!---<li class="nav-item dropdown-container">
-          <a href="/" class="nav-link active">Inicio</a>
-          
-</li> -->
+        <li class="nav-item dropdown-container">
+          <a href="/" class="nav-link">
+<i style="width:2rem;" class="fa-solid fa-house"></i>
+          </a>  
+</li> 
         
         <li class="nav-item dropdown-container">
-          <a href="/" class="nav-link">Sobre Nosotros</a>
+          <a href="/" class="nav-link">Sobre Nosotros <i class="fa-solid fa-caret-down turn"></i></a>
           <!-- Dropdown Menu -->
           <div class="dropdown-menu">
           <a href="/SobreNosotros/Investigacion" class="dropdown-link">Investigación</a>
@@ -53,7 +36,7 @@ const {style}=Astro.props
         </li>
 
         <li class="nav-item dropdown-container">
-          <a href="/" class="nav-link">Investiga UNEV</a>
+          <a href="/" class="nav-link">Investiga UNEV <i id="turn-arrow"class="fa-solid fa-caret-down turn"></i></a>
           <!-- Dropdown Menu -->
           <div class="dropdown-menu">
             <a href="/InvestigaUnev/Grupo_Investigacion/Grupo_Investigacion" class="dropdown-link">
@@ -75,7 +58,7 @@ const {style}=Astro.props
         </li>
 
         <li class="nav-item dropdown-container">
-          <a href="/" class="nav-link">Cultura Cientifica</a>
+          <a href="/" class="nav-link">Cultura Cientifica <i id="turn-arrow"class="fa-solid fa-caret-down turn"></i></a>
           <!-- Dropdown Menu -->
           <div class="dropdown-menu">
             <a href="/CulturaCientifica/Noticias" class="dropdown-link">
@@ -107,7 +90,7 @@ const {style}=Astro.props
         </li>
 
         <li class="nav-item dropdown-container">
-          <a href="/" class="nav-link">Proyectos Destacados</a>
+          <a href="/" class="nav-link">Proyectos Destacados <i id="turn-arrow" class="fa-solid fa-caret-down turn"></i></a>
           <!-- Dropdown Menu -->
            <div class="dropdown-menu">
             <a href="/Proyectos Destacados/MicroRedes" class="dropdown-link">
@@ -197,7 +180,8 @@ const {style}=Astro.props
     </div>
   </div>
 </nav>
-
+<style is:inline set:html={customStyle?.navBarStyle || ''}>
+</style>
 <script>
   // Scroll effect for navbar
   window.addEventListener('scroll', () => {
@@ -208,7 +192,7 @@ const {style}=Astro.props
       navbar.classList.remove('scrolled');
     }
   });
-
+//Icon 180 rotation
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -273,5 +257,16 @@ const {style}=Astro.props
       menuIcon.style.display = 'block';
       closeIcon.style.display = 'none';
     });
-  });
+});
+/*
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const styleTag = document.createElement('style');
+    styleTag.textContent = customStyle.navBarStyle;
+    styleTag.id = 'custom-navbar-styles'; // Para debugging
+    document.head.appendChild(styleTag);
+    
+    console.log("Estilos inyectados:", styleTag.textContent); // Debug
+});*/
+
 </script>

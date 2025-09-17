@@ -1,9 +1,28 @@
 ---
 // src/pages/observatorios.astro
 import Layout from '../../layouts/Layout.astro';
+import type {NavBarProps} from "../../types/types.ts"; 
+const customStyle: NavBarProps = {
+navBarStyle: `
+#navbar {
+ height: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.nav-link{
+  color:  rgba(255, 255, 255, 0.7);
+}
+#navbar:has(.desktop-nav:hover) {
+      height: 78px;
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  
+#navbar:has(.nav-item:hover) .nav-link {
+      color: black;
+    }
+`}
 ---
 
-<Layout title="Nuestros Observatorios - INTEC">
+<Layout customStyle={customStyle} title="Nuestros Observatorios - INTEC">
   <main class="observatorios-page">
     <!-- Header Section -->
     <section class="hero-section">
